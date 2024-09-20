@@ -1,3 +1,5 @@
 :root {
-  --c-main-white: whitesmoke;
+  --c-header-white: whitesmoke;
+  --c-main-bg: #ececec;
+  --c-nav-lime: #00cf00;
 }
