@@ -5,6 +5,9 @@ export default {
     // display current date&&time
     const getTime = () => {
 
+      // get current day
+      document.querySelector(".current-day").innerHTML = new Date().toLocaleString("default", {weekday: 'long'})
+
       // get current date
       document.querySelector(".current-date").textContent =
           new Date().getDate().toString() + " " +
@@ -38,7 +41,7 @@ export default {
 
       <div class="header-time-container col-6">
         <div class="header-time ms-auto">
-          <span class="">Today</span>
+          <span class="current-day">Today</span>
           <div class="time-container">
             <span class="current-date"></span>
             <img src="@/assets/header/clock.svg.svg" alt="clock_img" class="ms-3">
@@ -74,7 +77,9 @@ header {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-
+  b {
+    color: var(--c-nav-lime);
+  }
   img {
     max-width: 50px;
   }
