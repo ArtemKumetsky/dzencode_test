@@ -9,7 +9,7 @@ import VArrival from "@/components/v-arrival.vue";
   <main>
     <v-nav/>
     <div class="main-content col-9  ps-5 pt-5">
-      <v-arrival/>
+      <RouterView/>
     </div>
   </main>
 </template>

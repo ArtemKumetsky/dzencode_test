@@ -1,5 +1,12 @@
 <script>
+  import {RouterLink} from "vue-router";
+
   export default {
+    computed: {
+      RouterLink() {
+        return RouterLink
+      }
+    },
     methods: {
       Error() {
         alert('There is nothing to do here!')
@@ -15,8 +22,16 @@
       <img src="@/assets/nav/settings.svg" alt="config_img" class="nav-image-config" @click="Error">
     </div>
     <ul>
-      <li>Приход</li>
-      <li>Группы</li>
+      <li>
+        <router-link to="/">
+          Приход
+        </router-link>
+      </li>
+      <li>
+        <router-link to="/groups">
+          Группы
+        </router-link>
+      </li>
       <li>Продукты</li>
       <li>Пользователи</li>
       <li @click="Error">Настройки</li>

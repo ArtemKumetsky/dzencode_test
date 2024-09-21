@@ -1,20 +1,9 @@
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  data() {
-    return {
-      items: [
-        {
-          src: "src/assets/interactive-menu/item.png",
-          description: "Gigabyte Technology X58-USB3 (Socket 1366) 6 X58-USB3",
-          detailed: "SN-12.3456789"
-        },
-        // {
-        //   src: "src/assets/interactive-menu/item.png",
-        //   description: "Gigabyte Technology X58-USB3 (Socket 1366) 6 X58-USB3",
-        //   detailed: "SN-12.3456789"
-        // },
-      ]
-    }
+  computed: {
+    ...mapGetters(['Products'])
   },
   methods: {
 
@@ -47,12 +36,12 @@ export default {
   <div class="interactive-menu">
     <h2 class="p-5">Вы уверены, что хотите удалить этот приход?</h2>
     <ul class="menu-target-item ps-5 pe-5 pt-3 pb-3">
-      <li v-for="item in items" class="pt-1 pb-1">
+      <li v-for="product in this.Products" class="pt-1 pb-1">
         <div class="menu-target-item-el col-12">
-          <img :src="item.src" alt="item_img" class="ms-4">
+          <img :src="product.src" alt="item_img" class="ms-4">
           <div class="ms-5">
-            {{ item.description }}
-            <span>{{ item.detailed }}</span>
+            {{ product.description }}
+            <span>{{ product.detailed }}</span>
           </div>
         </div>
       </li>

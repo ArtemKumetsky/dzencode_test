@@ -1,45 +1,11 @@
 <script>
 import InteractiveMenu from "@/components/v-interactive-menu.vue";
+import { mapGetters } from 'vuex';
 
 export default {
   components: {InteractiveMenu},
-  data() {
-    return {
-      arrivals: [
-        {
-          Title: "Длинное предлинное длиннючее название прихода",
-          Stock: "23",
-          Subdate: "04/12",
-          Date: "06 / Апр / 2017",
-          Subprice: "2 500 $",
-          Price: "250000.50"
-        },
-        {
-          Title: "Длинное название прихода",
-          Stock: "23",
-          Subdate: "09/12",
-          Date: "06 / Сен / 2017",
-          Subprice: "",
-          Price: "50"
-        },
-        {
-          Title: "Длинное предлинное длиннючее название прихода",
-          Stock: "23",
-          Subdate: "06/12",
-          Date: "06 / Июн / 2017",
-          Subprice: "2 500.85 $",
-          Price: "50.25"
-        },
-        {
-          Title: "Длинное название прихода",
-          Stock: "23",
-          Subdate: "02/12",
-          Date: "06 / Фев / 2017",
-          Subprice: "",
-          Price: "50.25"
-        },
-      ]
-    }
+  computed: {
+    ...mapGetters(['Arrivals'])
   },
   methods: {
     removeItem() {
@@ -56,7 +22,7 @@ export default {
       <h3 class="ms-2 mb-0">Приходы</h3>
     </div>
     <div class="arrival-content">
-      <div class="arrival-item container-fluid mt-4 pt-2 pb-2" v-for="item in arrivals">
+      <div class="arrival-item container-fluid mt-4 pt-2 pb-2" v-for="item in this.Arrivals">
         <div class="arrival-item-title ms-4 col-xl-5 col-xxl-6 col-4">
           <span>{{ item.Title }}</span>
         </div>
