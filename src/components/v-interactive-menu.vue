@@ -6,28 +6,16 @@ export default {
     ...mapGetters(['Products'])
   },
   methods: {
-
     // smoothly open menu
     openMenu() {
-      document.querySelector('.black-screen').style.display = 'block';
-      document.querySelector('.interactive-menu').style.display = 'block';
-
-      setTimeout(() => {
-        document.querySelector('.black-screen').style.opacity = 0.5;
-        document.querySelector('.interactive-menu').style.opacity = 1;
-      }, 300)
+     this.$store.dispatch('openMenu');
     },
 
     // smoothly close menu
     closeMenu() {
-      document.querySelector('.black-screen').style.opacity = 0;
-      document.querySelector('.interactive-menu').style.opacity = 0;
-
-      setTimeout(() => {
-        document.querySelector('.black-screen').style.display = 'none';
-        document.querySelector('.interactive-menu').style.display = 'none';
-      }, 300)
+      this.$store.dispatch('closeMenu');
     }
+
   }
 }
 </script>
