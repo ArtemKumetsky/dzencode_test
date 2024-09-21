@@ -182,7 +182,7 @@ export default {
 }
 
 .arrival-item:hover {
-  transform: scale(1.1);
+  transform: scale(1.025);
   box-shadow: 0 10px 30px -18px rgba(0,0,0,0.75);
   transition: .3s all;
 }

@@ -64,6 +64,7 @@ export default {
         УДАЛИТЬ
       </button>
     </div>
+    <button class="interactive-menu-close-btn" @click="closeMenu">✕</button>
   </div>
   <div class="black-screen" @click="closeMenu"></div>
 </template>
@@ -82,6 +83,7 @@ export default {
   z-index: 3;
   transition: .3s all;
   opacity: 0;
+  display: none;
 
   h2 {
     font-size: 24px;
@@ -112,7 +114,6 @@ export default {
     }
   }
 }
-
 
 .menu-target-item-el {
   display: flex;
@@ -169,6 +170,18 @@ export default {
       max-width: 17px;
     }
   }
+}
+
+.interactive-menu-close-btn {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  border: 0;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  font-size: 18px;
+  box-shadow:-5px 10px 20px 0 rgba(0, 0, 0, 0.25);
 }
 
 .black-screen {
