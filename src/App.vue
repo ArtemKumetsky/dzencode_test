@@ -8,7 +8,7 @@ import VArrival from "@/components/v-arrival.vue";
   <v-header/>
   <main>
     <v-nav/>
-    <div class="main-content col-xxl-8  ps-5 pt-5">
+    <div class="main-content col-9  ps-5 pt-5">
       <v-arrival/>
     </div>
   </main>
@@ -19,5 +19,8 @@ import VArrival from "@/components/v-arrival.vue";
     display: flex;
     flex-flow: row nowrap;
     background: var(--c-main-bg);
+  }
+  .main-content {
+    position: relative;
   }
 </style>

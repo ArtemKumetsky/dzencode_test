@@ -1,5 +1,8 @@
 <script>
+import InteractiveMenu from "@/components/v-interactive-menu.vue";
+
 export default {
+  components: {InteractiveMenu},
   data() {
     return {
       arrivals: [
@@ -37,6 +40,11 @@ export default {
         },
       ]
     }
+  },
+  methods: {
+    removeItem() {
+      this.$refs["interactive-menu"].openMenu()
+    }
   }
 }
 </script>
@@ -67,10 +75,11 @@ export default {
           <div class="arrival-item-subprice">{{ item.Subprice }}</div>
           <span>{{ item.Price }} <b>UAH</b></span>
         </div>
-        <img src="@/assets/arrival/delete-btn.svg" alt="delete_img" class="delete-btn col-1 ms-4">
+        <img src="@/assets/arrival/delete-btn.svg" alt="delete_img" class="delete-btn col-1 ms-4" @click="removeItem">
       </div>
     </div>
   </div>
+  <interactive-menu ref="interactive-menu"/>
 </template>
 
 <style scoped lang="scss">
@@ -166,6 +175,7 @@ export default {
     font-weight: normal;
   }
 }
+
 .delete-btn {
   max-width: 20px;
   cursor: pointer;
