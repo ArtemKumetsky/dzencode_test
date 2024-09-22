@@ -65,8 +65,6 @@ header {
   padding: 15px 0;
   display: flex;
   background: var(--c-header-white);
-  //-webkit-box-shadow: 0 10px 30px -18px rgba(0,0,0,0.75);
-  //-moz-box-shadow: 0 10px 30px -18px rgba(0,0,0,0.75);
   box-shadow: 0 10px 30px -18px rgba(0,0,0,0.75);
   position: relative;
   z-index: 2;

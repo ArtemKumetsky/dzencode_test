@@ -1,18 +1,11 @@
 <script>
-  import {RouterLink} from "vue-router";
-
-  export default {
-    computed: {
-      RouterLink() {
-        return RouterLink
-      }
-    },
-    methods: {
-      Error() {
-        alert('There is nothing to do here!')
-      }
+export default {
+  methods: {
+    Error() {
+      alert('There is nothing to do here!')
     }
   }
+}
 </script>
 
 <template>
@@ -32,7 +25,11 @@
           Группы
         </router-link>
       </li>
-      <li>Продукты</li>
+      <li>
+        <router-link to="/products">
+          Продукты
+        </router-link>
+      </li>
       <li>Пользователи</li>
       <li @click="Error">Настройки</li>
     </ul>
@@ -43,9 +40,7 @@
 nav {
   background: var(--c-main-bg);
   height: calc(100vh - 80px);
-  //-webkit-box-shadow: 10px 0 30px -18px rgba(0,0,0,0.75);
-  //-moz-box-shadow: 10px 0 30px -18px rgba(0,0,0,0.75);
-  box-shadow: 10px 0 30px -18px rgba(0,0,0,0.75);
+  box-shadow: 10px 0 30px -18px rgba(0, 0, 0, 0.75);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,6 +50,7 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     li {
       padding: 5px 0;
       width: max-content;
@@ -64,6 +60,7 @@ nav {
       font-size: 20px;
       cursor: pointer;
       position: relative;
+
       &:before {
         content: '';
         position: absolute;
@@ -75,6 +72,7 @@ nav {
         border-radius: 15px;
         transition: 0.3s all;
       }
+
       &:hover:before {
         width: 100%;
         transition: 0.3s all;
@@ -82,6 +80,7 @@ nav {
     }
   }
 }
+
 .nav-image-container {
   position: relative;
 
@@ -90,6 +89,7 @@ nav {
     height: 150px;
     border-radius: 100%;
   }
+
   .nav-image-config {
     position: absolute;
     right: 0;
@@ -97,7 +97,7 @@ nav {
     max-width: 50px;
     cursor: pointer;
     background: var(--c-header-white);
-    box-shadow: 0 0 30px 0 rgba(0,0,0,0.75);
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.75);
     border-radius: 100%;
     padding: 10px;
   }

@@ -5,7 +5,7 @@ import { mapGetters } from 'vuex';
 export default {
   components: {InteractiveMenu},
   computed: {
-    ...mapGetters(['Arrivals'])
+    ...mapGetters(['Products'])
   },
   methods: {
     removeItem() {
@@ -22,7 +22,7 @@ export default {
       <h3 class="ms-2 mb-0">Приходы</h3>
     </div>
     <div class="arrival-content">
-      <div class="arrival-item container-fluid mt-4 pt-2 pb-2" v-for="item in this.Arrivals">
+      <div class="arrival-item container-fluid mt-4 pt-2 pb-2" v-for="item in this.Products">
         <div class="arrival-item-title ms-4 col-xl-5 col-xxl-6 col-4">
           <span>{{ item.Title }}</span>
         </div>
@@ -79,17 +79,9 @@ export default {
 .arrival-item-title span {
   color: var(--c-gray);
   font-size: 20px;
-  position: relative;
-
-  &:before {
-    content: "";
-    height: 1px;
-    background: var(--c-gray);
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-  }
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
 }
 
 .arrival-item-stock {

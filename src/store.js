@@ -3,21 +3,32 @@ import {createStore} from 'vuex'
 const store = createStore({
     state() {
         return {
-            Products: [
+            Cart: [
                 {
                     src: "src/assets/interactive-menu/item.png",
                     description: "Gigabyte Technology X58-USB3 (Socket 1366) 6 X58-USB3",
                     detailed: "SN-12.3456789"
                 }
             ],
-            Arrivals: [
+            Products: [
                 {
                     Title: "Длинное предлинное длиннючее название прихода",
                     Stock: "23",
                     Subdate: "04/12",
                     Date: "06 / Апр / 2017",
                     Subprice: "2 500 $",
-                    Price: "250000.50"
+                    Price: "250000.50",
+                    details: {
+                        src: "src/assets/interactive-menu/item.png",
+                        description: "Gigabyte Technology X58-USB3 (Socket 1366) 6 X58-USB3",
+                        detailed: "SN-12.3456789",
+                        status: "Свободен",
+                        status_from: "06 / 04 / 2017",
+                        status_to: "06 / 08 / 2025",
+                        newness: "Новый",
+                        clientName: "—",
+                        groupTitle: "Длинное предлинное длиннючее название группы"
+                    }
                 },
                 {
                     Title: "Длинное название прихода",
@@ -25,7 +36,18 @@ const store = createStore({
                     Subdate: "09/12",
                     Date: "06 / Сен / 2017",
                     Subprice: "",
-                    Price: "50"
+                    Price: "50",
+                    details: {
+                        src: "src/assets/interactive-menu/item.png",
+                        description: "Gigabyte Technology X58-USB3 (Socket 1366) 6 X58-USB3",
+                        detailed: "SN-12.3456789",
+                        status: "В ремонте",
+                        status_from: "06 / 04 / 2017",
+                        status_to: "06 / 08 / 2025",
+                        newness: "Б/У",
+                        clientName: "—",
+                        groupTitle: "Длинное предлинное длиннючее название группы"
+                    }
                 },
                 {
                     Title: "Длинное предлинное длиннючее название прихода",
@@ -33,7 +55,18 @@ const store = createStore({
                     Subdate: "06/12",
                     Date: "06 / Июн / 2017",
                     Subprice: "2 500.85 $",
-                    Price: "50.25"
+                    Price: "50.25",
+                    details: {
+                        src: "src/assets/interactive-menu/item.png",
+                        description: "Gigabyte Technology X58-USB3 (Socket 1366) 6 X58-USB3",
+                        detailed: "SN-12.3456789",
+                        status: "Свободен",
+                        status_from: "06 / 04 / 2017",
+                        status_to: "06 / 08 / 2025",
+                        newness: "Новый",
+                        clientName: "Христорожденственский Александр",
+                        groupTitle: "Длинное предлинное длиннючее название группы"
+                    }
                 },
                 {
                     Title: "Длинное название прихода",
@@ -41,7 +74,18 @@ const store = createStore({
                     Subdate: "02/12",
                     Date: "06 / Фев / 2017",
                     Subprice: "",
-                    Price: "50.25"
+                    Price: "50.25",
+                    details: {
+                        src: "src/assets/interactive-menu/item.png",
+                        description: "Gigabyte Technology X58-USB3 (Socket 1366) 6 X58-USB3",
+                        detailed: "SN-12.3456789",
+                        status: "В ремонте",
+                        status_from: "06 / 04 / 2017",
+                        status_to: "06 / 08 / 2025",
+                        newness: "Б/У",
+                        clientName: "—",
+                        groupTitle: "Длинное предлинное длиннючее название группы"
+                    }
                 },
             ]
         }
@@ -71,8 +115,8 @@ const store = createStore({
         }
     },
     getters: {
+        Cart: state => state.Cart,
         Products: state => state.Products,
-        Arrivals: state => state.Arrivals,
     },
 })
 

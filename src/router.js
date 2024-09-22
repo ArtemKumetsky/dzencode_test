@@ -1,11 +1,18 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import ArrivalComponent from './components/v-arrival.vue'
+import {createRouter, createWebHistory} from 'vue-router'
 
-const routes = [{
-    name: 'Arrivals',
-    path: '/',
-    component: ArrivalComponent
-}]
+
+const routes = [
+    {
+        name: 'Arrivals',
+        path: '/',
+        component: () => import ('./components/v-arrival.vue')
+    },
+    {
+        name: 'Products',
+        path: '/products',
+        component: () => import( './components/v-products.vue'),
+    },
+]
 
 const router = createRouter({
     history: createWebHistory(),
