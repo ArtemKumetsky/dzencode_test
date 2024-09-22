@@ -10,15 +10,17 @@ const store = createStore({
                     detailed: "SN-12.3456789"
                 }
             ],
-            Products: [
+            FakeDatabase: [
                 {
-                    Title: "Длинное предлинное длиннючее название прихода",
-                    Stock: "23",
-                    Subdate: "04/12",
-                    Date: "06 / Апр / 2017",
-                    Subprice: "2 500 $",
-                    Price: "250000.50",
-                    details: {
+                    Arrival: {
+                        title: "Длинное предлинное длиннючее название прихода",
+                        stock: "23",
+                        subdate: "04/12",
+                        date: "06 / Апр / 2017",
+                        subprice: "2 500 $",
+                        price: "250000.50",
+                    },
+                    Product: {
                         src: "src/assets/interactive-menu/item.png",
                         description: "Gigabyte Technology X58-USB3 (Socket 1366) 6 X58-USB3",
                         detailed: "SN-12.3456789",
@@ -27,17 +29,21 @@ const store = createStore({
                         status_to: "06 / 08 / 2025",
                         newness: "Новый",
                         clientName: "—",
+                    },
+                    Group: {
                         groupTitle: "Длинное предлинное длиннючее название группы"
                     }
                 },
                 {
-                    Title: "Длинное название прихода",
-                    Stock: "23",
-                    Subdate: "09/12",
-                    Date: "06 / Сен / 2017",
-                    Subprice: "",
-                    Price: "50",
-                    details: {
+                    Arrival: {
+                        title: "Длинное название прихода",
+                        stock: "23",
+                        subdate: "09/12",
+                        date: "06 / Сен / 2017",
+                        subprice: "",
+                        price: "50",
+                    },
+                    Product: {
                         src: "src/assets/interactive-menu/item.png",
                         description: "Gigabyte Technology X58-USB3 (Socket 1366) 6 X58-USB3",
                         detailed: "SN-12.3456789",
@@ -46,17 +52,21 @@ const store = createStore({
                         status_to: "06 / 08 / 2025",
                         newness: "Б/У",
                         clientName: "—",
+                    },
+                    Group: {
                         groupTitle: "Длинное предлинное длиннючее название группы"
                     }
                 },
                 {
-                    Title: "Длинное предлинное длиннючее название прихода",
-                    Stock: "23",
-                    Subdate: "06/12",
-                    Date: "06 / Июн / 2017",
-                    Subprice: "2 500.85 $",
-                    Price: "50.25",
-                    details: {
+                    Arrival: {
+                        title: "Длинное предлинное длиннючее название прихода",
+                        stock: "23",
+                        subdate: "06/12",
+                        date: "06 / Июн / 2017",
+                        subprice: "2 500.85 $",
+                        price: "50.25",
+                    },
+                    Product: {
                         src: "src/assets/interactive-menu/item.png",
                         description: "Gigabyte Technology X58-USB3 (Socket 1366) 6 X58-USB3",
                         detailed: "SN-12.3456789",
@@ -65,17 +75,21 @@ const store = createStore({
                         status_to: "06 / 08 / 2025",
                         newness: "Новый",
                         clientName: "Христорожденственский Александр",
+                    },
+                    Group: {
                         groupTitle: "Длинное предлинное длиннючее название группы"
                     }
                 },
                 {
-                    Title: "Длинное название прихода",
-                    Stock: "23",
-                    Subdate: "02/12",
-                    Date: "06 / Фев / 2017",
-                    Subprice: "",
-                    Price: "50.25",
-                    details: {
+                    Arrival: {
+                        title: "Длинное название прихода",
+                        stock: "23",
+                        subdate: "02/12",
+                        date: "06 / Фев / 2017",
+                        subprice: "",
+                        price: "50",
+                    },
+                    Product: {
                         src: "src/assets/interactive-menu/item.png",
                         description: "Gigabyte Technology X58-USB3 (Socket 1366) 6 X58-USB3",
                         detailed: "SN-12.3456789",
@@ -84,6 +98,8 @@ const store = createStore({
                         status_to: "06 / 08 / 2025",
                         newness: "Б/У",
                         clientName: "—",
+                    },
+                    Group: {
                         groupTitle: "Длинное предлинное длиннючее название группы"
                     }
                 },
@@ -116,7 +132,7 @@ const store = createStore({
     },
     getters: {
         Cart: state => state.Cart,
-        Products: state => state.Products,
+        FakeDatabase: state => state.FakeDatabase,
     },
 })
 

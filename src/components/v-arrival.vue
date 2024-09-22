@@ -5,7 +5,7 @@ import { mapGetters } from 'vuex';
 export default {
   components: {InteractiveMenu},
   computed: {
-    ...mapGetters(['Products'])
+    ...mapGetters(['FakeDatabase'])
   },
   methods: {
     removeItem() {
@@ -22,24 +22,24 @@ export default {
       <h3 class="ms-2 mb-0">Приходы</h3>
     </div>
     <div class="arrival-content">
-      <div class="arrival-item container-fluid mt-4 pt-2 pb-2" v-for="item in this.Products">
+      <div class="arrival-item container-fluid mt-4 pt-2 pb-2" v-for="item in this.FakeDatabase">
         <div class="arrival-item-title ms-4 col-xl-5 col-xxl-6 col-4">
-          <span>{{ item.Title }}</span>
+          <span>{{ item.Arrival.title }}</span>
         </div>
         <div class="arrival-item-stock col-2">
           <img src="@/assets/arrival/more-btn.svg" alt="stock_img">
           <div class="ms-4">
-            <span>{{ item.Stock }}</span>
+            <span>{{ item.Arrival.stock }}</span>
             <b>Продукта</b>
           </div>
         </div>
         <div class="arrival-item-date col-2">
-          <div class="arrival-item-subdate">{{ item.Subdate }}</div>
-          <span>{{ item.Date }}</span>
+          <div class="arrival-item-subdate">{{ item.Arrival.subdate }}</div>
+          <span>{{ item.Arrival.date }}</span>
         </div>
         <div class="arrival-item-price col-xxl-1 col-2">
-          <div class="arrival-item-subprice">{{ item.Subprice }}</div>
-          <span>{{ item.Price }} <b>UAH</b></span>
+          <div class="arrival-item-subprice">{{ item.Arrival.subprice }}</div>
+          <span>{{ item.Arrival.price }} <b>UAH</b></span>
         </div>
         <img src="@/assets/arrival/delete-btn.svg" alt="delete_img" class="delete-btn col-1 ms-4" @click="removeItem">
       </div>

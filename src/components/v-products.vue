@@ -5,7 +5,7 @@ import {mapGetters} from 'vuex';
 export default {
   components: {InteractiveMenu},
   computed: {
-    ...mapGetters(['Products']),
+    ...mapGetters(['FakeDatabase']),
   },
   methods: {
     removeItem() {
@@ -37,54 +37,56 @@ export default {
       </div>
     </div>
 
-    <div class="products-content">
-      <div class="product-item mt-4 pt-2 pb-2" v-for="item in this.Products">
-        <div class="product-img-container col-1" v-if="item.details.status === 'Свободен'">
-          <img :src="item.details.src" alt="product_img" class="ms-5">
+    <div class="products-content container">
+      <div class="product-item row flex-nowrap overflow-auto mt-4 pt-2 pb-2 pe-4" v-for="item in this.FakeDatabase">
+        <div class="product-img-container col-1 ps-5" v-if="item.Product.status === 'Свободен'">
+          <img :src="item.Product.src" alt="product_img" class="">
         </div>
-        <div class="product-img-container col-1 status-busy" v-else>
-          <img :src="item.details.src" alt="product_img" class="ms-5">
+        <div class="product-img-container col-1 ps-5 status-busy" v-else>
+          <img :src="item.Product.src" alt="product_img" class="">
         </div>
-        <div class="product-name col-5 ms-4">
-          {{ item.details.description }}
-          <span>{{ item.details.detailed }}</span>
+        <div class="product-name col-4">
+          {{ item.Product.description }}
+          <span>{{ item.Product.detailed }}</span>
         </div>
-        <div class="product-status col-1 ms-3 status-free" v-if="item.details.status === 'Свободен'">
-          {{ item.details.status }}
+        <div class="product-status col-1 status-free" v-if="item.Product.status === 'Свободен'">
+          {{ item.Product.status }}
         </div>
-        <div class="product-status col-1 ms-3" v-else>{{ item.details.status }}</div>
-        <div class="product-date col-2 ms-5">
+        <div class="product-status col-1" v-else>{{ item.Product.status }}</div>
+        <div class="product-date col-2">
           <div>
             <span>с</span>
-            {{ item.details.status_from }}
+            {{ item.Product.status_from }}
           </div>
           <div>
             <span>по</span>
-            {{ item.details.status_to }}
+            {{ item.Product.status_to }}
           </div>
         </div>
         <div class="product-newness col-1">
-          {{ item.details.newness }}
+          {{ item.Product.newness }}
         </div>
-        <div class="product-item-price col-1">
-          <div>{{ item.Subprice }}</div>
-          <span>{{ item.Price }} <b>UAH</b></span>
+        <div class="product-item-price col-2">
+          <div>{{ item.Arrival.subprice }}</div>
+          <span>{{ item.Arrival.price }} <b>UAH</b></span>
         </div>
-        <div class="product-item-group-title styled-text ms-5 col-4">
-          <span>{{ item.details.groupTitle }}</span>
+        <div class="product-item-group-title styled-text col-3">
+          <span>{{ item.Group.groupTitle }}</span>
         </div>
         <div class="product-item-client-name styled-text col-3">
-          <span v-if="item.details.clientName !== '—'">{{ item.details.clientName }}</span>
-          <i v-else>{{ item.details.clientName }}</i>
+          <span v-if="item.Product.clientName !== '—'">{{ item.Product.clientName }}</span>
+          <i v-else>{{ item.Product.clientName }}</i>
         </div>
-        <div class="product-item-title styled-text ms-5 col-4">
-          <span>{{ item.Title }}</span>
+        <div class="product-item-title styled-text col-3">
+          <span>{{ item.Arrival.title }}</span>
         </div>
         <div class="product-item-date col-2">
-          <div class="product-item-subdate">{{ item.Subdate }}</div>
-          <span>{{ item.Date }}</span>
+          <div class="product-item-subdate">{{ item.Arrival.subdate }}</div>
+          <span>{{ item.Arrival.date }}</span>
         </div>
-        <img src="@/assets/arrival/delete-btn.svg" alt="delete_img" class="delete-btn ms-4" @click="removeItem">
+        <div class="delete-btn col-1 me-2">
+          <img src="@/assets/arrival/delete-btn.svg" alt="delete_img" class="delete-btn" @click="removeItem">
+        </div>
       </div>
 
     </div>
@@ -129,7 +131,6 @@ export default {
 }
 
 .products-content {
-  overflow-x: auto;
   width: 100%;
 }
 
@@ -140,6 +141,9 @@ export default {
   border-radius: 5px;
   border: 1px solid var(--c-gray);
   transition: .3s all;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--c-nav-lime) transparent;
 }
 
 .product-img-container {
@@ -179,10 +183,16 @@ export default {
   background: black
 }
 
-.product-date span {
-  color: var(--c-gray);
-  display: inline-block;
-  width: 20px;
+.product-date {
+  text-align: center;
+  span {
+    color: var(--c-gray);
+    display: inline-block;
+    width: 20px;
+  }
+}
+.product-newness {
+  text-align: center;
 }
 
 .styled-text span {
@@ -205,6 +215,7 @@ export default {
 .product-item-price {
   font-size: 18px;
   text-wrap: nowrap;
+  text-align: center;
 
   div {
     width: 100%;
