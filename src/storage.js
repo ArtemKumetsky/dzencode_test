@@ -175,6 +175,29 @@ const storage = createStore({
                     clientName: "—",
                     order: "Длинное предлинное длиннючее название прихода",
                 },
+                {
+                    id: 3,
+                    serialNumber: 1234,
+                    isNew: true,
+                    photo: 'src/assets/products/motherboard.png',
+                    status: 'В ремонте',
+                    title: 'Gigabyte Technology X58-USB3 (Socket 1366) 6 X58-USB3',
+                    type: 'Motherboard',
+                    specification: 'SN-12.3456789',
+                    guarantee: {
+                        start: '06/04/2017',
+                        end: '06/08/2025'
+                    },
+                    price: [
+                        {value: 2500, symbol: 'USD', isDefault: 0},
+                        {value: 250000.50, symbol: 'UAH', isDefault: 1}
+                    ],
+                    subdate: "06/12",
+                    date: "06 / Сен / 2017",
+                    groupTitle: "Длинное предлинное длиннючее название группы",
+                    clientName: "—",
+                    order: "Длинное предлинное длиннючее название прихода",
+                },
                 // {
                 //     id: 2,
                 //     serialNumber: 1234,

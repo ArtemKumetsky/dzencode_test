@@ -95,10 +95,9 @@ export default {
 
 .arrival-item-date {
   text-align: center;
-  color: var(--c-dark);
   div {
     width: 100%;
-    color: var(--c-dark-t);
+    color: var(--c-dark);
   }
 }
 
