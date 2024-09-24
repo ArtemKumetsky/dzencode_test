@@ -30,7 +30,11 @@ export default {
           Продукты
         </router-link>
       </li>
-      <li>Пользователи</li>
+      <li>
+        <router-link to="/users">
+          Пользователи
+        </router-link>
+      </li>
       <li @click="Error">Настройки</li>
     </ul>
   </nav>

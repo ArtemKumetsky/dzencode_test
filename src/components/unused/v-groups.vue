@@ -17,7 +17,7 @@ export default {
       <div class="groups-list col-4">
         <div class="groups-list-item row mt-3 mb-3" v-for="item in this.FakeDatabase">
           <div class="groups-list-item-stock col-5">
-            <img src="@/assets/arrival/more-btn.svg" alt="stock_img">
+            <img src="../../assets/arrival/more-btn.svg" alt="stock_img">
             <div class="ms-4">
               <span>{{ item.Arrival.stock }}</span>
               <b>Продукта</b>
@@ -28,7 +28,7 @@ export default {
             <span>{{ item.Arrival.date }}</span>
           </div>
           <div class="groups-list-item-btn col-2 ">
-            <img src="@/assets/groups/right_arrow.svg" alt="arrow">
+            <img src="../../assets/groups/right_arrow.svg" alt="arrow">
           </div>
         </div>
       </div>

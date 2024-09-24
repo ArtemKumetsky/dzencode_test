@@ -15,7 +15,12 @@ const routes = [
     {
         name: 'Groups',
         path: '/groups',
-        component: () => import( './components/v-groups.vue'),
+        component: () => import( './components/404.vue'),
+    },
+    {
+        name: 'Users',
+        path: '/users',
+        component: () => import( './components/404.vue'),
     },
 ]
 
