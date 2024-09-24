@@ -104,29 +104,32 @@ const storage = createStore({
                     }
                 },
             ],
-            // Orders: [
-            //     {
-            //         id: 1,
-            //         get products () { return this.Products[0] },
-            //         title: this.Products.order,
-            //         date: '2017-06-29 12:09:33',
-            //         description: 'desc',
-            //     },
-            //     {
-            //         id: 2,
-            //         title: 'Order 2',
-            //         date: '2017-06-29 12:09:33',
-            //         description: 'desc',
-            //         get products () { return this.products }
-            //     },
-            //     {
-            //         id: 3,
-            //         title: 'Order 3',
-            //         date: '2017-06-29 12:09:33',
-            //         description: 'desc',
-            //         get products () { return this.products },
-            //     }
-            // ],
+            Orders: [
+                {
+                    id: 1,
+                    title: 'Длинное название прихода',
+                    subdate: "06/12",
+                    date: "06 / Сен / 2017",
+                    description: 'desc',
+                    productIds: [1,2,3],
+                },
+                {
+                    id: 2,
+                    title: 'Длинное предлинное название прихода',
+                    subdate: "06/12",
+                    date: "06 / Сен / 2017",
+                    description: 'desc',
+                    productIds: [2,3]
+                },
+                {
+                    id: 3,
+                    title: 'Длинное предлинное длиннючее название прихода',
+                    subdate: "06/12",
+                    date: "06 / Сен / 2017",
+                    description: 'desc',
+                    productIds: [3]
+                }
+            ],
 
             Products: [
                 {
@@ -197,26 +200,7 @@ const storage = createStore({
                     groupTitle: "Длинное предлинное длиннючее название группы",
                     clientName: "—",
                     order: "Длинное предлинное длиннючее название прихода",
-                },
-                // {
-                //     id: 2,
-                //     serialNumber: 1234,
-                //     isNew: 1,
-                //     photo: 'pathToFile.jpg',
-                //     title: 'Product 1',
-                //     type: 'Monitors',
-                //     specification: 'Specification 1',
-                //     guarantee: {
-                //         start: '2017-06-29 12:09:33',
-                //         end: '2017-06-29 12:09:33'
-                //     },
-                //     price: [
-                //         {value: 100, symbol: 'USD', isDefault: 0},
-                //         {value: 2600, symbol: 'UAH', isDefault: 1}
-                //     ],
-                //     order: 2,
-                //     date: '2017-06-29 12:09:33'
-                // }
+                }
             ]
         }
     },
@@ -248,7 +232,13 @@ const storage = createStore({
         Cart: state => state.Cart,
         FakeDatabase: state => state.FakeDatabase,
         Products: state => state.Products,
-        Orders: state => state.Orders
+        Orders: state => state.Orders,
+
+        // Геттер для отримання продуктів у приході
+        getProductsByOrder: (state) => (productIds) => {
+            return state.Products.filter(product => productIds.includes(product.id));
+        }
+
     },
 })
 

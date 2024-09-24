@@ -1,7 +1,7 @@
 <script setup>
 import VHeader from "@/components/v-header.vue";
 import VNav from "@/components/v-nav.vue";
-import VArrival from "@/components/v-arrival.vue";
+import VArrival from "@/components/v-orders.vue";
 </script>
 
 <template>

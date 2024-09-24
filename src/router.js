@@ -5,7 +5,7 @@ const routes = [
     {
         name: 'Arrivals',
         path: '/',
-        component: () => import ('./components/v-arrival.vue')
+        component: () => import ('./components/v-orders.vue')
     },
     {
         name: 'Products',
