@@ -1,7 +1,14 @@
 <script>
-export default {
-  mounted() {
+import { io } from 'socket.io-client';
 
+export default {
+  data() {
+    return {
+      currentDate: new Date().toLocaleDateString(),
+      activeSessions: 0,
+    };
+  },
+  mounted() {
     // display current date&&time
     const getTime = () => {
 
@@ -23,7 +30,17 @@ export default {
       }, 1000)
     }
     getTime()
-  }
+
+    // Підключаємося до серверу Socket.io
+    const socket = io('http://localhost:3000');
+
+    // Слухаємо подію з сервера і оновлюємо кількість сесій
+    socket.on('sessionCount', (count) => {
+      this.activeSessions = count;
+    });
+  },
+
+
 
 }
 </script>
@@ -46,12 +63,14 @@ export default {
       <div class="header-time-container col-6">
         <div class="header-time ms-auto">
           <span class="current-day">Today</span>
+          <span class="ms-3">Active users: {{ activeSessions}}</span>
           <div class="time-container">
             <span class="current-date"></span>
             <img src="@/assets/header/clock.svg.svg" alt="clock_img" class="ms-3">
             <span class="current-time"></span>
           </div>
         </div>
+
       </div>
 
     </div>

@@ -1,9 +1,10 @@
 <script>
-import InteractiveMenu from "@/components/v-interactive-menu.vue";
+import InteractiveMenu from "@/components/subComponents/v-interactive-menu.vue";
 import { mapGetters } from 'vuex';
+import VCTitle from "@/components/subComponents/v-c-title.vue";
 
 export default {
-  components: {InteractiveMenu},
+  components: {VCTitle, InteractiveMenu},
   computed: {
     ...mapGetters(['FakeDatabase'])
   },
@@ -17,10 +18,7 @@ export default {
 
 <template>
   <div class="arrival-container">
-    <div class="arrival-title">
-      <img src="@/assets/arrival/add-btn.svg" alt="add_btn" class="arrival-title-icon">
-      <h3 class="ms-2 mb-0">Приходы</h3>
-    </div>
+    <v-c-title class="ms-5">Приходы</v-c-title>
     <div class="arrival-content">
       <div class="arrival-item container-fluid mt-4 pt-2 pb-2" v-for="item in this.FakeDatabase">
         <div class="arrival-item-title ms-4 col-xl-5 col-xxl-6 col-4">
@@ -41,43 +39,26 @@ export default {
           <div class="arrival-item-subprice">{{ item.Arrival.subprice }}</div>
           <span>{{ item.Arrival.price }} <b>UAH</b></span>
         </div>
-        <img src="@/assets/arrival/delete-btn.svg" alt="delete_img" class="delete-btn col-1 ms-4" @click="removeItem">
+        <img src="@/assets/arrival/delete-btn.svg" alt="delete_img" class="delete-btn col-1 ms-5" @click="removeItem">
       </div>
     </div>
+    <interactive-menu ref="interactive-menu"/>
   </div>
-  <interactive-menu ref="interactive-menu"/>
 </template>
 
 <style scoped lang="scss">
-.arrival-title {
-  display: flex;
-  align-items: center;
-}
-
-.arrival-add {
-  background: var(--c-nav-lime);
-  border-radius: 100%;
-  width: 30px;
-  height: 30px;
-  font-size: 24px;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
 
 .arrival-item {
   display: flex;
   align-items: center;
   background: var(--c-header-white);
   border-radius: 5px;
-  border: 1px solid var(--c-gray);
+  border: 1px solid var(--c-dark-t);
   transition: .3s all;
 }
 
 .arrival-item-title span {
-  color: var(--c-gray);
+  color: var(--c-dark);
   font-size: 20px;
   text-decoration: underline;
   text-underline-offset: 5px;
@@ -87,11 +68,12 @@ export default {
 .arrival-item-stock {
   display: flex;
   align-items: center;
+  color: var(--c-dark);
 
   img {
     width: 40px;
     height: 40px;
-    border: 1px solid var(--c-gray);
+    border: 1px solid var(--c-dark-t);
     border-radius: 100%;
     cursor: pointer;
   }
@@ -106,7 +88,6 @@ export default {
     }
 
     b {
-      color: var(--c-gray);
       font-weight: normal;
     }
   }
@@ -114,9 +95,10 @@ export default {
 
 .arrival-item-date {
   text-align: center;
+  color: var(--c-dark);
   div {
     width: 100%;
-    color: var(--c-gray);
+    color: var(--c-dark-t);
   }
 }
 
@@ -126,7 +108,7 @@ export default {
   div {
     width: 100%;
     font-size: 12px;
-    color: var(--c-gray);
+    color: var(--c-dark);
   }
   span b {
     font-size: 12px;

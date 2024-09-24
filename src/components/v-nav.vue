@@ -60,6 +60,7 @@ nav {
       font-size: 20px;
       cursor: pointer;
       position: relative;
+      color: var(--c-dark);
 
       &:before {
         content: '';

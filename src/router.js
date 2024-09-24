@@ -12,6 +12,11 @@ const routes = [
         path: '/products',
         component: () => import( './components/v-products.vue'),
     },
+    {
+        name: 'Groups',
+        path: '/groups',
+        component: () => import( './components/v-groups.vue'),
+    },
 ]
 
 const router = createRouter({

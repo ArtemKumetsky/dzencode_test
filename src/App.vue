@@ -5,14 +5,19 @@ import VArrival from "@/components/v-arrival.vue";
 </script>
 
 <template>
-  <v-header/>
+  <v-header />
   <main>
-    <v-nav/>
-    <div class="main-content col-9  ps-5 pt-5">
-      <RouterView/>
+    <v-nav />
+    <div class="main-content col-9 ps-5 pt-5">
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </div>
   </main>
 </template>
+
 
 <style scoped>
   main {
@@ -22,5 +27,11 @@ import VArrival from "@/components/v-arrival.vue";
   }
   .main-content {
     position: relative;
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 0.3s;
+  }
+  .fade-enter, .fade-leave-to /* або .fade-leave-active в залежності від версії Vue */ {
+    opacity: 0;
   }
 </style>

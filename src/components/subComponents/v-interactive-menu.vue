@@ -37,7 +37,7 @@ export default {
     <div class="menu-btn-container pe-5">
       <button type="reset" @click="closeMenu" class="me-4">ОТМЕНИТЬ</button>
       <button type="submit" class="p-2">
-        <img src="@/assets/interactive-menu/delete-btn.svg" alt="delete_btn" class="me-2">
+        <img src="../../assets/interactive-menu/delete-btn.svg" alt="delete_btn" class="me-2">
         УДАЛИТЬ
       </button>
     </div>
@@ -106,7 +106,7 @@ export default {
     text-decoration: underline;
 
     span {
-      color: var(--c-gray);
+      color: var(--c-dark);
     }
   }
 }

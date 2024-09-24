@@ -5,21 +5,8 @@ import VCTitle from "@/components/subComponents/v-c-title.vue";
 
 export default {
   components: {VCTitle, InteractiveMenu},
-  data() {
-    return {
-      selectedType: '',
-    };
-  },
   computed: {
-    ...mapGetters(['Products']),
-    filteredProducts() {
-      // Якщо не обраний жоден тип, показуємо всі продукти
-      if (!this.selectedType) {
-        return this.Products;
-      }
-      // Фільтруємо продукти за типом
-      return this.Products.filter(product => product.type === this.selectedType);
-    }
+    ...mapGetters(['FakeDatabase']),
   },
   methods: {
     removeItem() {
@@ -36,65 +23,66 @@ export default {
       <div class="select-container ms-5">
         <div>
           <label for="product-type">Тип:</label>
-          <select name="product-type" id="product-type" class="ms-2" v-model="selectedType">
-            <option value="">Всі продукти</option>
-            <option value="Monitor">Монітори</option>
-            <option value="Motherboard">Материнські плати</option>
+          <select name="product-type" id="product-type" class="ms-2">
+            <option>Moni |</option>
+          </select>
+        </div>
+
+        <div class="ms-5">
+          <label for="product-spec">Спецификация:</label>
+          <select name="product-spec" id="product-spec" class="ms-2">
+            <option>Moni |</option>
           </select>
         </div>
       </div>
     </div>
 
     <div class="products-content container">
-      <div class="product-item row flex-nowrap overflow-auto mt-4 pt-2 pb-2 pe-4" v-for="item in this.filteredProducts"
-           :key="item.id">
-        <div class="product-img-container col-1 ps-5" v-if="item.status === 'Свободен'">
-          <img :src="item.photo" alt="product_img" class="">
+      <div class="product-item row flex-nowrap overflow-auto mt-4 pt-2 pb-2 pe-4" v-for="item in this.FakeDatabase">
+        <div class="product-img-container col-1 ps-5" v-if="item.Product.status === 'Свободен'">
+          <img :src="item.Product.src" alt="product_img" class="">
         </div>
         <div class="product-img-container col-1 ps-5 status-busy" v-else>
-          <img :src="item.photo" alt="product_img" class="">
+          <img :src="item.Product.src" alt="product_img" class="">
         </div>
         <div class="product-name col-4">
-          {{ item.title }}
-          <span>{{ item.specification }}</span>
+          {{ item.Product.description }}
+          <span>{{ item.Product.detailed }}</span>
         </div>
-        <div class="product-status col-1 status-free" v-if="item.status === 'Свободен'">
-          {{ item.status }}
+        <div class="product-status col-1 status-free" v-if="item.Product.status === 'Свободен'">
+          {{ item.Product.status }}
         </div>
-        <div class="product-status col-1" v-else>{{ item.status }}</div>
+        <div class="product-status col-1" v-else>{{ item.Product.status }}</div>
         <div class="product-date col-2">
           <div>
             <span>с</span>
-            {{ item.guarantee.start }}
+            {{ item.Product.status_from }}
           </div>
           <div>
             <span>по</span>
-            {{ item.guarantee.end }}
+            {{ item.Product.status_to }}
           </div>
         </div>
-        <div class="product-newness col-1" v-if="item.isNew">
-          Новый
-        </div>
-        <div class="product-newness col-1" v-else>
-          Б/У
+        <div class="product-newness col-1">
+          {{ item.Product.newness }}
         </div>
         <div class="product-item-price col-2">
-          <div>{{ item.price[0].value + "$" }}</div>
-          <span>{{ item.price[1].value }} <b>UAH</b></span>
+          <div>{{ item.Arrival.subprice }}</div>
+          <span>{{ item.Arrival.price }} <b>UAH</b></span>
         </div>
         <div class="product-item-group-title styled-text col-3">
-          <span>{{ item.groupTitle }}</span>
+          <span>{{ item.Group.groupTitle }}</span>
         </div>
         <div class="product-item-client-name styled-text col-3">
-          <span v-if="item.clientName !== '—'">{{ item.clientName }}</span>
-          <i v-else>{{ item.clientName }}</i>
+          <span v-if="item.Product.clientName !== '—'">{{ item.Product.clientName }}</span>
+          <i v-else>{{ item.Product.clientName }}</i>
         </div>
         <div class="product-item-title styled-text col-3">
-          <span>{{ item.order }}</span>
+          <span>{{ item.Arrival.title }}</span>
         </div>
         <div class="product-item-date col-2">
-          <div class="product-item-subdate">{{ item.subdate }}</div>
-          <span>{{ item.date }}</span>
+          <div class="product-item-subdate">{{ item.Arrival.subdate }}</div>
+          <span>{{ item.Arrival.date }}</span>
         </div>
         <div class="delete-btn col-1 me-2">
           <img src="@/assets/arrival/delete-btn.svg" alt="delete_img" class="delete-btn" @click="removeItem">
@@ -184,14 +172,12 @@ export default {
 
 .product-date {
   text-align: center;
-
   span {
     color: var(--c-dark);
     display: inline-block;
     width: 20px;
   }
 }
-
 .product-newness {
   text-align: center;
 }
