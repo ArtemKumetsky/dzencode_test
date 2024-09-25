@@ -10,9 +10,6 @@ export default {
   },
   methods: {
     removeItem() {this.$refs["interactive-menu"].openMenu()},
-    countProducts(productsCounter) {
-      return this.$store.getters.productCounterOutput(productsCounter);
-    },
     // Calculate the total price for all products
     getTotalPrice(productIds) {
       const products = this.getProductsByOrder(productIds);
@@ -36,7 +33,7 @@ export default {
           <img src="@/assets/arrival/more-btn.svg" alt="stock_img">
           <div class="ms-4">
             <span>{{ item.productIds.length }}</span>
-            <b>{{ countProducts(item.productIds.length) }}</b>
+            <b>{{ this.$store.getters.productCounterOutput(item.productIds.length) }}</b>
           </div>
         </div>
         <div class="arrival-item-date col-2">
