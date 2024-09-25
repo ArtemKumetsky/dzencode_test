@@ -3,8 +3,8 @@ import {createRouter, createWebHistory} from 'vue-router'
 
 const routes = [
     {
-        name: 'Arrivals',
-        path: '/',
+        name: 'Orders',
+        path: '/Orders',
         component: () => import ('./components/v-orders.vue')
     },
     {
@@ -13,13 +13,8 @@ const routes = [
         component: () => import( './components/v-products.vue'),
     },
     {
-        name: 'Groups',
-        path: '/groups',
-        component: () => import( './components/404.vue'),
-    },
-    {
-        name: 'Users',
-        path: '/users',
+        name: 'Not found',
+        path: '/:pathMatch(.*)*',
         component: () => import( './components/404.vue'),
     },
 ]

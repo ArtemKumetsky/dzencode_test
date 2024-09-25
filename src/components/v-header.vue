@@ -31,10 +31,10 @@ export default {
     }
     getTime()
 
-    // Підключаємося до серверу Socket.io
+    // Connect to server Socket.io
     const socket = io('http://localhost:3000');
 
-    // Слухаємо подію з сервера і оновлюємо кількість сесій
+    // Listen to the event from the server and update the number of sessions
     socket.on('sessionCount', (count) => {
       this.activeSessions = count;
     });

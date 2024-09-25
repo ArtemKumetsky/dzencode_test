@@ -16,7 +16,7 @@ export default {
     </div>
     <ul>
       <li>
-        <router-link to="/">
+        <router-link to="/Orders">
           Приход
         </router-link>
       </li>

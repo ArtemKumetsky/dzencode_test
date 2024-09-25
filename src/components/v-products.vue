@@ -13,11 +13,9 @@ export default {
   computed: {
     ...mapGetters(['Products']),
     filteredProducts() {
-      // Якщо не обраний жоден тип, показуємо всі продукти
       if (!this.selectedType) {
         return this.Products;
       }
-      // Фільтруємо продукти за типом
       return this.Products.filter(product => product.type === this.selectedType);
     }
   },

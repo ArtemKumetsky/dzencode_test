@@ -206,7 +206,7 @@ const storage = createStore({
     },
     mutations: {},
     actions: {
-        // smoothly open menu
+        // Smooth menu appearance
         openMenu() {
             document.querySelector('.black-screen').style.display = 'block';
             document.querySelector('.interactive-menu').style.display = 'block';
@@ -217,7 +217,7 @@ const storage = createStore({
             }, 300)
         },
 
-        // smoothly close menu
+        // Smooth menu disappearance
         closeMenu() {
             document.querySelector('.black-screen').style.opacity = 0;
             document.querySelector('.interactive-menu').style.opacity = 0;
@@ -226,7 +226,7 @@ const storage = createStore({
                 document.querySelector('.black-screen').style.display = 'none';
                 document.querySelector('.interactive-menu').style.display = 'none';
             }, 300)
-        }
+        },
     },
     getters: {
         Cart: state => state.Cart,
@@ -234,7 +234,7 @@ const storage = createStore({
         Products: state => state.Products,
         Orders: state => state.Orders,
 
-        // Геттер для отримання продуктів у приході
+        // Getter for receiving products in order
         getProductsByOrder: (state) => (productIds) => {
             return state.Products.filter(product => productIds.includes(product.id));
         }

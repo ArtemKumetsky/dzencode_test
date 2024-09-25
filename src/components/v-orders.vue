@@ -12,7 +12,7 @@ export default {
     removeItem() {
       this.$refs["interactive-menu"].openMenu()
     },
-    // Обчислюємо загальну ціну для всіх продуктів приходу
+    // Calculate the total price for all products
     getTotalPrice(productIds) {
       const products = this.getProductsByOrder(productIds);
       const totalUsd = products.reduce((sum, product) => sum + product.price[0].value, 0);
