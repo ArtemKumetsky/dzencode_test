@@ -111,7 +111,7 @@ const storage = createStore({
                     subdate: "06/12",
                     date: "06 / Сен / 2017",
                     description: 'desc',
-                    productIds: [1,2,3],
+                    productIds: [1,2,3,2,1],
                 },
                 {
                     id: 2,
@@ -237,7 +237,20 @@ const storage = createStore({
         // Getter for receiving products in order
         getProductsByOrder: (state) => (productIds) => {
             return state.Products.filter(product => productIds.includes(product.id));
-        }
+        },
+
+        // Function for correct declension of product counters ( 1 продукт, 2 продукта, 5 продуктов, ...)
+        productCounterOutput: (state) => (productsCounter) => {
+            if (productsCounter % 100 >= 11 && productsCounter % 100 <= 19) {
+                return  'Продуктов'; // 11...19 case
+            } else if (productsCounter % 10 === 1) {
+                return 'Продукт';
+            } else if (productsCounter % 10 >= 2 && productsCounter % 10 <= 4) {
+                return 'Продукта';
+            } else {
+                return 'Продуктов';
+            }
+        },
 
     },
 })

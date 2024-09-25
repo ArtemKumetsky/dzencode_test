@@ -9,8 +9,9 @@ export default {
     ...mapGetters(['Orders', 'getProductsByOrder'])
   },
   methods: {
-    removeItem() {
-      this.$refs["interactive-menu"].openMenu()
+    removeItem() {this.$refs["interactive-menu"].openMenu()},
+    countProducts(productsCounter) {
+      return this.$store.getters.productCounterOutput(productsCounter);
     },
     // Calculate the total price for all products
     getTotalPrice(productIds) {
@@ -35,8 +36,7 @@ export default {
           <img src="@/assets/arrival/more-btn.svg" alt="stock_img">
           <div class="ms-4">
             <span>{{ item.productIds.length }}</span>
-            <b v-if="item.productIds.length === 1">Продукт</b>
-            <b v-else>Продукта(-ов)</b>
+            <b>{{ countProducts(item.productIds.length) }}</b>
           </div>
         </div>
         <div class="arrival-item-date col-2">
