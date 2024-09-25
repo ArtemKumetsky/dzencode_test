@@ -31,7 +31,6 @@ export default {
       Добавить продукт
     </button>
     <ul class="detailed-info-content mt-3">
-      {{console.log(this.getProductsByOrder(detailedItem.productIds))}}
       <li v-for="item in this.getProductsByOrder(detailedItem.productIds)" class="col-12 ps-4 pt-2 pb-2">
         <div class="product-img-container col-2 ps-5" v-if="item.status === 'Свободен'">
           <img :src="item.photo" alt="product_img" class="">
@@ -57,6 +56,7 @@ export default {
 <style scoped lang="scss">
 .detailed-info {
   width: 70%;
+  height: max-content;
   background: var(--c-header-white);
   border-radius: 5px;
   border: 1px solid var(--c-dark-t);
