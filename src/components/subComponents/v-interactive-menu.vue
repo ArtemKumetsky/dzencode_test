@@ -2,16 +2,14 @@
 export default {
   data() {
     return {
-      selectedProduct: null, // Тут зберігатиметься вибраний товар
+      selectedProduct: null,
     };
   },
   methods: {
     openMenu(item, type) {
       this.selectedProduct = item;
-      // Отримуємо обраний товар та показуємо меню
 
-      console.log(this.selectedProduct);
-
+      // edit title
       document.querySelector(".menu-title").innerHTML = "Вы уверены, что хотите удалить этот " + type + "?";
 
       document.querySelector('.black-screen').style.display = 'block';
@@ -30,7 +28,7 @@ export default {
       setTimeout(() => {
         document.querySelector('.black-screen').style.display = 'none';
         document.querySelector('.interactive-menu').style.display = 'none';
-        this.selectedProduct = null; // Очищуємо вибраний товар
+        this.selectedProduct = null;
       }, 300);
     },
   },
