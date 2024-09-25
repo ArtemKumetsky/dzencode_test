@@ -27,7 +27,7 @@ export default {
   <div class="detailed-info mt-4" v-if="this.detailedItem">
     <h3 class="mt-5 ms-5">{{ detailedItem.title }}</h3>
     <button class="detailed-info-add-btn mt-3 ms-5">
-      <img src="@/assets/arrival/add-btn.svg" alt="add_icon">
+      <img src="../../assets/buttons/add-btn.svg" alt="add_icon">
       Добавить продукт
     </button>
     <ul class="detailed-info-content mt-3">
@@ -46,7 +46,7 @@ export default {
           {{ item.status }}
         </div>
         <div class="product-status col-3" v-else>{{ item.status }}</div>
-        <img src="@/assets/arrival/delete-btn.svg" alt="delete_img" class="delete-btn col-1" @click="removeItem(item)">
+        <img src="../../assets/buttons/delete-btn.svg" alt="delete_img" class="delete-btn col-1" @click="removeItem(item)">
       </li>
     </ul>
     <interactive-menu ref="interactive-menu"/>
@@ -85,9 +85,11 @@ export default {
       border-top: 1px solid var(--c-dark-t);
       border-bottom: 1px solid var(--c-dark-t);
     }
+
     &:not(:first-child) {
       border-bottom: 1px solid var(--c-dark-t);
     }
+
     &:last-child {
       border-bottom: 0;
     }
@@ -131,6 +133,7 @@ export default {
     color: var(--c-dark);
   }
 }
+
 .delete-btn {
   max-width: 20px;
   cursor: pointer;

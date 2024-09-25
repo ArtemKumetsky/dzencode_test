@@ -5,13 +5,13 @@ import VArrival from "@/components/v-orders.vue";
 </script>
 
 <template>
-  <v-header />
+  <v-header/>
   <main>
-    <v-nav />
+    <v-nav/>
     <div class="main-content col-9 ps-5 pt-5">
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">
-          <component :is="Component" />
+          <component :is="Component"/>
         </transition>
       </router-view>
     </div>
@@ -20,18 +20,22 @@ import VArrival from "@/components/v-orders.vue";
 
 
 <style scoped>
-  main {
-    display: flex;
-    flex-flow: row nowrap;
-    background: var(--c-main-bg);
-  }
-  .main-content {
-    position: relative;
-  }
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity 0.3s;
-  }
-  .fade-enter, .fade-leave-to /* або .fade-leave-active в залежності від версії Vue */ {
-    opacity: 0;
-  }
+main {
+  display: flex;
+  flex-flow: row nowrap;
+  background: var(--c-main-bg);
+}
+
+.main-content {
+  position: relative;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s;
+}
+
+.fade-enter, .fade-leave-to /* або .fade-leave-active в залежності від версії Vue */
+{
+  opacity: 0;
+}
 </style>

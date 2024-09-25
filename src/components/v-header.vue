@@ -1,5 +1,5 @@
 <script>
-import { io } from 'socket.io-client';
+import {io} from 'socket.io-client';
 
 export default {
   data() {
@@ -13,7 +13,7 @@ export default {
     const getTime = () => {
 
       // get current day
-      document.querySelector(".current-day").innerHTML = new Date().toLocaleString("default", {weekday: 'long'})
+      document.querySelector(".current-day").innerHTML = new Date().toLocaleString("default", {weekday: 'long'}).charAt(0).toUpperCase() + new Date().toLocaleString("default", {weekday: 'long'}).slice(1)
 
       // get current date
       document.querySelector(".current-date").textContent =
@@ -41,7 +41,6 @@ export default {
   },
 
 
-
 }
 </script>
 
@@ -63,7 +62,7 @@ export default {
       <div class="header-time-container col-6">
         <div class="header-time ms-auto">
           <span class="current-day">Today</span>
-          <span class="ms-3">Active users: {{ activeSessions}}</span>
+          <span class="ms-3">Active users: {{ activeSessions }}</span>
           <div class="time-container">
             <span class="current-date"></span>
             <img src="@/assets/header/clock.svg.svg" alt="clock_img" class="ms-3">
@@ -84,7 +83,7 @@ header {
   padding: 15px 0;
   display: flex;
   background: var(--c-header-white);
-  box-shadow: 0 10px 30px -18px rgba(0,0,0,0.75);
+  box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.75);
   position: relative;
   z-index: 2;
 }
@@ -98,16 +97,20 @@ header {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+
   b {
     color: var(--c-nav-lime);
   }
+
   img {
     max-width: 50px;
   }
 }
+
 .search-field-container {
   display: flex;
   align-items: center;
+
   input {
     width: 100%;
     height: 30px;
@@ -118,12 +121,14 @@ header {
     background-color: #e1e5e8;
     box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.1);
     outline: none;
+
     &::placeholder {
       color: black;
       font-weight: 500;
     }
   }
 }
+
 .header-time {
   width: max-content;
 }

@@ -6,7 +6,7 @@ import router from "@/router.js";
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle.js' // bundle включає Popper
 
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import App from './App.vue'
 
 createApp(App).use(storage).use(router).mount('#app')

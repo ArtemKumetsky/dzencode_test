@@ -26,17 +26,17 @@ export default {
       const products = this.getProductsByOrder(productIds);
       const totalUsd = products.reduce((sum, product) => sum + product.price[0].value, 0);
       const totalUah = products.reduce((sum, product) => sum + product.price[1].value, 0);
-      return { usd: totalUsd, uah: totalUah };
+      return {usd: totalUsd, uah: totalUah};
     },
     showDetails(item) {
       this.detailed = true;
 
       document.querySelector(".orders-items").style.width = "25%";
       this.$refs["v-order-detailed"].catchItem(item);
-      setTimeout(()=> {
+      setTimeout(() => {
         this.hideMenu = false;
-      },300)
-      },
+      }, 300)
+    },
 
     normalView() {
       document.querySelector(".orders-items").style.width = "100%";
@@ -56,19 +56,20 @@ export default {
     <button v-if="detailed" @click="normalView" class="return-btn">Вернуться к нормальному виду</button>
     <div class="orders-content">
       <div class="orders-items">
-        <div class="orders-item container-fluid mt-4 pt-2 pb-2" v-for="item in Orders" :key="item.id" :id="'order' + item.id" @click="showDetails(item)">
+        <div class="orders-item container-fluid mt-4 pt-2 pb-2" v-for="item in Orders" :key="item.id"
+             :id="'order' + item.id" @click="showDetails(item)">
           <div class="orders-item-title ms-4 col-xl-5 col-xxl-6 col-4" v-if="!detailed">
             <span>{{ item.title }}</span>
-          </div >
+          </div>
           <div class="orders-item-stock col-2" v-if="!detailed">
-            <img src="@/assets/arrival/more-btn.svg" alt="stock_img">
+            <img src="../assets/buttons/more-btn.svg" alt="stock_img">
             <div class="ms-4">
               <span>{{ item.productIds.length }}</span>
               <b>{{ this.$store.getters.productCounterOutput(item.productIds.length) }}</b>
             </div>
           </div>
           <div class="orders-item-stock col-6" v-else>
-            <img src="@/assets/arrival/more-btn.svg" alt="stock_img">
+            <img src="../assets/buttons/more-btn.svg" alt="stock_img">
             <div class="ms-4">
               <span>{{ item.productIds.length }}</span>
               <b>{{ this.$store.getters.productCounterOutput(item.productIds.length) }}</b>
@@ -86,7 +87,8 @@ export default {
             <div class="arrival-item-subprice">{{ getTotalPrice(item.productIds).usd + " $" }}</div>
             <span>{{ getTotalPrice(item.productIds).uah }} <b>UAH</b></span>
           </div>
-          <img src="@/assets/arrival/delete-btn.svg" alt="delete_img" class="delete-btn col-1 ms-5" @click.stop="removeItem(item)" v-if="!detailed">
+          <img src="../assets/buttons/delete-btn.svg" alt="delete_img" class="delete-btn col-1 ms-5"
+               @click.stop="removeItem(item)" v-if="!detailed">
         </div>
       </div>
       <v-order-detailed v-show="!hideMenu" ref="v-order-detailed"/>
@@ -101,10 +103,12 @@ export default {
   flex-direction: row;
   justify-content: space-between;
 }
+
 .orders-items {
   transition: .3s all;
   width: 100%;
 }
+
 .orders-item {
   display: flex;
   align-items: center;

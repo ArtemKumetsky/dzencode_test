@@ -44,7 +44,8 @@ export default {
     </div>
 
     <div class="products-content container">
-      <div class="product-item row flex-nowrap overflow-auto mt-4 pt-2 pb-2 pe-4" v-for="item in this.filteredProducts" :key="item.id">
+      <div class="product-item row flex-nowrap overflow-auto mt-4 pt-2 pb-2 pe-4" v-for="item in this.filteredProducts"
+           :key="item.id">
         <div class="product-img-container col-1 ps-5" v-if="item.status === 'Свободен'">
           <img :src="item.photo" alt="product_img" class="">
         </div>
@@ -94,7 +95,7 @@ export default {
           <span>{{ item.date }}</span>
         </div>
         <div class="delete-btn col-1 me-2">
-          <img src="@/assets/arrival/delete-btn.svg" alt="delete_img" class="delete-btn" @click="removeItem(item)">
+          <img src="../assets/buttons/delete-btn.svg" alt="delete_img" class="delete-btn" @click="removeItem(item)">
         </div>
       </div>
 

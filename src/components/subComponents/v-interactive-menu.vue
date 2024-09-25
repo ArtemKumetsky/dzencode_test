@@ -48,7 +48,7 @@ export default {
             <span v-else>
               {{ selectedProduct.date }}
               <br>
-              {{selectedProduct.productIds.length + " " + this.$store.getters.productCounterOutput(selectedProduct.productIds.length)}}.
+              {{ selectedProduct.productIds.length + " " + this.$store.getters.productCounterOutput(selectedProduct.productIds.length)}}.
             </span>
           </div>
         </div>
