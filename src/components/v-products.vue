@@ -20,8 +20,8 @@ export default {
     }
   },
   methods: {
-    removeItem() {
-      this.$refs["interactive-menu"].openMenu()
+    removeItem(item) {
+      this.$refs["interactive-menu"].openMenu(item, "продукт")
     }
   }
 }
@@ -95,7 +95,7 @@ export default {
           <span>{{ item.date }}</span>
         </div>
         <div class="delete-btn col-1 me-2">
-          <img src="@/assets/arrival/delete-btn.svg" alt="delete_img" class="delete-btn" @click="removeItem">
+          <img src="@/assets/arrival/delete-btn.svg" alt="delete_img" class="delete-btn" @click="removeItem(item)">
         </div>
       </div>
 

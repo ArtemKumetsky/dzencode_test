@@ -9,7 +9,10 @@ export default {
     ...mapGetters(['Orders', 'getProductsByOrder'])
   },
   methods: {
-    removeItem() {this.$refs["interactive-menu"].openMenu()},
+    removeItem(item) {
+      this.$refs["interactive-menu"].openMenu(item, "приход");
+    },
+
     // Calculate the total price for all products
     getTotalPrice(productIds) {
       const products = this.getProductsByOrder(productIds);

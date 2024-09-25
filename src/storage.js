@@ -205,29 +205,7 @@ const storage = createStore({
         }
     },
     mutations: {},
-    actions: {
-        // Smooth menu appearance
-        openMenu() {
-            document.querySelector('.black-screen').style.display = 'block';
-            document.querySelector('.interactive-menu').style.display = 'block';
-
-            setTimeout(() => {
-                document.querySelector('.black-screen').style.opacity = 0.5;
-                document.querySelector('.interactive-menu').style.opacity = 1;
-            }, 300)
-        },
-
-        // Smooth menu disappearance
-        closeMenu() {
-            document.querySelector('.black-screen').style.opacity = 0;
-            document.querySelector('.interactive-menu').style.opacity = 0;
-
-            setTimeout(() => {
-                document.querySelector('.black-screen').style.display = 'none';
-                document.querySelector('.interactive-menu').style.display = 'none';
-            }, 300)
-        },
-    },
+    actions: {},
     getters: {
         Cart: state => state.Cart,
         FakeDatabase: state => state.FakeDatabase,

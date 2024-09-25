@@ -1,35 +1,57 @@
 <script>
-import { mapGetters } from 'vuex';
-
 export default {
-  computed: {
-    ...mapGetters(['Cart'])
+  data() {
+    return {
+      selectedProduct: null, // Тут зберігатиметься вибраний товар
+    };
   },
   methods: {
-    // smoothly open menu
-    openMenu() {
-     this.$store.dispatch('openMenu');
+    openMenu(item, type) {
+      this.selectedProduct = item;
+      // Отримуємо обраний товар та показуємо меню
+
+      console.log(this.selectedProduct);
+
+      document.querySelector(".menu-title").innerHTML = "Вы уверены, что хотите удалить этот " + type + "?";
+
+      document.querySelector('.black-screen').style.display = 'block';
+      document.querySelector('.interactive-menu').style.display = 'block';
+
+      setTimeout(() => {
+        document.querySelector('.black-screen').style.opacity = 0.5;
+        document.querySelector('.interactive-menu').style.opacity = 1;
+      }, 300);
     },
 
-    // smoothly close menu
     closeMenu() {
-      this.$store.dispatch('closeMenu');
-    }
+      document.querySelector('.black-screen').style.opacity = 0;
+      document.querySelector('.interactive-menu').style.opacity = 0;
 
-  }
-}
+      setTimeout(() => {
+        document.querySelector('.black-screen').style.display = 'none';
+        document.querySelector('.interactive-menu').style.display = 'none';
+        this.selectedProduct = null; // Очищуємо вибраний товар
+      }, 300);
+    },
+  },
+};
 </script>
 
 <template>
   <div class="interactive-menu">
-    <h2 class="p-5">Вы уверены, что хотите удалить этот приход?</h2>
+    <h2 class="menu-title p-5"></h2>
     <ul class="menu-target-item ps-5 pe-5 pt-3 pb-3">
-      <li v-for="product in this.Cart" class="pt-1 pb-1">
+      <li v-if="selectedProduct" class="pt-1 pb-1">
         <div class="menu-target-item-el col-12">
-          <img :src="product.src" alt="item_img" class="ms-4">
+          <img v-if="selectedProduct.photo" :src="selectedProduct.photo" alt="item_img" class="ms-4">
           <div class="ms-5">
-            {{ product.description }}
-            <span>{{ product.detailed }}</span>
+            {{ selectedProduct.title }}
+            <span v-if="selectedProduct.specification">{{ selectedProduct.specification }}</span>
+            <span v-else>
+              {{ selectedProduct.date }}
+              <br>
+              {{selectedProduct.productIds.length + " " + this.$store.getters.productCounterOutput(selectedProduct.productIds.length)}}.
+            </span>
           </div>
         </div>
       </li>
