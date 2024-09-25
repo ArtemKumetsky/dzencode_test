@@ -44,8 +44,7 @@ export default {
     </div>
 
     <div class="products-content container">
-      <div class="product-item row flex-nowrap overflow-auto mt-4 pt-2 pb-2 pe-4" v-for="item in this.filteredProducts"
-           :key="item.id">
+      <div class="product-item row flex-nowrap overflow-auto mt-4 pt-2 pb-2 pe-4" v-for="item in this.filteredProducts" :key="item.id">
         <div class="product-img-container col-1 ps-5" v-if="item.status === 'Свободен'">
           <img :src="item.photo" alt="product_img" class="">
         </div>

@@ -111,7 +111,7 @@ const storage = createStore({
                     subdate: "06/12",
                     date: "06 / Сен / 2017",
                     description: 'desc',
-                    productIds: [1,2,3,2,1],
+                    productIds: [1,2,3,4,5],
                 },
                 {
                     id: 2,
@@ -200,7 +200,53 @@ const storage = createStore({
                     groupTitle: "Длинное предлинное длиннючее название группы",
                     clientName: "—",
                     order: "Длинное предлинное длиннючее название прихода",
-                }
+                },
+                {
+                    id: 4,
+                    serialNumber: 1234,
+                    isNew: true,
+                    photo: 'src/assets/products/motherboard.png',
+                    status: 'Свободен',
+                    title: 'Gigabyte Technology X58-USB3 (Socket 1366) 6 X58-USB3',
+                    type: 'Motherboard',
+                    specification: 'SN-12.3456789',
+                    guarantee: {
+                        start: '06/04/2017',
+                        end: '06/08/2025'
+                    },
+                    price: [
+                        {value: 2500, symbol: 'USD', isDefault: 0},
+                        {value: 250000.50, symbol: 'UAH', isDefault: 1}
+                    ],
+                    subdate: "06/12",
+                    date: "06 / Сен / 2017",
+                    groupTitle: "Длинное предлинное длиннючее название группы",
+                    clientName: "—",
+                    order: "Длинное предлинное длиннючее название прихода",
+                },
+                {
+                    id: 5,
+                    serialNumber: 1234,
+                    isNew: false,
+                    photo: 'src/assets/products/monitor.webp',
+                    status: 'Свободен',
+                    title: 'Asus VG249Q (90LM05E0-B03170)',
+                    type: 'Monitor',
+                    specification: '(90LM05E0-B03170)',
+                    guarantee: {
+                        start: '06/04/2017',
+                        end: '06/08/2025'
+                    },
+                    price: [
+                        {value: 2500, symbol: 'USD', isDefault: 0},
+                        {value: 250000.50, symbol: 'UAH', isDefault: 1}
+                    ],
+                    subdate: "06/12",
+                    date: "06 / Сен / 2017",
+                    groupTitle: "Длинное предлинное длиннючее название группы",
+                    clientName: "—",
+                    order: "Длинное предлинное длиннючее название прихода",
+                },
             ]
         }
     },

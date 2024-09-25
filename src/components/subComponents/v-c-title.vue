@@ -16,17 +16,4 @@
   display: flex;
   align-items: center;
 }
-
-.component-title-icon {
-  background: var(--c-nav-lime);
-  border-radius: 100%;
-  width: 30px;
-  height: 30px;
-  font-size: 24px;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
 </style>

@@ -28,8 +28,8 @@ export default {
       setTimeout(() => {
         document.querySelector('.black-screen').style.display = 'none';
         document.querySelector('.interactive-menu').style.display = 'none';
-        this.selectedProduct = null;
       }, 300);
+      this.selectedProduct = null;
     },
   },
 };
