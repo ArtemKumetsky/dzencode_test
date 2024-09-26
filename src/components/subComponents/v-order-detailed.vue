@@ -17,50 +17,73 @@ export default {
       this.detailedItem = item;
     },
     removeItem(item) {
-      this.$refs["interactive-menu"].openMenu(item, "продукт")
+      this.$refs["interactive-menu"].openMenu(item)
     }
   },
 }
 </script>
 
 <template>
-  <div class="detailed-info mt-4" v-if="this.detailedItem">
-    <h3 class="mt-5 ms-5">{{ detailedItem.title }}</h3>
-    <button class="detailed-info-add-btn mt-3 ms-5">
-      <img src="../../assets/buttons/add-btn.svg" alt="add_icon">
-      Добавить продукт
-    </button>
-    <ul class="detailed-info-content mt-3">
-      <li v-for="item in this.getProductsByOrder(detailedItem.productIds)" class="col-12 ps-4 pt-2 pb-2">
-        <div class="product-img-container col-2 ps-5" v-if="item.status === 'Свободен'">
-          <img :src="item.photo" alt="product_img" class="">
-        </div>
-        <div class="product-img-container col-2 ps-5 status-busy" v-else>
-          <img :src="item.photo" alt="product_img" class="">
-        </div>
-        <div class="product-name col-6">
-          {{ item.title }}
-          <span>{{ item.specification }}</span>
-        </div>
-        <div class="product-status col-3 status-free" v-if="item.status === 'Свободен'">
-          {{ item.status }}
-        </div>
-        <div class="product-status col-3" v-else>{{ item.status }}</div>
-        <img src="../../assets/buttons/delete-btn.svg" alt="delete_img" class="delete-btn col-1" @click="removeItem(item)">
-      </li>
-    </ul>
-    <interactive-menu ref="interactive-menu"/>
+  <div class="detailed-container mt-4 col-8" v-if="this.detailedItem">
+    <div class="detailed-info">
+      <h3 class="mt-4 ms-4">{{ detailedItem.title }}</h3>
+      <button class="detailed-info-add-btn mt-3 ms-4">
+        <img src="@/assets/buttons/add-btn.svg" alt="add_icon">
+        Добавить продукт
+      </button>
+      <ul class="detailed-info-content mt-3">
+        <li v-for="item in this.getProductsByOrder(detailedItem.productIds)" class="col-12 ps-3 pt-2 pb-2">
+          <div class="product-img-container col-2 ps-5" v-if="item.status === 'Свободен'">
+            <img :src="item.photo" alt="product_img" class="">
+          </div>
+          <div class="product-img-container col-2 ps-5 status-busy" v-else>
+            <img :src="item.photo" alt="product_img" class="">
+          </div>
+          <div class="product-name col-6">
+            {{ item.title }}
+            <span>{{ item.specification }}</span>
+          </div>
+          <div class="product-status col-3 status-free" v-if="item.status === 'Свободен'">
+            {{ item.status }}
+          </div>
+          <div class="product-status col-3" v-else>{{ item.status }}</div>
+          <img src="@/assets/buttons/delete-btn.svg" alt="delete_img" class="delete-btn col-1" @click="removeItem(item)">
+        </li>
+      </ul>
+      <a @click="this.$emit('closeDetailed')">✕</a>
+    </div>
+    <transition name="fade" mode="in-out">
+      <interactive-menu ref="interactive-menu"/>
+    </transition>
   </div>
 </template>
 
 <style scoped lang="scss">
-.detailed-info {
-  width: 70%;
+.detailed-container {
   height: max-content;
   background: var(--c-header-white);
   border-radius: 5px;
   border: 1px solid var(--c-dark-t);
+}
+.detailed-info {
+  position: relative;
 
+  a {
+    position: absolute;
+    top: -50px;
+    right: -25px;
+    border: 0;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    box-shadow: -5px 10px 20px 0 rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--c-header-white);
+    cursor: pointer;
+  }
   button {
     border: 0;
     padding: 0;

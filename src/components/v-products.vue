@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     removeItem(item) {
-      this.$refs["interactive-menu"].openMenu(item, "продукт")
+      this.$refs["interactive-menu"].openMenu(item)
     }
   }
 }
@@ -35,9 +35,9 @@ export default {
         <div>
           <label for="product-type">Тип:</label>
           <select name="product-type" id="product-type" class="ms-2" v-model="selectedType">
-            <option value="">Всі продукти</option>
-            <option value="Monitor">Монітори</option>
-            <option value="Motherboard">Материнські плати</option>
+            <option value="">Все продукты</option>
+            <option value="Monitor">Мониторы</option>
+            <option value="Motherboard">Материнские платы</option>
           </select>
         </div>
       </div>
@@ -98,9 +98,10 @@ export default {
           <img src="../assets/buttons/delete-btn.svg" alt="delete_img" class="delete-btn" @click="removeItem(item)">
         </div>
       </div>
-
     </div>
-    <interactive-menu ref="interactive-menu"/>
+    <transition name="fade" mode="in-out">
+      <interactive-menu ref="interactive-menu"/>
+    </transition>
   </div>
 </template>
 

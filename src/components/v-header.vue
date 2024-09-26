@@ -4,32 +4,22 @@ import {io} from 'socket.io-client';
 export default {
   data() {
     return {
-      currentDate: new Date().toLocaleDateString(),
+      currentDate: new Date().getDate().toString() + " " + new Date().toLocaleString('ru-RU', {month: 'short'}) + " " + new Date().getFullYear().toString(),
       activeSessions: 0,
+      currentTime: new Date().getHours().toString() + ":" + new Date().getMinutes().toString(),
+      currentDay: new Date().toLocaleString("ru-RU", {weekday: 'long'})[0].toUpperCase() + new Date().toLocaleString("ru-RU", {weekday: 'long'}).substring(1),
     };
   },
   mounted() {
-    // display current date&&time
-    const getTime = () => {
 
-      // get current day
-      document.querySelector(".current-day").innerHTML = new Date().toLocaleString("default", {weekday: 'long'}).charAt(0).toUpperCase() + new Date().toLocaleString("default", {weekday: 'long'}).slice(1)
+    // update info every second
+    setInterval(() => {
+      this.currentTime = new Date().getHours().toString() + ":" + new Date().getMinutes().toString();
+      this.currentDate = new Date().getDate().toString() + " " + new Date().toLocaleString('ru-RU', {month: 'short'}) + " " + new Date().getFullYear().toString();
 
-      // get current date
-      document.querySelector(".current-date").textContent =
-          new Date().getDate().toString() + " " +
-          new Date().toLocaleString('default', {month: 'short'}) + " " +
-          new Date().getFullYear().toString()
+    },1000)
 
-      // get current time
-      document.querySelector(".current-time").innerHTML = new Date().getHours().toString() + ":" + new Date().getMinutes().toString();
 
-      // update current time
-      setInterval(() => {
-        document.querySelector(".current-time").innerHTML = new Date().getHours().toString() + ":" + new Date().getMinutes().toString();
-      }, 1000)
-    }
-    getTime()
 
     // Connect to server Socket.io
     const socket = io('http://localhost:3000');
@@ -61,12 +51,12 @@ export default {
 
       <div class="header-time-container col-6">
         <div class="header-time ms-auto">
-          <span class="current-day">Today</span>
-          <span class="ms-3">Active users: {{ activeSessions }}</span>
+          <span class="current-day">{{currentDay}}</span>
+          <span class="ms-3">В сети: {{ activeSessions }}</span>
           <div class="time-container">
-            <span class="current-date"></span>
+            <span class="current-date">{{currentDate}}</span>
             <img src="@/assets/header/clock.svg.svg" alt="clock_img" class="ms-3">
-            <span class="current-time"></span>
+            <span class="current-time">{{ currentTime }}</span>
           </div>
         </div>
 

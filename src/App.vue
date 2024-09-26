@@ -1,7 +1,6 @@
 <script setup>
 import VHeader from "@/components/v-header.vue";
 import VNav from "@/components/v-nav.vue";
-import VArrival from "@/components/v-orders.vue";
 </script>
 
 <template>
@@ -30,12 +29,5 @@ main {
   position: relative;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.3s;
-}
 
-.fade-enter, .fade-leave-to /* або .fade-leave-active в залежності від версії Vue */
-{
-  opacity: 0;
-}
 </style>

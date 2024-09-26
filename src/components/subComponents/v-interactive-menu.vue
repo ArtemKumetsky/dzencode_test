@@ -3,32 +3,17 @@ export default {
   data() {
     return {
       selectedProduct: null,
+      menuVisible: false,
     };
   },
   methods: {
-    openMenu(item, type) {
+    openMenu(item) {
       this.selectedProduct = item;
-
-      // edit title
-      document.querySelector(".menu-title").innerHTML = "Вы уверены, что хотите удалить этот " + type + "?";
-
-      document.querySelector('.black-screen').style.display = 'block';
-      document.querySelector('.interactive-menu').style.display = 'block';
-
-      setTimeout(() => {
-        document.querySelector('.black-screen').style.opacity = 0.5;
-        document.querySelector('.interactive-menu').style.opacity = 1;
-      }, 300);
+      this.menuVisible = true;
     },
 
     closeMenu() {
-      document.querySelector('.black-screen').style.opacity = 0;
-      document.querySelector('.interactive-menu').style.opacity = 0;
-
-      setTimeout(() => {
-        document.querySelector('.black-screen').style.display = 'none';
-        document.querySelector('.interactive-menu').style.display = 'none';
-      }, 300);
+      this.menuVisible = false;
       this.selectedProduct = null;
     },
   },
@@ -36,34 +21,36 @@ export default {
 </script>
 
 <template>
-  <div class="interactive-menu">
-    <h2 class="menu-title p-5"></h2>
-    <ul class="menu-target-item ps-5 pe-5 pt-3 pb-3">
-      <li v-if="selectedProduct" class="pt-1 pb-1">
-        <div class="menu-target-item-el col-12">
-          <img v-if="selectedProduct.photo" :src="selectedProduct.photo" alt="item_img" class="ms-4">
-          <div class="ms-5">
-            {{ selectedProduct.title }}
-            <span v-if="selectedProduct.specification">{{ selectedProduct.specification }}</span>
-            <span v-else>
+  <div v-if="menuVisible">
+    <div class="interactive-menu">
+      <h2 class="menu-title p-5">Вы действительно хотите удалить этот {{ selectedProduct.name }}</h2>
+      <ul class="menu-target-item ps-5 pe-5 pt-3 pb-3">
+        <li v-if="selectedProduct" class="pt-1 pb-1">
+          <div class="menu-target-item-el col-12">
+            <img v-if="selectedProduct.photo" :src="selectedProduct.photo" alt="item_img" class="ms-4">
+            <div class="ms-5">
+              {{ selectedProduct.title }}
+              <span v-if="selectedProduct.specification">{{ selectedProduct.specification }}</span>
+              <span v-else>
               {{ selectedProduct.date }}
               <br>
-              {{ selectedProduct.productIds.length + " " + this.$store.getters.productCounterOutput(selectedProduct.productIds.length)}}.
+              {{ selectedProduct.productIds.length + " " + this.$store.getters.productCounterOutput(selectedProduct.productIds.length) }}.
             </span>
+            </div>
           </div>
-        </div>
-      </li>
-    </ul>
-    <div class="menu-btn-container pe-5">
-      <button type="reset" @click="closeMenu" class="me-4">ОТМЕНИТЬ</button>
-      <button type="submit" class="p-2">
-        <img src="../../assets/interactive-menu/delete-btn.svg" alt="delete_btn" class="me-2">
-        УДАЛИТЬ
-      </button>
+        </li>
+      </ul>
+      <div class="menu-btn-container pe-5">
+        <button type="reset" @click="closeMenu" class="me-4">ОТМЕНИТЬ</button>
+        <button type="submit" class="p-2">
+          <img src="@/assets/interactive-menu/delete-btn.svg" alt="delete_btn" class="me-2">
+          УДАЛИТЬ
+        </button>
+      </div>
+      <button class="interactive-menu-close-btn" @click="closeMenu">✕</button>
     </div>
-    <button class="interactive-menu-close-btn" @click="closeMenu">✕</button>
+    <div class="black-screen" @click="closeMenu"></div>
   </div>
-  <div class="black-screen" @click="closeMenu"></div>
 </template>
 
 <style scoped lang="scss">
@@ -79,8 +66,7 @@ export default {
   border-radius: 5px;
   z-index: 3;
   transition: .3s all;
-  opacity: 0;
-  display: none;
+  display: block;
 
   h2 {
     font-size: 24px;
@@ -96,7 +82,7 @@ export default {
     width: 100%;
     position: relative;
     list-style: none;
-    border-top: 1px solid rgba(0,0,0,0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
     margin-block-end: 0;
 
     &:before {
@@ -178,11 +164,10 @@ export default {
   width: 50px;
   height: 50px;
   font-size: 18px;
-  box-shadow:-5px 10px 20px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: -5px 10px 20px 0 rgba(0, 0, 0, 0.25);
 }
 
 .black-screen {
-  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -190,7 +175,8 @@ export default {
   height: 100%;
   z-index: 2;
   background: var(--c-dark);
-  opacity: 0;
+  opacity: 0.5;
+  display: block;
   transition: .3s all;
 }
 

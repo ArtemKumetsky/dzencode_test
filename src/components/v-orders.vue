@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     removeItem(item) {
-      this.$refs["interactive-menu"].openMenu(item, "приход");
+      this.$refs["interactive-menu"].openMenu(item);
     },
 
     // Calculate the total price for all products
@@ -30,8 +30,6 @@ export default {
     },
     showDetails(item) {
       this.detailed = true;
-
-      document.querySelector(".orders-items").style.width = "25%";
       this.$refs["v-order-detailed"].catchItem(item);
       setTimeout(() => {
         this.hideMenu = false;
@@ -39,8 +37,6 @@ export default {
     },
 
     normalView() {
-      document.querySelector(".orders-items").style.width = "100%";
-
       this.detailed = false;
       this.hideMenu = true;
       this.detailedItem = null
@@ -53,33 +49,21 @@ export default {
 <template>
   <div class="orders-container">
     <v-c-title class="ms-5">Приходы</v-c-title>
-    <button v-if="detailed" @click="normalView" class="return-btn">Вернуться к нормальному виду</button>
-    <div class="orders-content">
-      <div class="orders-items">
+    <div class="orders-content" :class="{'justify-content-between': detailed}">
+      <div class="orders-items" :class="{'col-3': detailed, 'col-12': !detailed}">
         <div class="orders-item container-fluid mt-4 pt-2 pb-2" v-for="item in Orders" :key="item.id"
              :id="'order' + item.id" @click="showDetails(item)">
           <div class="orders-item-title ms-4 col-xl-5 col-xxl-6 col-4" v-if="!detailed">
             <span>{{ item.title }}</span>
           </div>
-          <div class="orders-item-stock col-2" v-if="!detailed">
-            <img src="../assets/buttons/more-btn.svg" alt="stock_img">
-            <div class="ms-4">
+          <div class="orders-item-stock col-2" :class="{'col-6':detailed}">
+            <img src="@/assets/buttons/more-btn.svg" alt="stock_img">
+            <div :class="{'ms-4': !detailed, 'ms-2': detailed}">
               <span>{{ item.productIds.length }}</span>
               <b>{{ this.$store.getters.productCounterOutput(item.productIds.length) }}</b>
             </div>
           </div>
-          <div class="orders-item-stock col-6" v-else>
-            <img src="../assets/buttons/more-btn.svg" alt="stock_img">
-            <div class="ms-4">
-              <span>{{ item.productIds.length }}</span>
-              <b>{{ this.$store.getters.productCounterOutput(item.productIds.length) }}</b>
-            </div>
-          </div>
-          <div class="orders-item-date col-2" v-if="!detailed">
-            <div class="arrival-item-subdate">{{ item.subdate }}</div>
-            <span>{{ item.date }}</span>
-          </div>
-          <div class="orders-item-date col-6" v-else>
+          <div class="orders-item-date col-2" :class="{'col-6':detailed}">
             <div class="arrival-item-subdate">{{ item.subdate }}</div>
             <span>{{ item.date }}</span>
           </div>
@@ -87,26 +71,25 @@ export default {
             <div class="arrival-item-subprice">{{ getTotalPrice(item.productIds).usd + " $" }}</div>
             <span>{{ getTotalPrice(item.productIds).uah }} <b>UAH</b></span>
           </div>
-          <img src="../assets/buttons/delete-btn.svg" alt="delete_img" class="delete-btn col-1 ms-5"
+          <img src="../assets/buttons/delete-btn.svg" alt="delete_img" class="delete-btn col-1 m-auto"
                @click.stop="removeItem(item)" v-if="!detailed">
         </div>
       </div>
-      <v-order-detailed v-show="!hideMenu" ref="v-order-detailed"/>
+      <v-order-detailed @closeDetailed="normalView" v-show="!hideMenu" ref="v-order-detailed"/>
     </div>
-    <interactive-menu ref="interactive-menu"/>
+    <transition name="fade" mode="in-out">
+      <interactive-menu ref="interactive-menu"/>
+    </transition>
   </div>
 </template>
 
 <style scoped lang="scss">
 .orders-content {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 }
 
 .orders-items {
   transition: .3s all;
-  width: 100%;
 }
 
 .orders-item {
@@ -191,13 +174,4 @@ export default {
   transition: .3s all;
 }
 
-.return-btn {
-  position: absolute;
-  left: 300px;
-  top: 55px;
-  border: 2px solid var(--c-nav-lime);
-  font-weight: bold;
-  border-radius: 5px;
-
-}
 </style>

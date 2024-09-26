@@ -11,6 +11,7 @@ const storage = createStore({
                     date: "06 / Сен / 2017",
                     description: 'desc',
                     productIds: [1, 2, 3, 4, 5],
+                    name: "приход"
                 },
                 {
                     id: 2,
@@ -18,7 +19,8 @@ const storage = createStore({
                     subdate: "06/12",
                     date: "06 / Сен / 2017",
                     description: 'desc',
-                    productIds: [2, 3]
+                    productIds: [2, 3],
+                    name: "приход"
                 },
                 {
                     id: 3,
@@ -26,7 +28,8 @@ const storage = createStore({
                     subdate: "06/12",
                     date: "06 / Сен / 2017",
                     description: 'desc',
-                    productIds: [3]
+                    productIds: [3],
+                    name: "приход"
                 }
             ],
 
@@ -53,6 +56,7 @@ const storage = createStore({
                     groupTitle: "Длинное предлинное длиннючее название группы",
                     clientName: "—",
                     order: "Длинное предлинное длиннючее название прихода",
+                    name: "продукт",
                 },
                 {
                     id: 2,
@@ -76,6 +80,7 @@ const storage = createStore({
                     groupTitle: "Длинное предлинное длиннючее название группы",
                     clientName: "—",
                     order: "Длинное предлинное длиннючее название прихода",
+                    name: "продукт",
                 },
                 {
                     id: 3,
@@ -99,6 +104,7 @@ const storage = createStore({
                     groupTitle: "Длинное предлинное длиннючее название группы",
                     clientName: "—",
                     order: "Длинное предлинное длиннючее название прихода",
+                    name: "продукт",
                 },
                 {
                     id: 4,
@@ -122,6 +128,7 @@ const storage = createStore({
                     groupTitle: "Длинное предлинное длиннючее название группы",
                     clientName: "—",
                     order: "Длинное предлинное длиннючее название прихода",
+                    name: "продукт",
                 },
                 {
                     id: 5,
@@ -145,8 +152,9 @@ const storage = createStore({
                     groupTitle: "Длинное предлинное длиннючее название группы",
                     clientName: "—",
                     order: "Длинное предлинное длиннючее название прихода",
+                    name: "продукт",
                 },
-            ]
+            ],
         }
     },
     mutations: {},
@@ -162,7 +170,7 @@ const storage = createStore({
 
         // Function for correct declension of product counters ( 1 продукт, 2 продукта, 5 продуктов, ...)
         productCounterOutput: (state) => (productsCounter) => {
-            if (productsCounter % 100 >= 11 && productsCounter % 100 <= 19) {
+            if (productsCounter % 100 >= 11 && productsCounter % 100 <= 14) {
                 return 'Продуктов'; // 11...19 case
             } else if (productsCounter % 10 === 1) {
                 return 'Продукт';
@@ -172,6 +180,7 @@ const storage = createStore({
                 return 'Продуктов';
             }
         },
+
 
     },
 })

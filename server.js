@@ -1,11 +1,11 @@
 import express from 'express';
-import { createServer } from 'http';
-import { Server } from 'socket.io';
+import {createServer} from 'http';
+import {Server} from 'socket.io';
 import cors from 'cors';
 
 const app = express();
 
-// Додай middleware CORS
+// Додаємо middleware CORS
 app.use(cors({
     origin: 'http://localhost:5173' // Дозволяємо доступ із твого клієнтського домену
 }));
