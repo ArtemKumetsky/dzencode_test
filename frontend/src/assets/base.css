@@ -1,8 +1,8 @@
 :root {
-    --c-header-white: whitesmoke;
-    --c-main-bg: #ececec;
-    --c-nav-lime: #85ba00;
-    --c-gray: #707070;
-    --c-dark: #506577;
-    --c-dark-t: rgba(80, 101, 119, 0.35);
+  --c-header-white: whitesmoke;
+  --c-main-bg: #ececec;
+  --c-nav-lime: #85ba00;
+  --c-gray: #707070;
+  --c-dark: #506577;
+  --c-dark-t: rgba(80, 101, 119, 0.35);
 }

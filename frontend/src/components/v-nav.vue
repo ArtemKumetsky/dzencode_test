@@ -2,38 +2,30 @@
 export default {
   methods: {
     Error() {
-      alert('There is nothing to do here!')
-    }
-  }
+      alert("There is nothing to do here!")
+    },
+  },
 }
 </script>
 
 <template>
   <nav class="col-2 pt-5">
     <div class="nav-image-container mb-5 mt-5">
-      <img src="@/assets/nav/user.png" alt="config_img" class="nav-image">
-      <img src="@/assets/nav/settings.svg" alt="config_img" class="nav-image-config" @click="Error">
+      <img src="@/assets/nav/user.png" alt="config_img" class="nav-image" />
+      <img src="@/assets/nav/settings.svg" alt="config_img" class="nav-image-config" @click="Error" />
     </div>
     <ul>
       <li>
-        <router-link to="/Orders">
-          Приход
-        </router-link>
+        <router-link to="/Orders"> Приход </router-link>
       </li>
       <li>
-        <router-link to="/groups">
-          Группы
-        </router-link>
+        <router-link to="/groups"> Группы </router-link>
       </li>
       <li>
-        <router-link to="/products">
-          Продукты
-        </router-link>
+        <router-link to="/products"> Продукты </router-link>
       </li>
       <li>
-        <router-link to="/users">
-          Пользователи
-        </router-link>
+        <router-link to="/users"> Пользователи </router-link>
       </li>
       <li @click="Error">Настройки</li>
     </ul>
@@ -67,7 +59,7 @@ nav {
       color: var(--c-dark);
 
       &:before {
-        content: '';
+        content: "";
         position: absolute;
         bottom: 0;
         left: 0;
@@ -107,5 +99,4 @@ nav {
     padding: 10px;
   }
 }
-
 </style>

@@ -1,24 +1,24 @@
 <script>
-import {mapGetters} from "vuex";
-import InteractiveMenu from "@/components/subComponents/v-interactive-menu.vue";
+import { mapGetters } from "vuex"
+import InteractiveMenu from "@/components/subComponents/v-interactive-menu.vue"
 
 export default {
-  components: {InteractiveMenu},
+  components: { InteractiveMenu },
   data() {
     return {
-      detailedItem: null
+      detailedItem: null,
     }
   },
   computed: {
-    ...mapGetters(['Orders', 'getProductsByOrder'])
+    ...mapGetters(["Orders", "getProductsByOrder"]),
   },
   methods: {
     catchItem(item) {
-      this.detailedItem = item;
+      this.detailedItem = item
     },
     removeItem(item) {
       this.$refs["interactive-menu"].openMenu(item)
-    }
+    },
   },
 }
 </script>
@@ -28,16 +28,16 @@ export default {
     <div class="detailed-info">
       <h3 class="mt-4 ms-4">{{ detailedItem.title }}</h3>
       <button class="detailed-info-add-btn mt-3 ms-4">
-        <img src="@/assets/buttons/add-btn.svg" alt="add_icon">
+        <img src="@/assets/buttons/add-btn.svg" alt="add_icon" />
         Добавить продукт
       </button>
       <ul class="detailed-info-content mt-3">
         <li v-for="item in this.getProductsByOrder(detailedItem.productIds)" class="col-12 ps-3 pt-2 pb-2">
           <div class="product-img-container col-2 ps-5" v-if="item.status === 'Свободен'">
-            <img :src="item.photo" alt="product_img" class="">
+            <img :src="item.photo" alt="product_img" class="" />
           </div>
           <div class="product-img-container col-2 ps-5 status-busy" v-else>
-            <img :src="item.photo" alt="product_img" class="">
+            <img :src="item.photo" alt="product_img" class="" />
           </div>
           <div class="product-name col-6">
             {{ item.title }}
@@ -47,13 +47,18 @@ export default {
             {{ item.status }}
           </div>
           <div class="product-status col-3" v-else>{{ item.status }}</div>
-          <img src="@/assets/buttons/delete-btn.svg" alt="delete_img" class="delete-btn col-1" @click="removeItem(item)">
+          <img
+            src="@/assets/buttons/delete-btn.svg"
+            alt="delete_img"
+            class="delete-btn col-1"
+            @click="removeItem(item)"
+          />
         </li>
       </ul>
       <a @click="this.$emit('closeDetailed')">✕</a>
     </div>
     <transition name="fade" mode="in-out">
-      <interactive-menu ref="interactive-menu"/>
+      <interactive-menu ref="interactive-menu" />
     </transition>
   </div>
 </template>
@@ -65,6 +70,7 @@ export default {
   border-radius: 5px;
   border: 1px solid var(--c-dark-t);
 }
+
 .detailed-info {
   position: relative;
 
@@ -84,6 +90,7 @@ export default {
     background: var(--c-header-white);
     cursor: pointer;
   }
+
   button {
     border: 0;
     padding: 0;
@@ -116,7 +123,6 @@ export default {
     &:last-child {
       border-bottom: 0;
     }
-
   }
 }
 
@@ -144,7 +150,7 @@ export default {
 }
 
 .status-busy:before {
-  background: black
+  background: black;
 }
 
 .product-name {

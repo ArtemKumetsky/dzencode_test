@@ -1,22 +1,21 @@
 <script setup>
-import VHeader from "@/components/v-header.vue";
-import VNav from "@/components/v-nav.vue";
+import VHeader from "@/components/v-header.vue"
+import VNav from "@/components/v-nav.vue"
 </script>
 
 <template>
-  <v-header/>
+  <v-header />
   <main>
-    <v-nav/>
+    <v-nav />
     <div class="main-content col-9 ps-5 pt-5">
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">
-          <component :is="Component"/>
+          <component :is="Component" />
         </transition>
       </router-view>
     </div>
   </main>
 </template>
-
 
 <style scoped>
 main {
@@ -28,6 +27,4 @@ main {
 .main-content {
   position: relative;
 }
-
-
 </style>

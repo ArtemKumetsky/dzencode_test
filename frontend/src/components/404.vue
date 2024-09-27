@@ -1,14 +1,10 @@
-<script setup>
-
-</script>
+<script setup></script>
 
 <template>
   <div class="col-12">
     <h1>404 Page not found</h1>
     <button class="p-3 mt-5">
-      <router-link to="/Orders">
-        Back to homepage
-      </router-link>
+      <router-link to="/Orders"> Back to homepage </router-link>
     </button>
   </div>
 </template>

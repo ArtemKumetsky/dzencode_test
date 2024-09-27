@@ -4,20 +4,20 @@ export default {
     return {
       selectedProduct: null,
       menuVisible: false,
-    };
+    }
   },
   methods: {
     openMenu(item) {
-      this.selectedProduct = item;
-      this.menuVisible = true;
+      this.selectedProduct = item
+      this.menuVisible = true
     },
 
     closeMenu() {
-      this.menuVisible = false;
-      this.selectedProduct = null;
+      this.menuVisible = false
+      this.selectedProduct = null
     },
   },
-};
+}
 </script>
 
 <template>
@@ -27,15 +27,19 @@ export default {
       <ul class="menu-target-item ps-5 pe-5 pt-3 pb-3">
         <li v-if="selectedProduct" class="pt-1 pb-1">
           <div class="menu-target-item-el col-12">
-            <img v-if="selectedProduct.photo" :src="selectedProduct.photo" alt="item_img" class="ms-4">
+            <img v-if="selectedProduct.photo" :src="selectedProduct.photo" alt="item_img" class="ms-4" />
             <div class="ms-5">
               {{ selectedProduct.title }}
               <span v-if="selectedProduct.specification">{{ selectedProduct.specification }}</span>
               <span v-else>
-              {{ selectedProduct.date }}
-              <br>
-              {{ selectedProduct.productIds.length + " " + this.$store.getters.productCounterOutput(selectedProduct.productIds.length) }}.
-            </span>
+                {{ selectedProduct.date }}
+                <br />
+                {{
+                  selectedProduct.productIds.length +
+                  " " +
+                  this.$store.getters.productCounterOutput(selectedProduct.productIds.length)
+                }}.
+              </span>
             </div>
           </div>
         </li>
@@ -43,7 +47,7 @@ export default {
       <div class="menu-btn-container pe-5">
         <button type="reset" @click="closeMenu" class="me-4">ОТМЕНИТЬ</button>
         <button type="submit" class="p-2">
-          <img src="@/assets/interactive-menu/delete-btn.svg" alt="delete_btn" class="me-2">
+          <img src="@/assets/interactive-menu/delete-btn.svg" alt="delete_btn" class="me-2" />
           УДАЛИТЬ
         </button>
       </div>
@@ -65,7 +69,7 @@ export default {
   background: var(--c-header-white);
   border-radius: 5px;
   z-index: 3;
-  transition: .3s all;
+  transition: 0.3s all;
   display: block;
 
   h2 {
@@ -76,7 +80,6 @@ export default {
 
 .menu-target-item {
   margin-block-end: 0;
-
 
   li {
     width: 100%;
@@ -177,7 +180,6 @@ export default {
   background: var(--c-dark);
   opacity: 0.5;
   display: block;
-  transition: .3s all;
+  transition: 0.3s all;
 }
-
 </style>

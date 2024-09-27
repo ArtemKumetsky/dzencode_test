@@ -1,35 +1,42 @@
 <script>
-import {io} from 'socket.io-client';
+import { io } from "socket.io-client"
 
 export default {
   data() {
     return {
-      currentDate: new Date().getDate().toString() + " " + new Date().toLocaleString('ru-RU', {month: 'short'}) + " " + new Date().getFullYear().toString(),
+      currentDate:
+        new Date().getDate().toString() +
+        " " +
+        new Date().toLocaleString("ru-RU", { month: "short" }) +
+        " " +
+        new Date().getFullYear().toString(),
       activeSessions: 0,
       currentTime: new Date().getHours().toString() + ":" + new Date().getMinutes().toString(),
-      currentDay: new Date().toLocaleString("ru-RU", {weekday: 'long'})[0].toUpperCase() + new Date().toLocaleString("ru-RU", {weekday: 'long'}).substring(1),
-    };
+      currentDay:
+        new Date().toLocaleString("ru-RU", { weekday: "long" })[0].toUpperCase() +
+        new Date().toLocaleString("ru-RU", { weekday: "long" }).substring(1),
+    }
   },
   mounted() {
-
     // update info every second
     setInterval(() => {
-      this.currentTime = new Date().getHours().toString() + ":" + new Date().getMinutes().toString();
-      this.currentDate = new Date().getDate().toString() + " " + new Date().toLocaleString('ru-RU', {month: 'short'}) + " " + new Date().getFullYear().toString();
-
+      this.currentTime = new Date().getHours().toString() + ":" + new Date().getMinutes().toString()
+      this.currentDate =
+        new Date().getDate().toString() +
+        " " +
+        new Date().toLocaleString("ru-RU", { month: "short" }) +
+        " " +
+        new Date().getFullYear().toString()
     }, 1000)
 
-
     // Connect to server Socket.io
-    const socket = io('http://localhost:3000');
+    const socket = io("http://localhost:3000")
 
     // Listen to the event from the server and update the number of sessions
-    socket.on('sessionCount', (count) => {
-      this.activeSessions = count;
-    });
+    socket.on("sessionCount", (count) => {
+      this.activeSessions = count
+    })
   },
-
-
 }
 </script>
 
@@ -38,11 +45,11 @@ export default {
     <div class="gap col-md-2 col-1"></div>
     <div class="header-content col-md-8 col-10">
       <div class="header-logo col-3">
-        <img src="@/assets/header/header-logo.svg" alt="header_logo">
+        <img src="@/assets/header/header-logo.svg" alt="header_logo" />
         <b>INVENTORY</b>
       </div>
       <div class="col-3 search-field-container">
-        <input type="search" placeholder="Поиск">
+        <input type="search" placeholder="Поиск" />
       </div>
       <div class="header-time-container col-6">
         <div class="header-time ms-auto">
@@ -50,7 +57,7 @@ export default {
           <span class="ms-3">В сети: {{ activeSessions }}</span>
           <div class="time-container">
             <span class="current-date">{{ currentDate }}</span>
-            <img src="@/assets/header/clock.svg.svg" alt="clock_img" class="ms-3">
+            <img src="@/assets/header/clock.svg.svg" alt="clock_img" class="ms-3" />
             <span class="current-time">{{ currentTime }}</span>
           </div>
         </div>

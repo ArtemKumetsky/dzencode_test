@@ -1,29 +1,29 @@
 <script>
-import InteractiveMenu from "@/components/subComponents/v-interactive-menu.vue";
-import {mapGetters} from 'vuex';
-import VCTitle from "@/components/subComponents/v-c-title.vue";
+import InteractiveMenu from "@/components/subComponents/v-interactive-menu.vue"
+import { mapGetters } from "vuex"
+import VCTitle from "@/components/subComponents/v-c-title.vue"
 
 export default {
-  components: {VCTitle, InteractiveMenu},
+  components: { VCTitle, InteractiveMenu },
   data() {
     return {
-      selectedType: '',
-    };
+      selectedType: "",
+    }
   },
   computed: {
-    ...mapGetters(['Products']),
+    ...mapGetters(["Products"]),
     filteredProducts() {
       if (!this.selectedType) {
-        return this.Products;
+        return this.Products
       }
-      return this.Products.filter(product => product.type === this.selectedType);
-    }
+      return this.Products.filter((product) => product.type === this.selectedType)
+    },
   },
   methods: {
     removeItem(item) {
       this.$refs["interactive-menu"].openMenu(item)
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -44,13 +44,16 @@ export default {
     </div>
 
     <div class="products-content container">
-      <div class="product-item row flex-nowrap overflow-auto mt-4 pt-2 pb-2 pe-4" v-for="item in this.filteredProducts"
-           :key="item.id">
+      <div
+        class="product-item row flex-nowrap overflow-auto mt-4 pt-2 pb-2 pe-4"
+        v-for="item in this.filteredProducts"
+        :key="item.id"
+      >
         <div class="product-img-container col-1 ps-5" v-if="item.status === 'Свободен'">
-          <img :src="item.photo" alt="product_img" class="">
+          <img :src="item.photo" alt="product_img" class="" />
         </div>
         <div class="product-img-container col-1 ps-5 status-busy" v-else>
-          <img :src="item.photo" alt="product_img" class="">
+          <img :src="item.photo" alt="product_img" class="" />
         </div>
         <div class="product-name col-4">
           {{ item.title }}
@@ -70,12 +73,8 @@ export default {
             {{ item.guarantee.end }}
           </div>
         </div>
-        <div class="product-newness col-1" v-if="item.isNew">
-          Новый
-        </div>
-        <div class="product-newness col-1" v-else>
-          Б/У
-        </div>
+        <div class="product-newness col-1" v-if="item.isNew">Новый</div>
+        <div class="product-newness col-1" v-else>Б/У</div>
         <div class="product-item-price col-2">
           <div>{{ item.price[0].value + "$" }}</div>
           <span>{{ item.price[1].value }} <b>UAH</b></span>
@@ -95,12 +94,12 @@ export default {
           <span>{{ item.date }}</span>
         </div>
         <div class="delete-btn col-1 me-2">
-          <img src="../assets/buttons/delete-btn.svg" alt="delete_img" class="delete-btn" @click="removeItem(item)">
+          <img src="@/assets/buttons/delete-btn.svg" alt="delete_img" class="delete-btn" @click="removeItem(item)" />
         </div>
       </div>
     </div>
     <transition name="fade" mode="in-out">
-      <interactive-menu ref="interactive-menu"/>
+      <interactive-menu ref="interactive-menu" />
     </transition>
   </div>
 </template>
@@ -125,7 +124,6 @@ export default {
     border-radius: 5px;
     border: 1px solid var(--c-dark-t);
   }
-
 }
 
 .products-content {
@@ -138,7 +136,7 @@ export default {
   background: var(--c-header-white);
   border-radius: 5px;
   border: 1px solid var(--c-dark-t);
-  transition: .3s all;
+  transition: 0.3s all;
 
   scrollbar-width: thin;
   scrollbar-color: var(--c-nav-lime) transparent;
@@ -178,7 +176,7 @@ export default {
 }
 
 .status-busy:before {
-  background: black
+  background: black;
 }
 
 .product-date {

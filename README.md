@@ -6,8 +6,12 @@ This project is a service for a particular store. Here you can view and take act
 ```sh
 1. git clone https://github.com/ArtemKumetsky/dzencode_test
 2. cd frontend
-3. npm run dev
-4. node backend/server.js
+3. npm install
+4. npm run dev
+5. cd..
+6. cd backend
+7. npm install
+8. node backend/server.js
 ```
 
 ### Docker
@@ -15,7 +19,7 @@ This project is a service for a particular store. Here you can view and take act
 ```sh
 1. git clone https://github.com/ArtemKumetsky/dzencode_test
 2. docker-compose up --build
-3. type "localhost:8080" in your browser serch field
+3. type "localhost:5173" in your browser serch field
 
 ```
 
