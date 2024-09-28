@@ -16,7 +16,6 @@ app.use(router())
 const server = createServer(app)
 const io = new Server(server, {
   cors: {
-    origin: "https://dzencodetest-60b29.web.app/" ?? "http://localhost:5173",
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
     credentials: true,
