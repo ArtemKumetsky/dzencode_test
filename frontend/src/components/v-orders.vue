@@ -14,12 +14,16 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["Orders", "getProductsByOrder"]),
+    ...mapGetters(["Orders", "getProductsByOrder", "Products"]),
     ...mapActions(["fetchOrders", "fetchProducts"]),
   },
   mounted() {
-    this.$store.dispatch("fetchOrders")
-    this.$store.dispatch("fetchProducts")
+    if (this.Orders.length === 0) {
+      this.$store.dispatch("fetchOrders")
+    }
+    if (this.Products.length === 0) {
+      this.$store.dispatch("fetchProducts")
+    }
   },
   methods: {
     removeItem(item) {

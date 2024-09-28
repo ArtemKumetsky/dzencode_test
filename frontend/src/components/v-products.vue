@@ -1,6 +1,6 @@
 <script>
 import InteractiveMenu from "@/components/subComponents/v-interactive-menu.vue"
-import { mapGetters } from "vuex"
+import { mapActions, mapGetters } from "vuex"
 import VCTitle from "@/components/subComponents/v-c-title.vue"
 
 export default {
@@ -12,12 +12,18 @@ export default {
   },
   computed: {
     ...mapGetters(["Products"]),
+    ...mapActions(["fetchProducts"]),
     filteredProducts() {
       if (!this.selectedType) {
         return this.Products
       }
       return this.Products.filter((product) => product.type === this.selectedType)
     },
+  },
+  mounted() {
+    if (this.Products.length === 0) {
+      this.$store.dispatch("fetchProducts")
+    }
   },
   methods: {
     removeItem(item) {
