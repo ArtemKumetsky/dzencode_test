@@ -2,6 +2,8 @@
 This is test work for company Dzen Code.
 This project is a service for a particular store. Here you can view and take action with products and orders
 
+!!Project is not optimized for <1366px resolution!!
+
 ## Project Setup
 ```sh
 1. git clone https://github.com/ArtemKumetsky/dzencode_test
@@ -11,7 +13,7 @@ This project is a service for a particular store. Here you can view and take act
 5. cd..
 6. cd backend
 7. npm install
-8. node backend/server.js
+8. node server.js
 ```
 
 ### Docker

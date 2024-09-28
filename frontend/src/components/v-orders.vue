@@ -1,6 +1,6 @@
 <script>
 import InteractiveMenu from "@/components/subComponents/v-interactive-menu.vue"
-import { mapGetters } from "vuex"
+import { mapActions, mapGetters } from "vuex"
 import VCTitle from "@/components/subComponents/v-c-title.vue"
 import VOrderDetailed from "@/components/subComponents/v-order-detailed.vue"
 
@@ -15,6 +15,11 @@ export default {
   },
   computed: {
     ...mapGetters(["Orders", "getProductsByOrder"]),
+    ...mapActions(["fetchOrders", "fetchProducts"]),
+  },
+  mounted() {
+    this.$store.dispatch("fetchOrders")
+    this.$store.dispatch("fetchProducts")
   },
   methods: {
     removeItem(item) {
