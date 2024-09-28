@@ -140,6 +140,7 @@ export default {
   display: flex;
   align-items: center;
   background: var(--c-header-white);
+  height: 110px;
   border-radius: 5px;
   border: 1px solid var(--c-dark-t);
   transition: 0.3s all;
