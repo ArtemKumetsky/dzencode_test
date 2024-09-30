@@ -30,7 +30,7 @@ export default {
     }, 1000)
 
     // Connect to server Socket.io
-    const socket = io("http://localhost:3000")
+    const socket = io("http://13.60.183.185:3000")
 
     // Listen to the event from the server and update the number of sessions
     socket.on("sessionCount", (count) => {
