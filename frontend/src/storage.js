@@ -17,7 +17,7 @@ const storage = createStore({
   },
   actions: {
     fetchOrders({ commit }) {
-      fetch("http://13.60.183.185:3000/orders")
+      fetch("http://localhost:3000/orders")
         .then(async (response) => {
           const data = await response.json()
           commit("SET_ORDERS", data)
@@ -29,7 +29,7 @@ const storage = createStore({
     },
 
     fetchProducts({ commit }) {
-      fetch("http://13.60.183.185:3000/products")
+      fetch("http://localhost:3000/products")
         .then(async (response) => {
           const data = await response.json()
           commit("SET_PRODUCTS", data)
