@@ -1,6 +1,6 @@
 <script>
 import { mapGetters } from "vuex"
-import InteractiveMenu from "@/components/subComponents/v-interactive-menu.vue"
+import InteractiveMenu from "@/components/v-interactive-menu.vue"
 
 export default {
   components: { InteractiveMenu },
@@ -28,7 +28,7 @@ export default {
     <div class="detailed-info">
       <h3 class="mt-4 ms-4">{{ detailedItem.title }}</h3>
       <button class="detailed-info-add-btn mt-3 ms-4">
-        <img src="@/assets/buttons/add-btn.svg" alt="add_icon" />
+        <img src="../../../assets/buttons/add-btn.svg" alt="add_icon" />
         Добавить продукт
       </button>
       <ul class="detailed-info-content mt-3">
@@ -48,7 +48,7 @@ export default {
           </div>
           <div class="product-status col-3" v-else>{{ item.status }}</div>
           <img
-            src="@/assets/buttons/delete-btn.svg"
+            src="../../../assets/buttons/delete-btn.svg"
             alt="delete_img"
             class="delete-btn col-1"
             @click="removeItem(item)"

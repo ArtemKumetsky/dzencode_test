@@ -4,31 +4,14 @@ import { io } from "socket.io-client"
 export default {
   data() {
     return {
-      currentDate:
-        new Date().getDate().toString() +
-        " " +
-        new Date().toLocaleString("ru-RU", { month: "short" }) +
-        " " +
-        new Date().getFullYear().toString(),
+      currentTime: null,
+      currentDate: null,
+      currentDay: null,
       activeSessions: 0,
-      currentTime: new Date().getHours().toString() + ":" + new Date().getMinutes().toString(),
-      currentDay:
-        new Date().toLocaleString("ru-RU", { weekday: "long" })[0].toUpperCase() +
-        new Date().toLocaleString("ru-RU", { weekday: "long" }).substring(1),
+      updateInterval: null,
     }
   },
   mounted() {
-    // update info every second
-    setInterval(() => {
-      this.currentTime = new Date().getHours().toString() + ":" + new Date().getMinutes().toString()
-      this.currentDate =
-        new Date().getDate().toString() +
-        " " +
-        new Date().toLocaleString("ru-RU", { month: "short" }) +
-        " " +
-        new Date().getFullYear().toString()
-    }, 1000)
-
     // Connect to server Socket.io
     const socket = io("http://localhost:3000")
 
@@ -36,6 +19,44 @@ export default {
     socket.on("sessionCount", (count) => {
       this.activeSessions = count
     })
+
+    // show errors
+    socket.on("connect_error", (err) => {
+      console.error("Socket connection error: ", err)
+    })
+
+    // update data on init
+    this.getCurrentTime()
+
+    // update data every second
+    this.updateInterval = setInterval(() => {
+      this.getCurrentTime()
+    }, 1000)
+  },
+  methods: {
+    getCurrentTime() {
+      // get a timestamp
+      const now = new Date()
+
+      // get time
+      this.currentTime = now.getHours().toString().padStart(2, "0") + ":" + now.getMinutes().toString().padStart(2, "0")
+
+      // get date
+      this.currentDate =
+        now.getDate().toString() +
+        " " +
+        now.toLocaleString("ru-RU", { month: "short" }) +
+        " " +
+        now.getFullYear().toString()
+
+      // get day name
+      this.currentDay = now.toLocaleString("ru-RU", { weekday: "long" }).replace(/^./, (str) => str.toUpperCase())
+    },
+  },
+  beforeUnmount() {
+    // clear interval before unmount
+    clearInterval(this.updateInterval)
+    io("http://localhost:3000").close()
   },
 }
 </script>
@@ -45,7 +66,7 @@ export default {
     <div class="gap col-md-2 col-1"></div>
     <div class="header-content col-md-8 col-10">
       <div class="header-logo col-3">
-        <img src="@/assets/header/header-logo.svg" alt="header_logo" />
+        <img src="../assets/header/header-logo.svg" alt="header_logo" />
         <b>INVENTORY</b>
       </div>
       <div class="col-3 search-field-container">

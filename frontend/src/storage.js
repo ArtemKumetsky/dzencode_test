@@ -1,4 +1,5 @@
 import { createStore } from "vuex"
+import { fetchOrders, fetchProducts } from "./api.js"
 
 const storage = createStore({
   state() {
@@ -8,36 +9,21 @@ const storage = createStore({
     }
   },
   mutations: {
-    SET_ORDERS(state, payload) {
-      state.Orders = payload
+    setOrders(state, orders) {
+      state.Orders = orders
     },
-    SET_PRODUCTS(state, payload) {
-      state.Products = payload
+    setProducts(state, products) {
+      state.Products = products
     },
   },
   actions: {
-    fetchOrders({ commit }) {
-      fetch("http://localhost:3000/orders")
-        .then(async (response) => {
-          const data = await response.json()
-          commit("SET_ORDERS", data)
-          return data
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+    async loadOrders({ commit }) {
+      const orders = await fetchOrders()
+      commit("setOrders", orders)
     },
-
-    fetchProducts({ commit }) {
-      fetch("http://localhost:3000/products")
-        .then(async (response) => {
-          const data = await response.json()
-          commit("SET_PRODUCTS", data)
-          return data
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+    async loadProducts({ commit }) {
+      const products = await fetchProducts()
+      commit("setProducts", products)
     },
   },
   getters: {

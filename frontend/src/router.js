@@ -3,18 +3,18 @@ import { createRouter, createWebHistory } from "vue-router"
 const routes = [
   {
     name: "Orders",
-    path: "/Orders",
-    component: () => import("./components/v-orders.vue"),
+    path: "/orders",
+    component: () => import("./pages/orders/v-orders.vue"),
   },
   {
     name: "Products",
     path: "/products",
-    component: () => import("./components/v-products.vue"),
+    component: () => import("./pages/products/v-products.vue"),
   },
   {
     name: "Not found",
     path: "/:pathMatch(.*)*",
-    component: () => import("./components/404.vue"),
+    component: () => import("./pages/404/v-404.vue"),
   },
 ]
 

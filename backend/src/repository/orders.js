@@ -14,7 +14,7 @@ export default [
     subdate: "06/12",
     date: "06 / Сен / 2017",
     description: "desc",
-    productIds: [2, 3],
+    productIds: [6, 7],
     name: "приход",
   },
   {
@@ -23,7 +23,7 @@ export default [
     subdate: "06/12",
     date: "06 / Сен / 2017",
     description: "desc",
-    productIds: [3],
+    productIds: [8],
     name: "приход",
   },
 ]

@@ -11,12 +11,12 @@ export default {
 <template>
   <nav class="col-2 pt-5">
     <div class="nav-image-container mb-5 mt-5">
-      <img src="@/assets/nav/user.png" alt="config_img" class="nav-image" />
-      <img src="@/assets/nav/settings.svg" alt="config_img" class="nav-image-config" @click="Error" />
+      <img src="../assets/nav/user.png" alt="config_img" class="nav-image" />
+      <img src="../assets/nav/settings.svg" alt="config_img" class="nav-image-config" @click="Error" />
     </div>
     <ul>
       <li>
-        <router-link to="/Orders"> Приход </router-link>
+        <router-link to="/orders"> Приход </router-link>
       </li>
       <li>
         <router-link to="/groups"> Группы </router-link>
