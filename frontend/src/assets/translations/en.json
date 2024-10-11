@@ -1,0 +1,52 @@
+{
+  "Header": {
+    "searchField": "Search",
+    "onlineStats": "Online"
+  },
+  "Nav": {
+    "orders": "Orders",
+    "groups": "Groups",
+    "products": "Products",
+    "users": "Users",
+    "settings": "Settings"
+  },
+  "Menu": {
+    "title": "Do you really want to delete this",
+    "buttons": {
+      "cancel": "CANCEL",
+      "delete": "DELETE"
+    }
+  },
+  "404": {
+    "title": "404 Page not found",
+    "button": "Back to homepage"
+  },
+  "Orders": {
+    "title": "Orders",
+    "detailed": {
+      "addProduct": "Add product"
+    }
+  },
+  "Products": {
+    "title": "Products",
+    "typeLabel": "Type",
+    "type": {
+      "all": "All products",
+      "monitors": "Monitors",
+      "motherboards": "Motherboards"
+    },
+    "date": {
+      "from": "from",
+      "to": "to"
+    },
+    "newness_true": "New",
+    "newness_false": "Used",
+    "status": {
+      "busy": "Busy",
+      "free": "Free"
+    }
+  },
+  "Settings": {
+    "title": "Settings"
+  }
+}

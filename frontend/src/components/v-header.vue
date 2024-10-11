@@ -1,7 +1,9 @@
 <script>
 import { io } from "socket.io-client"
+import VLangPanel from "@/components/v-lang-panel.vue"
 
 export default {
+  components: { VLangPanel },
   data() {
     return {
       currentTime: null,
@@ -9,19 +11,20 @@ export default {
       currentDay: null,
       activeSessions: 0,
       updateInterval: null,
+      socket: null,
     }
   },
   mounted() {
     // Connect to server Socket.io
-    const socket = io("http://localhost:3000")
+    this.socket = io("http://localhost:3000")
 
     // Listen to the event from the server and update the number of sessions
-    socket.on("sessionCount", (count) => {
+    this.socket.on("sessionCount", (count) => {
       this.activeSessions = count
     })
 
     // show errors
-    socket.on("connect_error", (err) => {
+    this.socket.on("connect_error", (err) => {
       console.error("Socket connection error: ", err)
     })
 
@@ -34,6 +37,14 @@ export default {
     }, 1000)
   },
   methods: {
+    getLocale() {
+      switch (this.$i18n.locale) {
+        case "en":
+          return "en-US"
+        case "ru":
+          return "ru-RU"
+      }
+    },
     getCurrentTime() {
       // get a timestamp
       const now = new Date()
@@ -45,18 +56,20 @@ export default {
       this.currentDate =
         now.getDate().toString() +
         " " +
-        now.toLocaleString("ru-RU", { month: "short" }) +
+        now.toLocaleString(this.getLocale(), { month: "short" }) +
         " " +
         now.getFullYear().toString()
 
       // get day name
-      this.currentDay = now.toLocaleString("ru-RU", { weekday: "long" }).replace(/^./, (str) => str.toUpperCase())
+      this.currentDay = now
+        .toLocaleString(this.getLocale(), { weekday: "long" })
+        .replace(/^./, (str) => str.toUpperCase())
     },
   },
   beforeUnmount() {
     // clear interval before unmount
     clearInterval(this.updateInterval)
-    io("http://localhost:3000").close()
+    this.socket?.close()
   },
 }
 </script>
@@ -66,16 +79,16 @@ export default {
     <div class="gap col-md-2 col-1"></div>
     <div class="header-content col-md-8 col-10">
       <div class="header-logo col-3">
-        <img src="../assets/header/header-logo.svg" alt="header_logo" />
+        <img src="@/assets/header/header-logo.svg" alt="header_logo" />
         <b>INVENTORY</b>
       </div>
       <div class="col-3 search-field-container">
-        <input type="search" placeholder="Поиск" />
+        <input type="search" :placeholder="$t('Header.searchField')" />
       </div>
       <div class="header-time-container col-6">
         <div class="header-time ms-auto">
           <span class="current-day">{{ currentDay }}</span>
-          <span class="ms-3">В сети: {{ activeSessions }}</span>
+          <span class="ms-3">{{ $t("Header.onlineStats") }}: {{ activeSessions }}</span>
           <div class="time-container">
             <span class="current-date">{{ currentDate }}</span>
             <img src="@/assets/header/clock.svg.svg" alt="clock_img" class="ms-3" />
@@ -84,7 +97,9 @@ export default {
         </div>
       </div>
     </div>
-    <div class="gap col-md-2 col-1"></div>
+    <div class="gap col-md-2 col-1">
+      <v-lang-panel />
+    </div>
   </header>
 </template>
 

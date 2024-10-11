@@ -28,27 +28,26 @@ export default {
     <div class="detailed-info">
       <h3 class="mt-4 ms-4">{{ detailedItem.title }}</h3>
       <button class="detailed-info-add-btn mt-3 ms-4">
-        <img src="../../../assets/buttons/add-btn.svg" alt="add_icon" />
-        Добавить продукт
+        <img src="@/assets/buttons/add-btn.svg" alt="add_icon" />
+        {{ $t("Orders.detailed.addProduct") }}
       </button>
       <ul class="detailed-info-content mt-3">
         <li v-for="item in this.getProductsByOrder(detailedItem.productIds)" class="col-12 ps-3 pt-2 pb-2">
-          <div class="product-img-container col-2 ps-5" v-if="item.status === 'Свободен'">
-            <img :src="item.photo" alt="product_img" class="" />
-          </div>
-          <div class="product-img-container col-2 ps-5 status-busy" v-else>
-            <img :src="item.photo" alt="product_img" class="" />
+          <div
+            class="product-img-container col-2 ps-5"
+            :class="{ 'status-free': item.status === 'Free', 'status-busy': item.status === 'Busy' }"
+          >
+            <img :src="item.photo" alt="product_img" />
           </div>
           <div class="product-name col-6">
             {{ item.title }}
             <span>{{ item.specification }}</span>
           </div>
-          <div class="product-status col-3 status-free" v-if="item.status === 'Свободен'">
-            {{ item.status }}
+          <div class="product-status col-3" :class="{ 'status-free': item.status === 'Free' }">
+            {{ $t(`Products.status.${item.status.toLowerCase()}`) }}
           </div>
-          <div class="product-status col-3" v-else>{{ item.status }}</div>
           <img
-            src="../../../assets/buttons/delete-btn.svg"
+            src="@/assets/buttons/delete-btn.svg"
             alt="delete_img"
             class="delete-btn col-1"
             @click="removeItem(item)"

@@ -32,14 +32,14 @@ export default {
 <template>
   <div class="products-container container">
     <div class="products-title">
-      <v-c-title>Продукты</v-c-title>
+      <v-c-title>{{ $t("Products.title") }}</v-c-title>
       <div class="select-container ms-5">
         <div>
-          <label for="product-type">Тип:</label>
+          <label for="product-type">{{ $t("Products.typeLabel") }}:</label>
           <select name="product-type" id="product-type" class="ms-2" v-model="selectedType">
-            <option value="">Все продукты</option>
-            <option value="Monitor">Мониторы</option>
-            <option value="Motherboard">Материнские платы</option>
+            <option value="">{{ $t("Products.type.all") }}</option>
+            <option value="Monitor">{{ $t("Products.type.monitors") }}</option>
+            <option value="Motherboard">{{ $t("Products.type.motherboards") }}</option>
           </select>
         </div>
       </div>

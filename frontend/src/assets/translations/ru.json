@@ -1,0 +1,53 @@
+{
+  "Header": {
+    "searchField": "Поиск",
+    "onlineStats": "В сети"
+  },
+  "Nav": {
+    "orders": "Приход",
+    "groups": "Группы",
+    "products": "Продукты",
+    "users": "Пользователи",
+    "settings": "Настройки"
+  },
+  "Menu": {
+    "title": "Вы действительно хотите удалить этот",
+    "buttons": {
+      "cancel": "ОТМЕНИТЬ",
+      "delete": "УДАЛИТЬ"
+    }
+  },
+  "404": {
+    "title": "404 страница не существует",
+    "button": "Вернуться на домашнюю страницу"
+  },
+  "Orders": {
+    "title": "Приходы",
+    "detailed": {
+      "addProduct": "Добавить продукт"
+    }
+  },
+  "Products": {
+    "title": "Продукты",
+    "typeLabel": "Тип",
+    "type": {
+      "all": "Все продукты",
+      "monitors": "Мониторы",
+      "motherboards": "Материнские платы"
+    },
+    "date": {
+      "from": "с",
+      "to": "по"
+    },
+    "newness_true": "Новый",
+    "newness_false": "Б/У",
+    "status": {
+      "busy": "В ремонте",
+      "free": "Свободен"
+    }
+
+  },
+  "Settings": {
+    "title": "Настройки"
+  }
+}

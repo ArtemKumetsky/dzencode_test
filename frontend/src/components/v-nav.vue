@@ -16,18 +16,20 @@ export default {
     </div>
     <ul>
       <li>
-        <router-link to="/orders"> Приход </router-link>
+        <router-link to="/orders"> {{ $t("Nav.orders") }} </router-link>
       </li>
       <li>
-        <router-link to="/groups"> Группы </router-link>
+        <router-link to="/groups"> {{ $t("Nav.groups") }}</router-link>
       </li>
       <li>
-        <router-link to="/products"> Продукты </router-link>
+        <router-link to="/products"> {{ $t("Nav.products") }}</router-link>
       </li>
       <li>
-        <router-link to="/users"> Пользователи </router-link>
+        <router-link to="/users"> {{ $t("Nav.users") }}</router-link>
       </li>
-      <li @click="Error">Настройки</li>
+      <li>
+        <router-link to="/settings"> {{ $t("Nav.settings") }}</router-link>
+      </li>
     </ul>
   </nav>
 </template>

@@ -37,32 +37,28 @@ export default {
     v-for="item in this.filteredProducts"
     :key="item.id"
   >
-    <div class="product-img-container col-1 ps-5" v-if="item.status === 'Свободен'">
-      <img :src="item.photo" alt="product_img" />
-    </div>
-    <div class="product-img-container col-1 ps-5 status-busy" v-else>
+    <div class="product-img-container col-1 ps-5" :class="{ 'status-busy': item.status === 'Busy' }">
       <img :src="item.photo" alt="product_img" />
     </div>
     <div class="product-name col-4">
       {{ item.title }}
       <span>{{ item.specification }}</span>
     </div>
-    <div class="product-status col-1 status-free" v-if="item.status === 'Свободен'">
-      {{ item.status }}
+    <div class="product-status col-1" :class="{ 'status-free': item.status === 'Free' }">
+      {{ $t(`Products.status.${item.status.toLowerCase()}`) }}
     </div>
-    <div class="product-status col-1" v-else>{{ item.status }}</div>
     <div class="product-date col-2">
       <div>
-        <span>с</span>
+        <span>{{ $t("Products.date.from") }}</span>
         {{ item.guarantee.start }}
       </div>
       <div>
-        <span>по</span>
+        <span>{{ $t("Products.date.to") }}</span>
         {{ item.guarantee.end }}
       </div>
     </div>
-    <div class="product-newness col-1" v-if="item.isNew">Новый</div>
-    <div class="product-newness col-1" v-else>Б/У</div>
+    <div class="product-newness col-1" v-if="item.isNew">{{ $t("Products.newness_true") }}</div>
+    <div class="product-newness col-1" v-else>{{ $t("Products.newness_false") }}</div>
     <div class="product-item-price col-2">
       <div>{{ item.price[0].value + "$" }}</div>
       <span>{{ item.price[1].value }} <b>UAH</b></span>
@@ -153,7 +149,6 @@ export default {
   span {
     color: var(--c-dark);
     display: inline-block;
-    width: 20px;
   }
 }
 

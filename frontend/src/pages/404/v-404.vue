@@ -2,9 +2,9 @@
 
 <template>
   <div class="col-12">
-    <h1>404 Page not found</h1>
+    <h1>{{ $t("404.title") }}</h1>
     <button class="p-3 mt-5">
-      <router-link to="/Orders"> Back to homepage </router-link>
+      <router-link to="/Orders"> {{ $t("404.button") }} </router-link>
     </button>
   </div>
 </template>

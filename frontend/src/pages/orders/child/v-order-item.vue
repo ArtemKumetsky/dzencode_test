@@ -1,10 +1,10 @@
 <script>
 import { mapGetters } from "vuex"
-
 export default {
   data() {
     return {
       detailed: false,
+      selectedLanguage: this.$i18n.locale,
     }
   },
   emits: ["showDetails", "removeItem"],
@@ -50,7 +50,10 @@ export default {
         <img src="@/assets/buttons/more-btn.svg" alt="stock_img" />
         <div :class="{ 'ms-4': !detailed, 'ms-2': detailed }">
           <span>{{ item.productIds.length }}</span>
-          <b>{{ this.$store.getters.productCounterOutput(item.productIds.length) }}</b>
+          <b v-if="this.selectedLanguage === 'ru'">{{
+            this.$store.getters.productCounterOutput(item.productIds.length)
+          }}</b>
+          <b v-else>Products</b>
         </div>
       </div>
       <div class="orders-item-date col-2" :class="{ 'col-6': detailed }">
