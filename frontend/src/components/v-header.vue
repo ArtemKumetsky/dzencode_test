@@ -43,6 +43,8 @@ export default {
           return "en-US"
         case "ru":
           return "ru-RU"
+        case "default":
+          return "default"
       }
     },
     getCurrentTime() {
