@@ -52,15 +52,10 @@ export default {
       const now = new Date()
 
       // get time
-      this.currentTime = now.getHours().toString().padStart(2, "0") + ":" + now.getMinutes().toString().padStart(2, "0")
+      this.currentTime = `${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}`
 
       // get date
-      this.currentDate =
-        now.getDate().toString() +
-        " " +
-        now.toLocaleString(this.getLocale(), { month: "short" }) +
-        " " +
-        now.getFullYear().toString()
+      this.currentDate = `${now.getDate().toString()} ${now.toLocaleString(this.getLocale(), { month: "short" })} ${now.getFullYear().toString()}`
 
       // get day name
       this.currentDay = now
