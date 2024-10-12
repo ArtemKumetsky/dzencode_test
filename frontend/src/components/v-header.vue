@@ -43,7 +43,7 @@ export default {
           return "en-US"
         case "ru":
           return "ru-RU"
-        case "default":
+        default:
           return "default"
       }
     },

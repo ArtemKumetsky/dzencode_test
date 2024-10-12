@@ -25,18 +25,16 @@ export default {
       @click="this.panelVisible = !this.panelVisible"
     />
     <transition name="fade">
-      <form class="me-3" @change="changeLocale($event.target.value)" v-if="panelVisible">
-        <div class="p-1">
-          <input type="radio" id="ru" value="ru" name="language" v-model="locale" />
-          <label for="ru">Русский</label>
-          <img src="@/assets/lang-panel/ru_icon.svg" alt="ru_icon" class="ms-1" />
-        </div>
-        <div class="p-1">
-          <input type="radio" id="en" value="en" name="language" v-model="locale" />
-          <label for="en">English</label>
-          <img src="@/assets/lang-panel/en_icon.svg" alt="en_icon" class="ms-1" />
-        </div>
-      </form>
+      <select
+        name="lang-panel-select"
+        id="lang-panel-select"
+        @change="changeLocale($event.target.value)"
+        v-if="panelVisible"
+        v-model="locale"
+      >
+        <option value="ru">Русский</option>
+        <option value="en">English</option>
+      </select>
     </transition>
   </div>
 </template>
@@ -62,24 +60,20 @@ export default {
     transition: 0.3s all;
   }
 }
-form {
-  display: flex;
-  flex-direction: column;
+select {
   position: absolute;
-  top: -10px;
-  right: 0;
-  background: var(--c-header-white);
-  div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    input {
-      margin: 3px 3px 0 5px;
-    }
-    img {
-      width: 32px;
-      height: 21px;
-    }
+  top: 12px;
+  right: 40px;
+  width: 100px;
+  text-align: center;
+  border: 2px solid var(--c-nav-lime);
+  border-radius: 5px;
+  &:focus-visible {
+    outline: none;
+  }
+  option:checked {
+    background: var(--c-nav-lime);
+    font-weight: bolder;
   }
 }
 </style>
