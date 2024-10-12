@@ -23,7 +23,10 @@ export default {
 <template>
   <div v-if="menuVisible">
     <div class="interactive-menu">
-      <h2 class="menu-title p-5">{{ $t("Menu.title") }} {{ selectedProduct.name }}</h2>
+      <h2 class="menu-title p-5">
+        {{ $t("Menu.title") }}<span v-if="this.$i18n.locale === 'ru'">{{ " " + selectedProduct.name }}</span
+        >?
+      </h2>
       <ul class="menu-target-item ps-5 pe-5 pt-3 pb-3">
         <li v-if="selectedProduct" class="pt-1 pb-1">
           <div class="menu-target-item-el col-12">
