@@ -1,9 +1,10 @@
 import axios from "axios"
+const hostURL = "http://localhost:3000"
 
 export function fetchOrders() {
-  return axios.get("http://localhost:3000/orders").then((res) => res.data)
+  return axios.get(`${hostURL}/orders`).then((res) => res.data)
 }
 
 export function fetchProducts() {
-  return axios.get("http://localhost:3000/products").then((res) => res.data)
+  return axios.get(`${hostURL}/products`).then((res) => res.data)
 }

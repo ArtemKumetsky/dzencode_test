@@ -1,5 +1,6 @@
 import { createStore } from "vuex"
 import { fetchOrders, fetchProducts } from "./api.js"
+import axios from "axios"
 
 const storage = createStore({
   state() {
@@ -15,6 +16,12 @@ const storage = createStore({
     setProducts(state, products) {
       state.Products = products
     },
+    removeProduct(state, targetId) {
+      state.Products = state.Products.filter((product) => product._id !== targetId)
+    },
+    removeOrder(state, targetId) {
+      state.Orders = state.Orders.filter((order) => order._id !== targetId)
+    },
   },
   actions: {
     async loadOrders({ commit }) {
@@ -24,6 +31,27 @@ const storage = createStore({
     async loadProducts({ commit }) {
       const products = await fetchProducts()
       commit("setProducts", products)
+    },
+    async deleteProduct({ commit }, targetId) {
+      try {
+        await axios.delete(`http://localhost:3000/products/${targetId}`)
+        commit("removeProduct", targetId)
+      } catch (error) {
+        console.error("Error deleting product:", error)
+      }
+    },
+    async deleteOrder({ commit, dispatch, getters }, targetItem) {
+      try {
+        // converting IDs from array to Mongo unique IDs
+        let mongoIds = getters.getProductsByOrder(targetItem.productIds)
+        for (const productId of mongoIds) {
+          await dispatch("deleteProduct", productId._id)
+        }
+        await axios.delete(`http://localhost:3000/orders/${targetItem._id}`)
+        commit("removeOrder", targetItem._id)
+      } catch (error) {
+        console.error("Error deleting product:", error)
+      }
     },
   },
   getters: {

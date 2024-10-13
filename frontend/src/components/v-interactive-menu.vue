@@ -16,6 +16,14 @@ export default {
       this.menuVisible = false
       this.selectedProduct = null
     },
+    deleteItem(targetItem) {
+      if (targetItem.name === "приход") {
+        this.$store.dispatch("deleteOrder", targetItem)
+      } else {
+        this.$store.dispatch("deleteProduct", targetItem._id)
+      }
+      this.menuVisible = false
+    },
   },
 }
 </script>
@@ -49,7 +57,7 @@ export default {
       </ul>
       <div class="menu-btn-container pe-5">
         <button type="reset" @click="closeMenu" class="me-4">{{ $t("Menu.buttons.cancel") }}</button>
-        <button type="submit" class="p-2">
+        <button type="submit" class="p-2" @click="deleteItem(selectedProduct)">
           <img src="@/assets/interactive-menu/delete-btn.svg" alt="delete_btn" class="me-2" />
           {{ $t("Menu.buttons.delete") }}
         </button>

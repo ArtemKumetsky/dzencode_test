@@ -1,8 +1,12 @@
-import express from "express"
+import express, { response } from "express"
 import { createServer } from "http"
 import { Server } from "socket.io"
 import cors from "cors"
 import router from "./src/routes/index.js"
+import mongoose from "mongoose"
+
+const MongoConnectionString =
+  "mongodb+srv://kumetsky2014:oR6l4dJPqsInFJTT@dzencodetestdb.yheqt.mongodb.net/dzencodeTestDB?retryWrites=true&w=majority&appName=dzencodeTestDB"
 
 const app = express()
 
@@ -11,6 +15,10 @@ app.use(
     origin: "*",
   }),
 )
+mongoose.connect(MongoConnectionString).then(() => {
+  console.log("MongoDB successfully connected!")
+})
+
 app.use(router())
 
 const server = createServer(app)

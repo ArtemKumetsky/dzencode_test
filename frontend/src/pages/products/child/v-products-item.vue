@@ -57,7 +57,7 @@ export default {
         {{ item.guarantee.end }}
       </div>
     </div>
-    <div class="product-newness col-1" v-if="item.isNew">{{ $t("Products.newness_true") }}</div>
+    <div class="product-newness col-1" v-if="item.newness">{{ $t("Products.newness_true") }}</div>
     <div class="product-newness col-1" v-else>{{ $t("Products.newness_false") }}</div>
     <div class="product-item-price col-2">
       <div>{{ item.price[0].value + "$" }}</div>
