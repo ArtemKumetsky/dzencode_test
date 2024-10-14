@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.css"
 import "bootstrap/dist/js/bootstrap.bundle.js"
 
 import { createApp } from "vue"
-import App from "./App.vue"
+import App from "@/App.vue"
 import { useI18n } from "vue-i18n"
 
 // createApp(App, {
@@ -21,6 +21,6 @@ import { useI18n } from "vue-i18n"
 //   .use(router)
 //   .mount("#app")
 
-const app = createApp({})
+const app = createApp(App)
 app.use(store).use(i18n).use(router)
 app.mount("#app")

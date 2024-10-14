@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "node_modules/.bin/vite",
-    "build": "node_modules/.bin/vite build",
+    "build": "rimraf ./dist && tsc -p .",
+    "dev": "tsc --module 'CommonJS' && TS_NODE_BASEURL=./dist NODE_ENV=development node -r tsconfig-paths/register ./dist/index.js",
     "preview": "node_modules/.bin/vite preview"
   },
   "dependencies": {
