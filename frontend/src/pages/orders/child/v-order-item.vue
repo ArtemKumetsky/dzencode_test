@@ -1,16 +1,22 @@
-<script>
+<script lang="ts">
+import { defineComponent, PropType, watch } from "vue"
 import { mapGetters } from "vuex"
-export default {
+
+interface Product {
+  price: { value: number }[]
+}
+
+export default defineComponent({
   data() {
     return {
-      detailed: false,
-      selectedLanguage: this.$i18n.locale,
+      detailed: false as boolean,
+      selectedLanguage: this.$i18n.locale as string,
     }
   },
   emits: ["showDetails", "removeItem"],
   props: {
     parentData: {
-      type: Boolean,
+      type: Boolean as PropType<boolean>,
       required: true,
     },
   },
@@ -19,19 +25,19 @@ export default {
   },
   methods: {
     // Calculate the total price for all products
-    getTotalPrice(productIds) {
-      const products = this.getProductsByOrder(productIds)
+    getTotalPrice(productIds: string[]) {
+      const products: Product[] = this.getProductsByOrder(productIds)
       const totalUsd = products.reduce((sum, product) => sum + product.price[0].value, 0)
       const totalUah = products.reduce((sum, product) => sum + product.price[1].value, 0)
       return { usd: totalUsd, uah: totalUah }
     },
   },
   watch: {
-    parentData(newVal) {
+    parentData(newVal: boolean) {
       this.detailed = newVal
     },
   },
-}
+})
 </script>
 
 <template>

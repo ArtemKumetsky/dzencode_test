@@ -1,17 +1,18 @@
-<script>
-import { io } from "socket.io-client"
+<script lang="ts">
+import { io, Socket } from "socket.io-client"
 import VLangPanel from "@/components/v-lang-panel.vue"
+import { defineComponent } from "vue"
 
-export default {
+export default defineComponent({
   components: { VLangPanel },
   data() {
     return {
-      currentTime: null,
-      currentDate: null,
-      currentDay: null,
-      activeSessions: 0,
-      updateInterval: null,
-      socket: null,
+      currentTime: null as string | null,
+      currentDate: null as string | null,
+      currentDay: null as string | null,
+      activeSessions: 0 as number,
+      updateInterval: null as number | null,
+      socket: null as Socket | null,
     }
   },
   mounted() {
@@ -19,12 +20,12 @@ export default {
     this.socket = io("http://localhost:3000")
 
     // Listen to the event from the server and update the number of sessions
-    this.socket.on("sessionCount", (count) => {
+    this.socket.on("sessionCount", (count: number) => {
       this.activeSessions = count
     })
 
     // show errors
-    this.socket.on("connect_error", (err) => {
+    this.socket.on("connect_error", (err: Error) => {
       console.error("Socket connection error: ", err)
     })
 
@@ -32,12 +33,12 @@ export default {
     this.getCurrentTime()
 
     // update data every second
-    this.updateInterval = setInterval(() => {
+    this.updateInterval = window.setInterval(() => {
       this.getCurrentTime()
     }, 1000)
   },
   methods: {
-    getLocale() {
+    getLocale(): string {
       switch (this.$i18n.locale) {
         case "en":
           return "en-US"
@@ -47,7 +48,7 @@ export default {
           return "default"
       }
     },
-    getCurrentTime() {
+    getCurrentTime(): void {
       // get a timestamp
       const now = new Date()
 
@@ -65,10 +66,12 @@ export default {
   },
   beforeUnmount() {
     // clear interval before unmount
-    clearInterval(this.updateInterval)
+    if (this.updateInterval) {
+      clearInterval(this.updateInterval)
+    }
     this.socket?.close()
   },
-}
+})
 </script>
 
 <template>

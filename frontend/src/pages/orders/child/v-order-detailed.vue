@@ -1,26 +1,28 @@
-<script>
+<script lang="ts">
 import { mapGetters } from "vuex"
 import InteractiveMenu from "@/components/v-interactive-menu.vue"
+import { defineComponent, Ref } from "vue"
+import { IOrder, IProduct } from "@/interfaces"
 
-export default {
+export default defineComponent({
   components: { InteractiveMenu },
   data() {
     return {
-      detailedItem: null,
+      detailedItem: null as IOrder | null,
     }
   },
   computed: {
     ...mapGetters(["Orders", "getProductsByOrder"]),
   },
   methods: {
-    catchItem(item) {
+    catchItem(item: IProduct | IOrder) {
       this.detailedItem = item
     },
-    removeItem(item) {
-      this.$refs["interactive-menu"].openMenu(item)
+    removeItem(item: IProduct | IOrder) {
+      ;(this.$refs["interactive-menu"] as Ref<typeof InteractiveMenu>).openMenu(item)
     },
   },
-}
+})
 </script>
 
 <template>

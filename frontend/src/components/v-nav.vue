@@ -1,11 +1,12 @@
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue"
+export default defineComponent({
   methods: {
     Error() {
       alert("There is nothing to do here!")
     },
   },
-}
+})
 </script>
 
 <template>

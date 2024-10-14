@@ -1,19 +1,21 @@
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue"
+
+export default defineComponent({
   data() {
     return {
-      panelVisible: false,
-      locale: this.$i18n.locale,
+      panelVisible: false as boolean,
+      locale: this.$i18n.locale as string,
     }
   },
   methods: {
-    changeLocale(selectedLocale) {
+    changeLocale(selectedLocale: string) {
       this.$i18n.locale = selectedLocale
       this.locale = selectedLocale
       localStorage.setItem("locale", selectedLocale)
     },
   },
-}
+})
 </script>
 
 <template>

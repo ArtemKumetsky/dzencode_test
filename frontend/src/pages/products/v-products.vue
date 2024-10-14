@@ -1,14 +1,16 @@
-<script>
+<script lang="ts">
 import InteractiveMenu from "@/components/v-interactive-menu.vue"
 import { mapGetters } from "vuex"
 import VCTitle from "@/components/v-c-title.vue"
 import VProductsItem from "@/pages/products/child/v-products-item.vue"
+import { defineComponent, Ref } from "vue"
+import { IOrder, IProduct } from "@/interfaces"
 
-export default {
+export default defineComponent({
   components: { VProductsItem, VCTitle, InteractiveMenu },
   data() {
     return {
-      selectedType: "",
+      selectedType: null as string,
     }
   },
   created() {
@@ -22,11 +24,11 @@ export default {
   },
 
   methods: {
-    removeItem(item) {
-      this.$refs["interactive-menu"].openMenu(item)
+    removeItem(item: IProduct | IOrder) {
+      ;(this.$refs["interactive-menu"] as Ref<typeof InteractiveMenu>).openMenu(item)
     },
   },
-}
+})
 </script>
 
 <template>
@@ -37,7 +39,7 @@ export default {
         <div>
           <label for="product-type">{{ $t("Products.typeLabel") }}:</label>
           <select name="product-type" id="product-type" class="ms-2" v-model="selectedType">
-            <option value="">{{ $t("Products.type.all") }}</option>
+            <option value="null">{{ $t("Products.type.all") }}</option>
             <option value="Monitor">{{ $t("Products.type.monitors") }}</option>
             <option value="Motherboard">{{ $t("Products.type.motherboards") }}</option>
           </select>

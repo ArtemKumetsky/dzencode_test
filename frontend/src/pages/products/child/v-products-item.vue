@@ -1,34 +1,39 @@
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from "vue"
 import { mapGetters } from "vuex"
 
-export default {
+interface Product {
+  type: string
+}
+
+export default defineComponent({
   data() {
     return {
-      selectedType: this.parentData,
+      selectedType: this.parentData as string,
     }
   },
   props: {
     parentData: {
-      type: String,
+      type: String as PropType<string>,
       required: true,
     },
   },
   emits: ["removeItem"],
   computed: {
     ...mapGetters(["Products"]),
-    filteredProducts() {
+    filteredProducts(): Product[] {
       if (!this.selectedType) {
-        return this.Products
+        return this.Products as Product[]
       }
-      return this.Products.filter((product) => product.type === this.selectedType)
+      return (this.Products as Product[]).filter((product: Product) => product.type === this.selectedType)
     },
   },
   watch: {
-    parentData(newVal) {
+    parentData(newVal: string) {
       this.selectedType = newVal
     },
   },
-}
+})
 </script>
 
 <template>

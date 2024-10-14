@@ -1,13 +1,20 @@
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue"
+
+interface Product {
+  name: string
+  _id?: string
+}
+
+export default defineComponent({
   data() {
     return {
-      selectedProduct: null,
-      menuVisible: false,
+      selectedProduct: null as Product | null,
+      menuVisible: false as boolean,
     }
   },
   methods: {
-    openMenu(item) {
+    openMenu(item: Product) {
       this.selectedProduct = item
       this.menuVisible = true
     },
@@ -16,23 +23,26 @@ export default {
       this.menuVisible = false
       this.selectedProduct = null
     },
-    deleteItem(targetItem) {
+
+    deleteItem(targetItem: Product) {
       if (targetItem.name === "приход") {
         this.$store.dispatch("deleteOrder", targetItem)
       } else {
-        this.$store.dispatch("deleteProduct", targetItem._id)
+        if (targetItem._id) {
+          this.$store.dispatch("deleteProduct", targetItem._id)
+        }
       }
       this.menuVisible = false
     },
   },
-}
+})
 </script>
 
 <template>
   <div v-if="menuVisible">
     <div class="interactive-menu">
       <h2 class="menu-title p-5">
-        {{ $t("Menu.title") }}<span v-if="this.$i18n.locale === 'ru'">{{ " " + selectedProduct.name }}</span
+        {{ $t("Menu.title") }}<span v-if="this.$i18n.locale === 'ru'">{{ ` ${selectedProduct.name}` }}</span
         >?
       </h2>
       <ul class="menu-target-item ps-5 pe-5 pt-3 pb-3">

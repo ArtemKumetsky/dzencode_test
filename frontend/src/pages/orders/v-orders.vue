@@ -1,17 +1,19 @@
-<script>
+<script lang="ts">
 import InteractiveMenu from "@/components/v-interactive-menu.vue"
 import { mapGetters } from "vuex"
 import VCTitle from "@/components/v-c-title.vue"
 import VOrderDetailed from "@/pages/orders/child/v-order-detailed.vue"
 import VOrderItem from "@/pages/orders/child/v-order-item.vue"
+import { defineComponent, Ref } from "vue"
+import { IOrder, IProduct } from "@/interfaces"
 
-export default {
+export default defineComponent({
   components: { VOrderDetailed, VOrderItem, VCTitle, InteractiveMenu },
   data() {
     return {
-      detailed: false,
-      hideMenu: true,
-      detailedItem: null,
+      detailed: false as boolean,
+      hideMenu: true as boolean,
+      detailedItem: null as IOrder | null,
     }
   },
   created() {
@@ -21,31 +23,30 @@ export default {
   computed: {
     ...mapGetters(["Orders", "getProductsByOrder", "Products"]),
     orders() {
-      return this.$store.state.Orders
+      return this.$store.state.Orders as IOrder[]
     },
     products() {
-      return this.$store.state.Products
+      return this.$store.state.Products as IProduct[]
     },
   },
   methods: {
-    removeItem(item) {
-      this.$refs["interactive-menu"].openMenu(item)
+    removeItem(item: IProduct | IOrder) {
+      ;(this.$refs["interactive-menu"] as Ref<typeof InteractiveMenu>).openMenu(item)
     },
-    showDetails(item) {
+    showDetails(item: IOrder) {
       this.detailed = true
-      this.$refs["v-order-detailed"].catchItem(item)
+      ;(this.$refs["v-order-detailed"] as Ref<typeof VOrderDetailed>).catchItem(item)
       setTimeout(() => {
         this.hideMenu = false
       }, 300)
     },
-
     normalView() {
       this.detailed = false
       this.hideMenu = true
       this.detailedItem = null
     },
   },
-}
+})
 </script>
 
 <template>

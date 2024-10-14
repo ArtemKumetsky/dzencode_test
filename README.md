@@ -13,7 +13,7 @@ This project is a service for a particular store. Here you can view and take act
 5. cd..
 6. cd backend
 7. npm install
-8. node server.js
+8. node server.ts
 ```
 
 ### Docker
