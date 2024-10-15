@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "build": "rimraf ./dist && tsc -p .",
-    "dev": "tsc --module 'CommonJS' && TS_NODE_BASEURL=./dist NODE_ENV=development node -r tsconfig-paths/register ./dist/index.js",
-    "preview": "node_modules/.bin/vite preview"
+    "dev": "cross-env TS_NODE_BASEURL=./dist NODE_ENV=development tsc --module 'CommonJS' && node ./dist/index.js"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
@@ -19,6 +18,10 @@
     "@types/express": "^5.0.0",
     "@types/mongoose": "^5.11.96",
     "@types/socket.io": "^3.0.1",
+    "cross-env": "^7.0.3",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "tsc": "^2.0.4",
     "typescript": "^5.6.3"
   }
 }

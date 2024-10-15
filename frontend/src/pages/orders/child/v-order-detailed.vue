@@ -8,17 +8,18 @@ export default defineComponent({
   components: { InteractiveMenu },
   data() {
     return {
-      detailedItem: null as IOrder | null,
+      detailedItem: {} as IOrder,
     }
   },
   computed: {
     ...mapGetters(["Orders", "getProductsByOrder"]),
   },
   methods: {
-    catchItem(item: IProduct | IOrder) {
+    catchItem(item: IOrder) {
       this.detailedItem = item
     },
-    removeItem(item: IProduct | IOrder) {
+    removeItem(item: IOrder) {
+      // @ts-ignore
       ;(this.$refs["interactive-menu"] as Ref<typeof InteractiveMenu>).openMenu(item)
     },
   },
@@ -26,7 +27,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="detailed-container mt-4 col-8" v-if="this.detailedItem">
+  <div class="detailed-container mt-4 col-8" v-if="detailedItem">
     <div class="detailed-info">
       <h3 class="mt-4 ms-4">{{ detailedItem.title }}</h3>
       <button class="detailed-info-add-btn mt-3 ms-4">
@@ -34,7 +35,7 @@ export default defineComponent({
         {{ $t("Orders.detailed.addProduct") }}
       </button>
       <ul class="detailed-info-content mt-3">
-        <li v-for="item in this.getProductsByOrder(detailedItem.productIds)" class="col-12 ps-3 pt-2 pb-2">
+        <li v-for="item in getProductsByOrder(detailedItem.productIds)" class="col-12 ps-3 pt-2 pb-2">
           <div
             class="product-img-container col-2 ps-5"
             :class="{ 'status-free': item.status === 'Free', 'status-busy': item.status === 'Busy' }"
@@ -56,7 +57,7 @@ export default defineComponent({
           />
         </li>
       </ul>
-      <a @click="this.$emit('closeDetailed')">✕</a>
+      <a @click="$emit('closeDetailed')">✕</a>
     </div>
     <transition name="fade" mode="in-out">
       <interactive-menu ref="interactive-menu" />

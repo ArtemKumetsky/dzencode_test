@@ -1,10 +1,7 @@
 <script lang="ts">
 import { defineComponent, PropType, watch } from "vue"
 import { mapGetters } from "vuex"
-
-interface Product {
-  price: { value: number }[]
-}
+import { IProduct } from "@/interfaces"
 
 export default defineComponent({
   data() {
@@ -26,7 +23,7 @@ export default defineComponent({
   methods: {
     // Calculate the total price for all products
     getTotalPrice(productIds: string[]) {
-      const products: Product[] = this.getProductsByOrder(productIds)
+      const products: IProduct[] = this.getProductsByOrder(productIds)
       const totalUsd = products.reduce((sum, product) => sum + product.price[0].value, 0)
       const totalUah = products.reduce((sum, product) => sum + product.price[1].value, 0)
       return { usd: totalUsd, uah: totalUah }
@@ -47,7 +44,7 @@ export default defineComponent({
       v-for="item in Orders"
       :key="item.id"
       :id="'order' + item.id"
-      @click="this.$emit('showDetails', item)"
+      @click="$emit('showDetails', item)"
     >
       <div class="orders-item-title ms-4 col-xl-5 col-xxl-6 col-4" v-if="!detailed">
         <span>{{ item.title }}</span>
@@ -56,9 +53,7 @@ export default defineComponent({
         <img src="@/assets/buttons/more-btn.svg" alt="stock_img" />
         <div :class="{ 'ms-4': !detailed, 'ms-2': detailed }">
           <span>{{ item.productIds.length }}</span>
-          <b v-if="this.selectedLanguage === 'ru'">{{
-            this.$store.getters.productCounterOutput(item.productIds.length)
-          }}</b>
+          <b v-if="selectedLanguage === 'ru'">{{ $store.getters.productCounterOutput(item.productIds.length) }}</b>
           <b v-else>Products</b>
         </div>
       </div>
@@ -67,14 +62,14 @@ export default defineComponent({
         <span>{{ item.date }}</span>
       </div>
       <div class="orders-item-price col-xxl-1 col-2" v-if="!detailed">
-        <div class="arrival-item-subprice">{{ getTotalPrice(item.productIds).usd + " $" }}</div>
+        <div class="arrival-item-subprice">{{ `${getTotalPrice(item.productIds).usd} $` }}</div>
         <span>{{ getTotalPrice(item.productIds).uah }} <b>UAH</b></span>
       </div>
       <img
         src="@/assets/buttons/delete-btn.svg"
         alt="delete_img"
         class="delete-btn col-1 m-auto"
-        @click.stop="this.$emit('removeItem', item)"
+        @click.stop="$emit('removeItem', item)"
         v-if="!detailed"
       />
     </div>

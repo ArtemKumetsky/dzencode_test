@@ -3,7 +3,7 @@ import { createServer } from "http"
 // @ts-ignore
 import { Server, Socket } from "socket.io"
 import cors from "cors"
-import router from "./src/routes/index"
+import router from "./routes"
 // @ts-ignore
 import mongoose from "mongoose"
 
@@ -29,8 +29,8 @@ mongoose
 
 app.use(router())
 
-const server = createServer(app)
-const io = new Server(server, {
+const index = createServer(app)
+const io = new Server(index, {
   cors: {
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
@@ -50,6 +50,6 @@ io.on("connection", (socket: Socket) => {
   })
 })
 
-server.listen(3000, () => {
+index.listen(3000, () => {
   console.log("Server started on port 3000")
 })

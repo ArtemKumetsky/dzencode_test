@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema, model } from "mongoose"
+import { Document, Schema, model } from "mongoose"
 
 interface IGuarantee {
   start: string

@@ -9,7 +9,9 @@ export default defineComponent({
     }
   },
   methods: {
-    changeLocale(selectedLocale: string) {
+    changeLocale(event: Event) {
+      const target = event.target as HTMLSelectElement
+      const selectedLocale = target.value
       this.$i18n.locale = selectedLocale
       this.locale = selectedLocale
       localStorage.setItem("locale", selectedLocale)
@@ -24,13 +26,13 @@ export default defineComponent({
       src="@/assets/lang-panel/language.svg"
       alt="langSelect"
       class="lang-panel-globe"
-      @click="this.panelVisible = !this.panelVisible"
+      @click="panelVisible = !panelVisible"
     />
     <transition name="fade">
       <select
         name="lang-panel-select"
         id="lang-panel-select"
-        @change="changeLocale($event.target.value)"
+        @change="changeLocale($event)"
         v-if="panelVisible"
         v-model="locale"
       >

@@ -77,7 +77,7 @@ const store: Store<State> = createStore({
 
     // Getter for receiving products in order
     getProductsByOrder: (state: State) => (productIds: string[]) => {
-      return state.Products.filter((product) => productIds.includes(product.id))
+      return state.Products.filter((product) => productIds?.includes(product.id))
     },
 
     // Function for correct declension of product counters ( 1 продукт, 2 продукта, 5 продуктов, ...)

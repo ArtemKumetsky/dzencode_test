@@ -1,19 +1,8 @@
-<script lang="ts">
-import { defineComponent } from "vue"
-export default defineComponent({
-  methods: {
-    Error() {
-      alert("There is nothing to do here!")
-    },
-  },
-})
-</script>
-
 <template>
   <nav class="col-2 pt-5">
     <div class="nav-image-container mb-5 mt-5">
       <img src="@/assets/nav/user.png" alt="config_img" class="nav-image" />
-      <img src="@/assets/nav/settings.svg" alt="config_img" class="nav-image-config" @click="Error" />
+      <img src="@/assets/nav/settings.svg" alt="config_img" class="nav-image-config" />
     </div>
     <ul>
       <li>

@@ -31,10 +31,12 @@ export default defineComponent({
   },
   methods: {
     removeItem(item: IProduct | IOrder) {
+      // @ts-ignore
       ;(this.$refs["interactive-menu"] as Ref<typeof InteractiveMenu>).openMenu(item)
     },
     showDetails(item: IOrder) {
       this.detailed = true
+      // @ts-ignore
       ;(this.$refs["v-order-detailed"] as Ref<typeof VOrderDetailed>).catchItem(item)
       setTimeout(() => {
         this.hideMenu = false

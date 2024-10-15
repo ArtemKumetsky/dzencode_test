@@ -1,30 +1,46 @@
 <script lang="ts">
 import { defineComponent } from "vue"
+import { IproductGuarantee, IproductPrice } from "@/interfaces"
 
-interface Product {
-  name: string
+interface InteractiveMenuData {
   _id?: string
+  id?: number
+  serialNumber?: number
+  newness?: boolean
+  photo?: string
+  status?: string
+  title?: string
+  type?: string
+  specification?: string
+  guarantee?: IproductGuarantee
+  price?: IproductPrice[]
+  subdate?: string
+  date?: string
+  groupTitle?: string
+  clientName?: string
+  order?: string
+  productIds?: Number[]
+  name?: string
 }
 
 export default defineComponent({
   data() {
     return {
-      selectedProduct: null as Product | null,
+      selectedProduct: { name: "" } as InteractiveMenuData,
       menuVisible: false as boolean,
     }
   },
   methods: {
-    openMenu(item: Product) {
+    openMenu(item: InteractiveMenuData) {
       this.selectedProduct = item
       this.menuVisible = true
     },
 
     closeMenu() {
       this.menuVisible = false
-      this.selectedProduct = null
     },
 
-    deleteItem(targetItem: Product) {
+    deleteItem(targetItem: InteractiveMenuData) {
       if (targetItem.name === "приход") {
         this.$store.dispatch("deleteOrder", targetItem)
       } else {
@@ -35,6 +51,11 @@ export default defineComponent({
       this.menuVisible = false
     },
   },
+  computed: {
+    isRussianLang() {
+      return this.$i18n.locale === "ru"
+    },
+  },
 })
 </script>
 
@@ -42,7 +63,7 @@ export default defineComponent({
   <div v-if="menuVisible">
     <div class="interactive-menu">
       <h2 class="menu-title p-5">
-        {{ $t("Menu.title") }}<span v-if="this.$i18n.locale === 'ru'">{{ ` ${selectedProduct.name}` }}</span
+        {{ $t("Menu.title") }}<span v-if="isRussianLang">{{ ` ${selectedProduct.name}` }}</span
         >?
       </h2>
       <ul class="menu-target-item ps-5 pe-5 pt-3 pb-3">
@@ -56,10 +77,8 @@ export default defineComponent({
                 {{ selectedProduct.date }}
                 <br />
                 {{
-                  selectedProduct.productIds.length +
-                  " " +
-                  this.$store.getters.productCounterOutput(selectedProduct.productIds.length)
-                }}.
+                  `${selectedProduct.productIds?.length} ${$store.getters.productCounterOutput(selectedProduct.productIds?.length)}`
+                }}
               </span>
             </div>
           </div>

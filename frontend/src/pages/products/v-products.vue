@@ -10,7 +10,7 @@ export default defineComponent({
   components: { VProductsItem, VCTitle, InteractiveMenu },
   data() {
     return {
-      selectedType: null as string,
+      selectedType: "All" as string,
     }
   },
   created() {
@@ -25,6 +25,7 @@ export default defineComponent({
 
   methods: {
     removeItem(item: IProduct | IOrder) {
+      // @ts-ignore
       ;(this.$refs["interactive-menu"] as Ref<typeof InteractiveMenu>).openMenu(item)
     },
   },
@@ -39,7 +40,7 @@ export default defineComponent({
         <div>
           <label for="product-type">{{ $t("Products.typeLabel") }}:</label>
           <select name="product-type" id="product-type" class="ms-2" v-model="selectedType">
-            <option value="null">{{ $t("Products.type.all") }}</option>
+            <option value="All">{{ $t("Products.type.all") }}</option>
             <option value="Monitor">{{ $t("Products.type.monitors") }}</option>
             <option value="Motherboard">{{ $t("Products.type.motherboards") }}</option>
           </select>
