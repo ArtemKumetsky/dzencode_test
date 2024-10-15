@@ -1,40 +1,42 @@
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from "vue"
 import { mapGetters } from "vuex"
+import { IProduct } from "@/interfaces"
 
-export default {
+export default defineComponent({
   data() {
     return {
-      selectedType: this.parentData,
+      selectedType: this.parentData as string,
     }
   },
   props: {
     parentData: {
-      type: String,
+      type: String as PropType<string>,
       required: true,
     },
   },
   emits: ["removeItem"],
   computed: {
     ...mapGetters(["Products"]),
-    filteredProducts() {
-      if (!this.selectedType) {
-        return this.Products
+    filteredProducts(): IProduct[] {
+      if (this.selectedType === "All") {
+        return this.Products as IProduct[]
       }
-      return this.Products.filter((product) => product.type === this.selectedType)
+      return (this.Products as IProduct[]).filter((product: IProduct) => product.type === this.selectedType)
     },
   },
   watch: {
-    parentData(newVal) {
+    parentData(newVal: string) {
       this.selectedType = newVal
     },
   },
-}
+})
 </script>
 
 <template>
   <div
     class="product-item row flex-nowrap overflow-auto mt-4 pt-2 pb-2 pe-4"
-    v-for="item in this.filteredProducts"
+    v-for="item in filteredProducts"
     :key="item.id"
   >
     <div class="product-img-container col-1 ps-5" :class="{ 'status-busy': item.status === 'Busy' }">
@@ -82,7 +84,7 @@ export default {
         src="@/assets/buttons/delete-btn.svg"
         alt="delete_img"
         class="delete-btn"
-        @click="this.$emit('removeItem', item)"
+        @click="$emit('removeItem', item)"
       />
     </div>
   </div>

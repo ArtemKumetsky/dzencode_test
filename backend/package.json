@@ -2,18 +2,26 @@
   "name": "dzencode_test",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "dev": "node_modules/.bin/vite",
-    "build": "node_modules/.bin/vite build",
-    "preview": "node_modules/.bin/vite preview"
+    "build": "rimraf ./dist && tsc -p .",
+    "dev": "cross-env TS_NODE_BASEURL=./dist NODE_ENV=development tsc --module 'CommonJS' && node ./dist/index.js"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
-    "express": "^4.21.0",
+    "express": "^4.21.1",
     "mongodb": "^6.9.0",
     "mongoose": "^8.7.1",
     "prettier": "^3.3.3",
     "socket.io": "^4.8.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/mongoose": "^5.11.96",
+    "@types/socket.io": "^3.0.1",
+    "cross-env": "^7.0.3",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "tsc": "^2.0.4",
+    "typescript": "^5.6.3"
   }
 }

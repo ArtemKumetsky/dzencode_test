@@ -1,19 +1,23 @@
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue"
+
+export default defineComponent({
   data() {
     return {
-      panelVisible: false,
-      locale: this.$i18n.locale,
+      panelVisible: false as boolean,
+      locale: this.$i18n.locale as string,
     }
   },
   methods: {
-    changeLocale(selectedLocale) {
+    changeLocale(event: Event) {
+      const target = event.target as HTMLSelectElement
+      const selectedLocale = target.value
       this.$i18n.locale = selectedLocale
       this.locale = selectedLocale
       localStorage.setItem("locale", selectedLocale)
     },
   },
-}
+})
 </script>
 
 <template>
@@ -22,13 +26,13 @@ export default {
       src="@/assets/lang-panel/language.svg"
       alt="langSelect"
       class="lang-panel-globe"
-      @click="this.panelVisible = !this.panelVisible"
+      @click="panelVisible = !panelVisible"
     />
     <transition name="fade">
       <select
         name="lang-panel-select"
         id="lang-panel-select"
-        @change="changeLocale($event.target.value)"
+        @change="changeLocale($event)"
         v-if="panelVisible"
         v-model="locale"
       >

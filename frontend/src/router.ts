@@ -1,6 +1,6 @@
-import { createRouter, createWebHistory } from "vue-router"
+import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router"
 
-const routes = [
+const routes: Array<RouteRecordRaw> = [
   {
     name: "Orders",
     path: "/orders",
@@ -15,6 +15,11 @@ const routes = [
     name: "Not found",
     path: "/:pathMatch(.*)*",
     component: () => import("./pages/404/v-404.vue"),
+  },
+  {
+    name: "Default",
+    path: "",
+    component: () => import("./pages/orders/v-orders.vue"),
   },
 ]
 
