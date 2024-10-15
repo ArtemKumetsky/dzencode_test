@@ -15,6 +15,7 @@ export default defineComponent({
       this.$i18n.locale = selectedLocale
       this.locale = selectedLocale
       localStorage.setItem("locale", selectedLocale)
+      this.panelVisible = !this.panelVisible
     },
   },
 })
@@ -78,6 +79,14 @@ select {
   option:checked {
     background: var(--c-nav-lime);
     font-weight: bolder;
+  }
+}
+@media screen and (max-width: 1600px) {
+  select {
+    top: 45px;
+    right: 0;
+    left: 0;
+    margin: auto;
   }
 }
 </style>
