@@ -16,6 +16,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/:pathMatch(.*)*",
     component: () => import("./pages/404/v-404.vue"),
   },
+  {
+    name: "Default",
+    path: "",
+    component: () => import("./pages/orders/v-orders.vue"),
+  },
 ]
 
 const router = createRouter({

@@ -6,7 +6,7 @@ This project is a service for a particular store. Here you can view and take act
 
 ## Project Setup
 ```sh
-1. git clone https://github.com/ArtemKumetsky/dzencode_test
+1. git clone https://github.com/ArtemKumetsky/dzencode_test/tree/typescript
 2. cd frontend
 3. npm install
 4. npm run dev
@@ -19,7 +19,7 @@ This project is a service for a particular store. Here you can view and take act
 ### Docker
 
 ```sh
-1. git clone https://github.com/ArtemKumetsky/dzencode_test
+1. git clone https://github.com/ArtemKumetsky/dzencode_test/tree/typescript
 2. docker-compose up --build
 3. type "localhost:5173" in your browser serch field
 
