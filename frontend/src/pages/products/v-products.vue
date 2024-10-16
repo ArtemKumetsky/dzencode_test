@@ -25,7 +25,6 @@ export default defineComponent({
 
   methods: {
     removeItem(item: IProduct | IOrder) {
-      // @ts-ignore
       ;(this.$refs["interactive-menu"] as Ref<typeof InteractiveMenu>).openMenu(item)
     },
   },

@@ -1,10 +1,8 @@
 import express from "express"
 import { createServer } from "http"
-// @ts-ignore
 import { Server, Socket } from "socket.io"
 import cors from "cors"
 import router from "./routes"
-// @ts-ignore
 import mongoose from "mongoose"
 
 const MongoConnectionString: string =
