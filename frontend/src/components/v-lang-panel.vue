@@ -39,6 +39,7 @@ export default defineComponent({
       >
         <option value="ru">Русский</option>
         <option value="en">English</option>
+        <option value="ua">Українська</option>
       </select>
     </transition>
   </div>

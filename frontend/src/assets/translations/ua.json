@@ -1,0 +1,60 @@
+{
+  "Header": {
+    "searchField": "Пошук",
+    "onlineStats": "У мережі"
+  },
+  "Nav": {
+    "orders": "Приход",
+    "groups": "Групи",
+    "products": "Продукти",
+    "users": "Користувачі",
+    "settings": "Налаштування"
+  },
+  "Menu": {
+    "title": "Ви справді бажаєте видалити цей",
+    "buttons": {
+      "cancel": "СКАСУВАТИ",
+      "delete": "ВИДАЛИТИ"
+    }
+  },
+  "404": {
+    "title": "404 сторінка не існує",
+    "button": "Повернутись на головну"
+  },
+  "Orders": {
+    "title": "Приходи",
+    "detailed": {
+      "addProduct": "Додати продукт"
+    }
+  },
+  "Products": {
+    "title": "Продукти",
+    "typeLabel": "Тип",
+    "type": {
+      "all": "Усі продукти",
+      "monitors": "Монітори",
+      "motherboards": "Материнські плати"
+    },
+    "date": {
+      "from": "з",
+      "to": "до"
+    },
+    "newness_true": "Новий",
+    "newness_false": "Б/В",
+    "status": {
+      "busy": "У ремонті",
+      "free": "Вільний"
+    }
+
+  },
+  "Settings": {
+    "title": "Налаштування"
+  },
+  "AuthorNotification": {
+    "title": "Автор",
+    "name": "Артем Кумецький",
+    "confirmBtn": "Наймаю",
+    "declineBtn": "Ні, дякую",
+    "CV": "Моє резюме *клік*"
+  }
+}
