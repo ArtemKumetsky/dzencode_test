@@ -49,5 +49,12 @@
   },
   "Settings": {
     "title": "Настройки"
+  },
+  "AuthorNotification": {
+    "title": "Автор",
+    "name": "Артём Кумецкий",
+    "confirmBtn": "Нанимаю",
+    "declineBtn": "Нет, спасибо",
+    "CV": "Моё резюме *клик*"
   }
 }

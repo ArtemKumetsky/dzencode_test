@@ -48,5 +48,12 @@
   },
   "Settings": {
     "title": "Settings"
+  },
+  "AuthorNotification": {
+    "title": "Author",
+    "name": "Artem Kumetskyi",
+    "confirmBtn": "I'll hire you",
+    "declineBtn": "No, thank you",
+    "CV": "My CV *click*"
   }
 }
