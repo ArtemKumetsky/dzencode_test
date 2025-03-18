@@ -1,5 +1,5 @@
 <script lang="ts">
-import InteractiveMenu from "@/components/v-interactive-menu.vue"
+import InteractiveMenu from "@/components/interactiveMenu/v-interactive-menu.vue"
 import { mapGetters } from "vuex"
 import VCTitle from "@/components/v-c-title.vue"
 import VProductsItem from "@/pages/products/child/v-products-item.vue"
@@ -26,7 +26,7 @@ export default defineComponent({
   methods: {
     removeItem(item: IProduct | IOrder) {
       ;(this.$refs["interactive-menu"] as Ref<typeof InteractiveMenu>).openMenu(item)
-    },
+    }
   },
 })
 </script>

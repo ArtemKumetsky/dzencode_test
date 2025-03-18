@@ -80,7 +80,7 @@ export default defineComponent({
     <div class="header-content col-md-8 col-10">
       <div class="header-logo col-3">
         <img src="@/assets/header/header-logo.svg" alt="header_logo" />
-        <b>INVENTORY</b>
+        <b>MY REPAIR SERVICE</b>
       </div>
       <div class="col-3 search-field-container">
         <input type="search" :placeholder="$t('Header.searchField')" />

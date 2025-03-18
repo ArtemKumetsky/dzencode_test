@@ -11,10 +11,11 @@
     "settings": "Settings"
   },
   "Menu": {
-    "title": "Do you really want to delete this",
+    "title_remove": "Do you really want to delete this",
+    "title_add": "Enter some data:",
     "buttons": {
       "cancel": "CANCEL",
-      "delete": "DELETE"
+      "delete": "Confirm"
     }
   },
   "404": {
