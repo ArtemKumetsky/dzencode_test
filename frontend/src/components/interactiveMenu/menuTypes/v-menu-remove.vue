@@ -49,7 +49,7 @@ import { InteractiveMenuData } from "@/interfaces"
     <button type="reset" @click="$emit('closeMenu')" class="me-4">{{ $t("Menu.buttons.cancel") }}</button>
     <button type="submit" class="p-2" @click="deleteItem(selectedProduct)">
       <img src="@/assets/interactive-menu/delete-btn.svg" alt="delete_btn" class="me-2" />
-      {{ $t("Menu.buttons.delete") }}
+      {{ $t("Menu.buttons.confirm") }}
     </button>
   </div>
 </template>

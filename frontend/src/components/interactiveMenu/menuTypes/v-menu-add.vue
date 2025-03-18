@@ -1,16 +1,79 @@
-<script setup lang="ts">
+<script lang="ts">
+  export default {
+    data () {
+      return {
+        inputs: [
+          {
+            labelText: "Title",
+            id: "title",
+            placeholder: "Print here",
+            value: "",
+            required: true
+          },
+          {
+            labelText: "Type",
+            id: "type",
+            placeholder: "Print here",
+            value: "",
+            required: true
+          },
+          {
+            labelText: "Serial number",
+            id: "serialNumber",
+            placeholder: "Print here",
+            value: "",
+            required: true
+          },
+          {
+            labelText: "Photo url",
+            id: "photo",
+            placeholder: "Print here",
+            value: "",
+            required: true
+          },
+          {
+            labelText: "Status",
+            id: "status",
+            placeholder: "Print here",
+            value: "",
+            required: true
+          },
+          {
+            labelText: "Specification",
+            id: "specification",
+            placeholder: "Print here",
+            value: "",
+            required: true
+          },
 
+        ],
+        formData: {} as Record<string, string>
+      }
+    },
+    methods: {
+      submitForm() {
+        this.$store.dispatch("addProduct", this.formData)
+      }
+    }
+  }
 </script>
 
 <template>
   <h2 class="menu-title p-5">
     {{ $t("Menu.title_add") }}
   </h2>
+  <form @submit.prevent="submitForm" >
+    <div class="form-el" v-for="item in inputs">
+      <label :for="item.id">{{ item.labelText }}</label>
+      <input type="text" :id="item.id" v-model="formData[item.id]" :placeholder="item.placeholder" :required="item.required" />
+    </div>
+    <button type="submit">Submit</button>
+
+  </form>
   <div class="menu-btn-container pe-5">
     <button type="reset" @click="$emit('closeMenu')" class="me-4">{{ $t("Menu.buttons.cancel") }}</button>
     <button type="submit" class="p-2" >
-      <img src="@/assets/interactive-menu/delete-btn.svg" alt="delete_btn" class="me-2" />
-      {{ $t("Menu.buttons.delete") }}
+      {{ $t("Menu.buttons.confirm") }}
     </button>
   </div>
 </template>
@@ -19,6 +82,19 @@
 h2 {
   font-size: 24px;
   font-weight: bold;
+}
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.form-el {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    width: max-content;
+  }
 }
 .menu-btn-container {
   background: var(--c-nav-lime);

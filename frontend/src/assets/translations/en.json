@@ -15,7 +15,7 @@
     "title_add": "Enter some data:",
     "buttons": {
       "cancel": "CANCEL",
-      "delete": "Confirm"
+      "confirm": "Confirm"
     }
   },
   "404": {

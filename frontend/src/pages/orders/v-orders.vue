@@ -57,7 +57,7 @@ export default defineComponent({
 
 <template>
   <div class="orders-container container-fluid">
-    <v-c-title class="ms-5" @click="addItem">{{ $t("Orders.title") }}</v-c-title>
+    <v-c-title class="ms-5">{{ $t("Orders.title") }}</v-c-title>
     <div class="orders-content" :class="{ 'justify-content-between pe-3': detailed }">
       <v-order-item :parentData="detailed" @showDetails="showDetails" @removeItem="removeItem" />
       <v-order-detailed @closeDetailed="normalView" v-show="!hideMenu" ref="v-order-detailed" />

@@ -11,6 +11,7 @@ export default defineComponent({
   data() {
     return {
       selectedType: "All" as string,
+      menuAction: "" as String,
     }
   },
   created() {
@@ -25,8 +26,13 @@ export default defineComponent({
 
   methods: {
     removeItem(item: IProduct | IOrder) {
-      ;(this.$refs["interactive-menu"] as Ref<typeof InteractiveMenu>).openMenu(item)
-    }
+      this.menuAction = 'remove'
+      ;(this.$refs["interactive-menu"] as Ref<typeof InteractiveMenu>).removeAction(item)
+    },
+    addItem(item: IProduct | IOrder) {
+      this.menuAction = 'add'
+      ;(this.$refs["interactive-menu"] as Ref<typeof InteractiveMenu>).openMenu()
+    },
   },
 })
 </script>
@@ -34,7 +40,7 @@ export default defineComponent({
 <template>
   <div class="products-container container">
     <div class="products-title">
-      <v-c-title>{{ $t("Products.title") }}</v-c-title>
+      <v-c-title @click="addItem" style="cursor: pointer">{{ $t("Products.title") }}</v-c-title>
       <div class="select-container ms-5">
         <div>
           <label for="product-type">{{ $t("Products.typeLabel") }}:</label>
@@ -51,7 +57,7 @@ export default defineComponent({
       <v-products-item :parent-data="selectedType" @removeItem="removeItem" />
     </div>
     <transition name="fade" mode="in-out">
-      <interactive-menu ref="interactive-menu" />
+      <interactive-menu ref="interactive-menu" :action="menuAction"/>
     </transition>
   </div>
 </template>
