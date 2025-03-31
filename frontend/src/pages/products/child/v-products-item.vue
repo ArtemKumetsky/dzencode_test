@@ -50,14 +50,6 @@ export default defineComponent({
       {{ $t(`Products.status.${item.status.toLowerCase()}`) }}
     </div>
     <div class="product-date col-2">
-<!--      <div>-->
-<!--        <span>{{ $t("Products.date.from") }}</span>-->
-<!--&lt;!&ndash;        {{ item.guarantee.start }}&ndash;&gt;-->
-<!--      </div>-->
-<!--      <div>-->
-<!--        <span>{{ $t("Products.date.to") }}</span>-->
-<!--&lt;!&ndash;        {{ item.guarantee.end }}&ndash;&gt;-->
-<!--      </div>-->
       {{item.guarantee}} {{$t('month')}}
     </div>
     <div class="product-newness col-1" v-if="item.newness">{{ $t("Products.newness_true") }}</div>
@@ -65,18 +57,11 @@ export default defineComponent({
     <div class="product-item-price col-2">
       {{item.price}} UAH
     </div>
-    <div class="product-item-group-title styled-text col-3">
-      <span>{{ item.groupTitle }}</span>
-    </div>
     <div class="product-item-client-name styled-text col-3">
       <span v-if="item.clientName !== '—'">{{ item.clientName }}</span>
       <i v-else>{{ item.clientName }}</i>
     </div>
-    <div class="product-item-title styled-text col-3">
-      <span>{{ item.order }}</span>
-    </div>
     <div class="product-item-date col-2">
-      <div class="product-item-subdate">{{ item.subdate }}</div>
       <span>{{ item.date }}</span>
     </div>
     <div class="delete-btn col-1 me-2">
@@ -147,11 +132,6 @@ export default defineComponent({
 
 .product-date {
   text-align: center;
-
-  span {
-    color: var(--c-dark);
-    display: inline-block;
-  }
 }
 
 .product-newness {
@@ -168,11 +148,6 @@ export default defineComponent({
 
 .product-item-date {
   text-align: center;
-
-  div {
-    width: 100%;
-    color: var(--c-dark);
-  }
 }
 
 .product-item-price {
