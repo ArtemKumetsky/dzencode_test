@@ -15,7 +15,6 @@ app.use(
     origin: "*",
   }),
 )
-
 mongoose
   .connect(MongoConnectionString)
   .then(() => {
@@ -24,7 +23,7 @@ mongoose
   .catch((error: Error) => {
     console.error("MongoDB connection error:", error)
   })
-
+app.use(express.json())
 app.use(router())
 
 const index = createServer(app)

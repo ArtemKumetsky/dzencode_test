@@ -79,7 +79,7 @@ const store: Store<State> = createStore({
 
         console.log(`Successfully added:`, response.data);
 
-        commit("ADD_PRODUCT", response.data);
+        // commit("ADD_PRODUCT", response.data);
 
         return response.data;
       } catch (error) {

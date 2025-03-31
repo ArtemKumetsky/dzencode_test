@@ -52,18 +52,18 @@ export default defineComponent({
     <div class="product-date col-2">
       <div>
         <span>{{ $t("Products.date.from") }}</span>
-        {{ item.guarantee.start }}
+<!--        {{ item.guarantee.start }}-->
       </div>
       <div>
         <span>{{ $t("Products.date.to") }}</span>
-        {{ item.guarantee.end }}
+<!--        {{ item.guarantee.end }}-->
       </div>
     </div>
     <div class="product-newness col-1" v-if="item.newness">{{ $t("Products.newness_true") }}</div>
     <div class="product-newness col-1" v-else>{{ $t("Products.newness_false") }}</div>
     <div class="product-item-price col-2">
-      <div>{{ item.price[0].value + "$" }}</div>
-      <span>{{ item.price[1].value }} <b>UAH</b></span>
+<!--      <div>{{ item.price[0].value + "$" }}</div>-->
+<!--      <span>{{ item.price[1].value }} <b>UAH</b></span>-->
     </div>
     <div class="product-item-group-title styled-text col-3">
       <span>{{ item.groupTitle }}</span>

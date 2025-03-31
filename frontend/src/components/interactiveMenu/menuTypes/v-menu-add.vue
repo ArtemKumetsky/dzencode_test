@@ -2,74 +2,66 @@
   export default {
     data () {
       return {
-        inputs: [
-          {
-            labelText: "Title",
-            id: "title",
-            placeholder: "Print here",
-            value: "",
-            required: true
-          },
-          {
-            labelText: "Type",
-            id: "type",
-            placeholder: "Print here",
-            value: "",
-            required: true
-          },
-          {
-            labelText: "Serial number",
-            id: "serialNumber",
-            placeholder: "Print here",
-            value: "",
-            required: true
-          },
-          {
-            labelText: "Photo url",
-            id: "photo",
-            placeholder: "Print here",
-            value: "",
-            required: true
-          },
-          {
-            labelText: "Status",
-            id: "status",
-            placeholder: "Print here",
-            value: "",
-            required: true
-          },
-          {
-            labelText: "Specification",
-            id: "specification",
-            placeholder: "Print here",
-            value: "",
-            required: true
-          },
-
-        ],
-        formData: {} as Record<string, string>
-      }
+        formData: {
+          title: "",
+          type: "",
+          specification: "",
+          serialNumber: null,
+          clientName: "",
+          groupTitle: "",
+          order: "",
+          date: "",
+          newness: null,
+          status: "",
+          name: "продукт",
+          photo: ""
+        },
+        generatedId: new Date().getMilliseconds() + new Date().getSeconds(),
+      };
     },
     methods: {
       submitForm() {
-        this.$store.dispatch("addProduct", this.formData)
-      }
+        const payload = { ...this.formData, id: this.generatedId };
+        console.log("Form Data:", payload);
+
+        this.$store.dispatch("addProduct", payload);
+      },
     }
   }
 </script>
-
 <template>
   <h2 class="menu-title p-5">
     {{ $t("Menu.title_add") }}
   </h2>
-  <form @submit.prevent="submitForm" >
-    <div class="form-el" v-for="item in inputs">
-      <label :for="item.id">{{ item.labelText }}</label>
-      <input type="text" :id="item.id" v-model="formData[item.id]" :placeholder="item.placeholder" :required="item.required" />
-    </div>
-    <button type="submit">Submit</button>
+  <form @submit.prevent="submitForm">
+    <div class="form-el">
+      <input type="text" required v-model="formData.title" placeholder="Title">
+      <input type="text" required v-model="formData.type" placeholder="Type">
+      <input type="text" required v-model="formData.specification" placeholder="Specification">
+      <input type="number" required v-model="formData.serialNumber" placeholder="Serial number">
 
+      <input type="text" required v-model="formData.clientName" placeholder="Client name">
+      <input type="text" required v-model="formData.groupTitle" placeholder="Group Title">
+      <input type="text" required v-model="formData.order" placeholder="Order Title">
+
+      <input type="date" required v-model="formData.date">
+
+      <label>
+        <input type="radio" required v-model="formData.newness" name="newness" :value="true"> New
+      </label>
+      <label>
+        <input type="radio" required v-model="formData.newness" name="newness" :value="false"> Old
+      </label>
+
+      <input type="text" required v-model="formData.status" placeholder="Status">
+      <input type="URL" required v-model="formData.photo" placeholder="photo">
+      <input type="text" required v-model="formData.name" readonly>
+      <input type="text" required :value="generatedId" readonly>
+    </div>
+
+    <button type="submit">Submit</button>
   </form>
+
   <div class="menu-btn-container pe-5">
     <button type="reset" @click="$emit('closeMenu')" class="me-4">{{ $t("Menu.buttons.cancel") }}</button>
     <button type="submit" class="p-2" >
@@ -85,7 +77,8 @@ h2 {
 }
 form {
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   flex-direction: column;
 }
 .form-el {

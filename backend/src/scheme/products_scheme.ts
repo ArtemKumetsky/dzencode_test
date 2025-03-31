@@ -29,15 +29,15 @@ interface IProduct extends Document {
   name: string
 }
 
-const guaranteeSchema = new Schema<IGuarantee>({
-  start: { type: String, required: true },
-  end: { type: String, required: true },
-})
-
-const priceSchema = new Schema<IPrice>({
-  value: { type: Number, required: true },
-  Symbol: { type: String, required: true },
-})
+// const guaranteeSchema = new Schema<IGuarantee>({
+//   start: { type: String, required: true },
+//   end: { type: String, required: true },
+// })
+//
+// const priceSchema = new Schema<IPrice>({
+//   value: { type: Number, required: true },
+//   Symbol: { type: String, required: true },
+// })
 
 const productSchema = new Schema<IProduct>({
   id: { type: Number, required: true },
@@ -48,9 +48,9 @@ const productSchema = new Schema<IProduct>({
   title: { type: String, required: true },
   type: { type: String, required: true },
   specification: { type: String, required: true },
-  guarantee: { type: guaranteeSchema, required: true },
-  price: { type: [priceSchema], required: true },
-  subdate: { type: String, required: true },
+  // guarantee: { type: guaranteeSchema, required: true },
+  // price: { type: [priceSchema], required: true },
+  // subdate: { type: String, required: true },
   date: { type: String, required: true },
   groupTitle: { type: String, required: true },
   clientName: { type: String, required: true },

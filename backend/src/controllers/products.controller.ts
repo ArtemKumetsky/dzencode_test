@@ -24,3 +24,17 @@ export const getProducts = async (_req: Request, res: Response) => {
     res.status(500).json({ message: "Server error", error })
   }
 }
+
+export const addProduct = async (req: Request, res: Response) => {
+  try {
+    console.log("Запит отримано");
+    console.log("Отримані дані:", req.body);
+    const newProduct = new Product(req.body);
+    const savedProduct = await newProduct.save();
+
+    res.status(201).json({ message: "Product added successfully", product: savedProduct });
+  } catch (error) {
+    console.error("Помилка при додаванні продукту:", error);
+    res.status(500).json({ message: "Server error", error });
+  }
+};
