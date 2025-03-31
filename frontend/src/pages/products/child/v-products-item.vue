@@ -34,7 +34,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div
+  <div v-if="filteredProducts.length > 0"
     class="product-item row flex-nowrap overflow-auto mt-4 pt-2 pb-2 pe-4"
     v-for="item in filteredProducts"
     :key="item.id"
@@ -72,6 +72,10 @@ export default defineComponent({
         @click="$emit('removeItem', item)"
       />
     </div>
+  </div>
+  <div v-else class="no-data pt-5">
+    <b>Empty</b>
+    You should add a new products.
   </div>
 </template>
 
@@ -159,5 +163,13 @@ export default defineComponent({
 .delete-btn {
   max-width: 20px;
   cursor: pointer;
+}
+.no-data {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 42px;
 }
 </style>
