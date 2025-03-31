@@ -8,12 +8,12 @@
           specification: "",
           serialNumber: null,
           clientName: "",
-          groupTitle: "",
-          order: "",
           date: "",
           newness: null,
           status: "",
           name: "продукт",
+          price: "",
+          guarantee: "",
           photo: ""
         },
         generatedId: new Date().getMilliseconds() + new Date().getSeconds(),
@@ -23,8 +23,8 @@
       submitForm() {
         const payload = { ...this.formData, id: this.generatedId };
         console.log("Form Data:", payload);
-
         this.$store.dispatch("addProduct", payload);
+        this.$emit('closeMenu');
       },
     }
   }
@@ -37,11 +37,11 @@
     <div class="form-content">
       <label>
         Client name
-        <input type="text" required v-model="formData.clientName" placeholder="Client name">
+        <input type="text" required v-model="formData.clientName" placeholder="Enter client name">
       </label>
       <label>
         Title
-        <input type="text" required v-model="formData.title" placeholder="Title">
+        <input type="text" required v-model="formData.title" placeholder="Enter product name">
       </label>
       <label>
         Date
@@ -51,28 +51,28 @@
 
       <label>
         Specification
-        <input type="text" required v-model="formData.specification" placeholder="Specification">
+        <input type="text" required v-model="formData.specification" placeholder="Enter a specification">
       </label>
       <label>
         Serial number
-        <input type="number" required v-model="formData.serialNumber" placeholder="Serial number">
+        <input type="number" required v-model="formData.serialNumber" placeholder="Enter the products`s serial number">
       </label>
       <label>
         Type
-        <input type="text" required v-model="formData.type" placeholder="Type">
+        <input type="text" required v-model="formData.type" placeholder="Enter a type of product">
       </label>
 
       <label>
         Photo link
-        <input type="URL" required v-model="formData.photo" placeholder="photo">
+        <input type="URL" required v-model="formData.photo" value="https://img.freepik.com/premium-vector/no-data-found-empty-file-folder-concept-design-vector-illustration_620585-1698.jpg?semt=ais_hybrid" placeholder="Link to your photo">
       </label>
       <label>
-        Order Title
-        <input type="text" required v-model="formData.order" placeholder="Order Title">
+        Price (UAH)
+        <input type="number" min="0" required v-model="formData.price" placeholder="Price">
       </label>
       <label>
-        Group title
-        <input type="text" required v-model="formData.groupTitle" placeholder="Group Title">
+        Guarantee (month)
+        <input type="number" min="0" max="12" required v-model="formData.guarantee" placeholder="Number of month">
       </label>
 
 
@@ -98,7 +98,7 @@
             <input type="radio" required v-model="formData.newness" name="newness" :value="true"> New
           </label>
           <label>
-            <input type="radio" required v-model="formData.newness" name="newness" :value="false"> Old
+            <input type="radio" required v-model="formData.newness" name="newness" :value="false"> Used
           </label>
         </div>
       </div>
@@ -108,8 +108,8 @@
         <input type="text" required v-model="formData.name" readonly>
       </label>
       <label>
-        ID
-        <input type="text" required :value="generatedId" readonly>
+        Order ID
+        <input type="text" required :value="generatedId" readonly style="cursor: not-allowed">
       </label>
     </div>
 

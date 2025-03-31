@@ -50,20 +50,20 @@ export default defineComponent({
       {{ $t(`Products.status.${item.status.toLowerCase()}`) }}
     </div>
     <div class="product-date col-2">
-      <div>
-        <span>{{ $t("Products.date.from") }}</span>
-<!--        {{ item.guarantee.start }}-->
-      </div>
-      <div>
-        <span>{{ $t("Products.date.to") }}</span>
-<!--        {{ item.guarantee.end }}-->
-      </div>
+<!--      <div>-->
+<!--        <span>{{ $t("Products.date.from") }}</span>-->
+<!--&lt;!&ndash;        {{ item.guarantee.start }}&ndash;&gt;-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        <span>{{ $t("Products.date.to") }}</span>-->
+<!--&lt;!&ndash;        {{ item.guarantee.end }}&ndash;&gt;-->
+<!--      </div>-->
+      {{item.guarantee}} {{$t('month')}}
     </div>
     <div class="product-newness col-1" v-if="item.newness">{{ $t("Products.newness_true") }}</div>
     <div class="product-newness col-1" v-else>{{ $t("Products.newness_false") }}</div>
     <div class="product-item-price col-2">
-<!--      <div>{{ item.price[0].value + "$" }}</div>-->
-<!--      <span>{{ item.price[1].value }} <b>UAH</b></span>-->
+      {{item.price}} UAH
     </div>
     <div class="product-item-group-title styled-text col-3">
       <span>{{ item.groupTitle }}</span>
@@ -179,17 +179,6 @@ export default defineComponent({
   font-size: 18px;
   text-wrap: nowrap;
   text-align: center;
-
-  div {
-    width: 100%;
-    font-size: 12px;
-    color: var(--c-dark);
-  }
-
-  span b {
-    font-size: 12px;
-    font-weight: normal;
-  }
 }
 
 .delete-btn {
