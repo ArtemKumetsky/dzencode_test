@@ -1,6 +1,6 @@
 <script lang="ts">
 import { mapGetters } from "vuex"
-import InteractiveMenu from "@/components/v-interactive-menu.vue"
+import InteractiveMenu from "@/components/interactiveMenu/v-interactive-menu.vue"
 import { defineComponent, Ref } from "vue"
 import { IOrder, IProduct } from "@/interfaces"
 

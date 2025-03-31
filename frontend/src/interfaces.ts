@@ -35,3 +35,24 @@ export interface IProduct {
   order: string
   name: string
 }
+
+export interface InteractiveMenuData {
+  _id?: string
+  id?: number
+  serialNumber?: number
+  newness?: boolean
+  photo?: string
+  status?: string
+  title?: string
+  type?: string
+  specification?: string
+  guarantee?: IproductGuarantee
+  price?: IproductPrice[]
+  subdate?: string
+  date?: string
+  groupTitle?: string
+  clientName?: string
+  order?: string
+  productIds?: Number[]
+  name?: string
+}

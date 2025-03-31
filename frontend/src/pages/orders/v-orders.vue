@@ -1,5 +1,5 @@
 <script lang="ts">
-import InteractiveMenu from "@/components/v-interactive-menu.vue"
+import InteractiveMenu from "@/components/interactiveMenu/v-interactive-menu.vue"
 import { mapGetters } from "vuex"
 import VCTitle from "@/components/v-c-title.vue"
 import VOrderDetailed from "@/pages/orders/child/v-order-detailed.vue"
@@ -14,6 +14,7 @@ export default defineComponent({
       detailed: false as boolean,
       hideMenu: true as boolean,
       detailedItem: null as IOrder | null,
+      menuAction: "" as String,
     }
   },
   created() {
@@ -31,7 +32,12 @@ export default defineComponent({
   },
   methods: {
     removeItem(item: IProduct | IOrder) {
-      ;(this.$refs["interactive-menu"] as Ref<typeof InteractiveMenu>).openMenu(item)
+      this.menuAction = 'remove'
+      ;(this.$refs["interactive-menu"] as Ref<typeof InteractiveMenu>).removeAction(item)
+    },
+    addItem(item: IProduct | IOrder) {
+      this.menuAction = 'add'
+      ;(this.$refs["interactive-menu"] as Ref<typeof InteractiveMenu>).openMenu()
     },
     showDetails(item: IOrder) {
       this.detailed = true
@@ -57,7 +63,7 @@ export default defineComponent({
       <v-order-detailed @closeDetailed="normalView" v-show="!hideMenu" ref="v-order-detailed" />
     </div>
     <transition name="fade" mode="in-out">
-      <interactive-menu ref="interactive-menu" />
+      <interactive-menu ref="interactive-menu" :action="menuAction"/>
     </transition>
   </div>
 </template>

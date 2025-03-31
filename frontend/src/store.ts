@@ -1,6 +1,7 @@
 import { createStore, Store } from "vuex"
 import { fetchOrders, fetchProducts } from "./api"
 import axios from "axios"
+import { IProduct } from "@/interfaces"
 
 // Types
 interface Product {
@@ -70,6 +71,23 @@ const store: Store<State> = createStore({
         console.error("Error deleting order:", error)
       }
     },
+    async addProduct({ commit }, formData: IProduct) {
+      try {
+        console.log("Sending data:", formData);
+
+        const response = await axios.post<IProduct>(`http://localhost:3000/products/`, formData);
+
+        console.log(`Successfully added:`, response.data);
+
+        // commit("ADD_PRODUCT", response.data);
+
+        return response.data;
+      } catch (error) {
+        console.error("Error adding product:", error);
+        throw error;
+      }
+    }
+
   },
   getters: {
     Products: (state: State) => state.Products,
