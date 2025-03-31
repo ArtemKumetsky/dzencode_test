@@ -30,44 +30,98 @@
   }
 </script>
 <template>
-  <h2 class="menu-title p-5">
+  <h2 class="menu-title ps-5 pt-5">
     {{ $t("Menu.title_add") }}
   </h2>
   <form @submit.prevent="submitForm">
-    <div class="form-el">
-      <input type="text" required v-model="formData.title" placeholder="Title">
-      <input type="text" required v-model="formData.type" placeholder="Type">
-      <input type="text" required v-model="formData.specification" placeholder="Specification">
-      <input type="number" required v-model="formData.serialNumber" placeholder="Serial number">
-
-      <input type="text" required v-model="formData.clientName" placeholder="Client name">
-      <input type="text" required v-model="formData.groupTitle" placeholder="Group Title">
-      <input type="text" required v-model="formData.order" placeholder="Order Title">
-
-      <input type="date" required v-model="formData.date">
-
+    <div class="form-content">
       <label>
-        <input type="radio" required v-model="formData.newness" name="newness" :value="true"> New
+        Client name
+        <input type="text" required v-model="formData.clientName" placeholder="Client name">
       </label>
       <label>
-        <input type="radio" required v-model="formData.newness" name="newness" :value="false"> Old
+        Title
+        <input type="text" required v-model="formData.title" placeholder="Title">
+      </label>
+      <label>
+        Date
+        <input type="date" required v-model="formData.date">
       </label>
 
-      <input type="text" required v-model="formData.status" placeholder="Status">
-      <input type="URL" required v-model="formData.photo" placeholder="photo">
-      <input type="text" required v-model="formData.name" readonly>
-      <input type="text" required :value="generatedId" readonly>
+
+      <label>
+        Specification
+        <input type="text" required v-model="formData.specification" placeholder="Specification">
+      </label>
+      <label>
+        Serial number
+        <input type="number" required v-model="formData.serialNumber" placeholder="Serial number">
+      </label>
+      <label>
+        Type
+        <input type="text" required v-model="formData.type" placeholder="Type">
+      </label>
+
+      <label>
+        Photo link
+        <input type="URL" required v-model="formData.photo" placeholder="photo">
+      </label>
+      <label>
+        Order Title
+        <input type="text" required v-model="formData.order" placeholder="Order Title">
+      </label>
+      <label>
+        Group title
+        <input type="text" required v-model="formData.groupTitle" placeholder="Group Title">
+      </label>
+
+
+      <div class="radio-box">
+      <span>
+        Product status
+      </span>
+        <div>
+          <label>
+            <input type="radio" required v-model="formData.status" name="status" :value="'Busy'"> Busy
+          </label>
+          <label>
+            <input type="radio" required v-model="formData.status" name="status" :value="'Free'"> Free
+          </label>
+        </div>
+      </div>
+      <div class="radio-box">
+      <span>
+        Newness
+      </span>
+        <div>
+          <label>
+            <input type="radio" required v-model="formData.newness" name="newness" :value="true"> New
+          </label>
+          <label>
+            <input type="radio" required v-model="formData.newness" name="newness" :value="false"> Old
+          </label>
+        </div>
+      </div>
+
+      <label style="display:none;">
+        Item type
+        <input type="text" required v-model="formData.name" readonly>
+      </label>
+      <label>
+        ID
+        <input type="text" required :value="generatedId" readonly>
+      </label>
     </div>
 
-    <button type="submit">Submit</button>
+    <div class="menu-btn-container pe-5">
+      <button type="reset" @click="$emit('closeMenu')" class="me-4">{{ $t("Menu.buttons.cancel") }}</button>
+      <button type="submit" class="p-2" >
+        {{ $t("Menu.buttons.confirm") }}
+      </button>
+    </div>
   </form>
 
-  <div class="menu-btn-container pe-5">
-    <button type="reset" @click="$emit('closeMenu')" class="me-4">{{ $t("Menu.buttons.cancel") }}</button>
-    <button type="submit" class="p-2" >
-      {{ $t("Menu.buttons.confirm") }}
-    </button>
-  </div>
+
 </template>
 
 <style scoped lang="scss">
@@ -75,18 +129,48 @@ h2 {
   font-size: 24px;
   font-weight: bold;
 }
-form {
+.form-content {
   width: 100%;
+  padding: 15px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  flex-direction: column;
-}
-.form-el {
-  display: flex;
-  flex-direction: column;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
 
-  input {
-    width: max-content;
+  label {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      border: 1px solid var(--c-dark);
+      border-radius: 4px;
+      padding: 5px 10px;
+      &:focus-visible {
+        outline: 1px solid var(--c-nav-lime);
+      }
+    }
+  }
+}
+.radio-box {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 75%;
+
+    input[type=radio] {
+      transition: 0.3s all;
+      &:checked {
+        transform: scale(1.5);
+        transition: 0.3s all;
+      }
+    }
   }
 }
 .menu-btn-container {
