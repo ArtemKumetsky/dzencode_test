@@ -1,33 +1,39 @@
 <script lang="ts">
-  export default {
-    data () {
-      return {
-        formData: {
-          title: "",
-          type: "",
-          specification: "",
-          serialNumber: null,
-          clientName: "",
-          date: "",
-          newness: null,
-          status: "",
-          name: "продукт",
-          price: "",
-          guarantee: "",
-          photo: ""
-        },
-        generatedId: new Date().getMilliseconds() + new Date().getSeconds(),
-      };
-    },
-    methods: {
-      submitForm() {
-        const payload = { ...this.formData, id: this.generatedId };
-        console.log("Form Data:", payload);
-        this.$store.dispatch("addProduct", payload);
-        this.$emit('closeMenu');
+export default {
+  data() {
+    return {
+      formData: {
+        title: "",
+        type: "",
+        specification: "",
+        serialNumber: null,
+        clientName: "",
+        date: "",
+        newness: null,
+        status: "",
+        name: "продукт",
+        price: "",
+        guarantee: "",
+        photo: "",
       },
+      generatedId: new Date().getMilliseconds() + new Date().getSeconds(),
+      defaultPhoto: "https://img.freepik.com/premium-vector/no-data-found-empty-file-folder-concept-design-vector-illustration_620585-1698.jpg?semt=ais_hybrid",
     }
-  }
+  },
+  methods: {
+    submitForm() {
+      const payload = { ...this.formData, id: this.generatedId }
+      console.log("Form Data:", payload)
+      this.$store.dispatch("addProduct", payload)
+      this.$emit("closeMenu")
+    },
+    setDefaultPhoto() {
+      if (!this.formData.photo.trim()) {
+        this.formData.photo = this.defaultPhoto
+      }
+    },
+  },
+}
 </script>
 <template>
   <h2 class="menu-title ps-5 pt-5">
@@ -64,7 +70,7 @@
 
       <label>
         Photo link
-        <input type="URL" required v-model="formData.photo" value="https://img.freepik.com/premium-vector/no-data-found-empty-file-folder-concept-design-vector-illustration_620585-1698.jpg?semt=ais_hybrid" placeholder="Link to your photo">
+        <input type="URL" v-model="formData.photo" placeholder="Link to your photo" @blur="setDefaultPhoto">
       </label>
       <label>
         Price (UAH)
@@ -115,7 +121,7 @@
 
     <div class="menu-btn-container pe-5">
       <button type="reset" @click="$emit('closeMenu')" class="me-4">{{ $t("Menu.buttons.cancel") }}</button>
-      <button type="submit" class="p-2" >
+      <button type="submit" class="p-2">
         {{ $t("Menu.buttons.confirm") }}
       </button>
     </div>
@@ -129,6 +135,7 @@ h2 {
   font-size: 24px;
   font-weight: bold;
 }
+
 .form-content {
   width: 100%;
   padding: 15px;
@@ -145,12 +152,14 @@ h2 {
       border: 1px solid var(--c-dark);
       border-radius: 4px;
       padding: 5px 10px;
+
       &:focus-visible {
         outline: 1px solid var(--c-nav-lime);
       }
     }
   }
 }
+
 .radio-box {
   display: flex;
   width: 100%;
@@ -166,6 +175,7 @@ h2 {
 
     input[type=radio] {
       transition: 0.3s all;
+
       &:checked {
         transform: scale(1.5);
         transition: 0.3s all;
@@ -173,6 +183,7 @@ h2 {
     }
   }
 }
+
 .menu-btn-container {
   background: var(--c-nav-lime);
   height: 120px;
