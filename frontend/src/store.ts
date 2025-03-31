@@ -37,6 +37,10 @@ const store: Store<State> = createStore({
     removeProduct(state: State, targetId: string) {
       state.Products = state.Products.filter((product) => product._id !== targetId)
     },
+    addProduct(state: State, product: Product) {
+      console.log(product)
+      state.Products.push(product)
+    },
     removeOrder(state: State, targetId: string) {
       state.Orders = state.Orders.filter((order) => order._id !== targetId)
     },
@@ -73,13 +77,8 @@ const store: Store<State> = createStore({
     },
     async addProduct({ commit }, formData: IProduct) {
       try {
-        console.log("Sending data:", formData);
-
         const response = await axios.post<IProduct>(`http://localhost:3000/products/`, formData);
-
-        console.log(`Successfully added:`, response.data);
-
-        // commit("ADD_PRODUCT", response.data);
+        commit("addProduct", formData);
 
         return response.data;
       } catch (error) {
