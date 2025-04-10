@@ -1,5 +1,9 @@
 <script lang="ts">
+import { vMaska } from "maska/vue"
 export default {
+  directives: {
+    maska: vMaska,
+  },
   data() {
     return {
       formData: {
@@ -15,6 +19,7 @@ export default {
         price: "",
         guarantee: "",
         photo: "",
+        contactPhone: ""
       },
       generatedId: new Date().getMilliseconds() + new Date().getSeconds(),
       defaultPhoto: "https://img.freepik.com/premium-vector/no-data-found-empty-file-folder-concept-design-vector-illustration_620585-1698.jpg?semt=ais_hybrid",
@@ -48,6 +53,10 @@ export default {
       <label>
         Title
         <input type="text" required v-model="formData.title" placeholder="Enter product name">
+      </label>
+      <label>
+        Contact Phone
+        <input type="tel" required v-model="formData.contactPhone" placeholder="Enter contact phone" v-maska data-maska="+38 (0##) ###-##-##" @mouseenter="$event.target.value? null : $event.target.value = '+38 (0'">
       </label>
       <label>
         Date

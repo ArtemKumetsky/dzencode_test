@@ -42,26 +42,31 @@ export default defineComponent({
     <div class="product-img-container col-1 ps-5" :class="{ 'status-busy': item.status === 'Busy' }">
       <img :src="item.photo" alt="product_img" />
     </div>
-    <div class="product-name col-4">
+    <div class="product-name col-3">
       {{ item.title }}
       <span>{{ item.specification }}</span>
     </div>
     <div class="product-status col-1" :class="{ 'status-free': item.status === 'Free' }">
       {{ $t(`Products.status.${item.status.toLowerCase()}`) }}
     </div>
-    <div class="product-date col-2">
+    <div class="product-date col-1">
       {{item.guarantee}} {{$t('month')}}
     </div>
     <div class="product-newness col-1" v-if="item.newness">{{ $t("Products.newness_true") }}</div>
     <div class="product-newness col-1" v-else>{{ $t("Products.newness_false") }}</div>
-    <div class="product-item-price col-2">
+    <div class="product-item-price col-1">
       {{item.price}} UAH
     </div>
-    <div class="product-item-client-name styled-text col-3">
+    <div class="product-item-client-name styled-text col-2">
       <span v-if="item.clientName !== '—'">{{ item.clientName }}</span>
       <i v-else>{{ item.clientName }}</i>
     </div>
-    <div class="product-item-date col-2">
+    <div class="product-item-phone col-2">
+      <a :href="item.contactPhone">
+        {{item.contactPhone}}
+      </a>
+    </div>
+    <div class="product-item-date col-1">
       <span>{{ item.date }}</span>
     </div>
     <div class="delete-btn col-1 me-2">
@@ -157,6 +162,9 @@ export default defineComponent({
 .product-item-price {
   font-size: 18px;
   text-wrap: nowrap;
+  text-align: center;
+}
+.product-item-client-name {
   text-align: center;
 }
 

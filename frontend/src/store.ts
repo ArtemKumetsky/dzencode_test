@@ -38,7 +38,6 @@ const store: Store<State> = createStore({
       state.Products = state.Products.filter((product) => product._id !== targetId)
     },
     addProduct(state: State, product: Product) {
-      console.log(product)
       state.Products.push(product)
     },
     removeOrder(state: State, targetId: string) {
@@ -79,7 +78,7 @@ const store: Store<State> = createStore({
       try {
         const response = await axios.post<IProduct>(`http://localhost:3000/products/`, formData);
         commit("addProduct", formData);
-
+        console.log(formData)
         return response.data;
       } catch (error) {
         console.error("Error adding product:", error);

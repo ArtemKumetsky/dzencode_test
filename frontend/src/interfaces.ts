@@ -7,17 +7,7 @@ export interface IOrder {
   productIds: Number[]
   name: string
 }
-export interface IproductGuarantee {
-  start: string
-  end: string
-}
-
-export interface IproductPrice {
-  value: number
-  Symbol: string
-}
 export interface IProduct {
-  _id?: string
   id: number
   serialNumber: number
   newness: boolean
@@ -26,14 +16,14 @@ export interface IProduct {
   title: string
   type: string
   specification: string
-  guarantee: IproductGuarantee
-  price: IproductPrice[]
-  subdate: string
+  guarantee: Number
+  price: Number
   date: string
   groupTitle: string
   clientName: string
   order: string
   name: string
+  contactPhone: string
 }
 
 export interface InteractiveMenuData {
@@ -46,8 +36,8 @@ export interface InteractiveMenuData {
   title?: string
   type?: string
   specification?: string
-  guarantee?: IproductGuarantee
-  price?: IproductPrice[]
+  guarantee?: number
+  price?: number
   subdate?: string
   date?: string
   groupTitle?: string

@@ -16,6 +16,7 @@ interface IProduct extends Document {
   clientName: string
   order: string
   name: string
+  contactPhone: string
 }
 
 const productSchema = new Schema<IProduct>({
@@ -32,6 +33,7 @@ const productSchema = new Schema<IProduct>({
   date: { type: String, required: true },
   clientName: { type: String, required: true },
   name: { type: String, required: true },
+  contactPhone: { type: String, required: true },
 })
 
 const Product = model<IProduct>("Product", productSchema)
